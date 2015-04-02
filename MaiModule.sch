@@ -62,9 +62,9 @@
         <signal name="saw3" />
         <signal name="saw2" />
         <signal name="saw1" />
-        <signal name="main_bus2(28:0)" />
-        <signal name="main_bus3(28:0)" />
-        <signal name="main_bus4(28:0)" />
+        <signal name="main_bus2(60:0)" />
+        <signal name="main_bus3(60:0)" />
+        <signal name="main_bus4(60:0)" />
         <signal name="ready(3:0)" />
         <signal name="ready_ctrl(0)" />
         <signal name="ready_ctrl(2)" />
@@ -76,7 +76,7 @@
         <signal name="reset(2)" />
         <signal name="reset(1)" />
         <signal name="toIMuxData(7:0)" />
-        <signal name="q(15:0)" />
+        <signal name="q(47:0)" />
         <signal name="evt_std" />
         <signal name="XLXN_274" />
         <signal name="XLXN_431" />
@@ -104,7 +104,6 @@
         <signal name="att_sig(0)" />
         <signal name="s1_dbg" />
         <signal name="s0_dbg" />
-        <signal name="main_bus1(28:0)" />
         <signal name="main_bus1(31:0)" />
         <signal name="main_bus1b(29)" />
         <signal name="main_bus1b(30)" />
@@ -147,6 +146,7 @@
         <signal name="ready(0)" />
         <signal name="ready(1)" />
         <signal name="ready(2)" />
+        <signal name="main_bus1(60:0)" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -238,7 +238,7 @@
             <line x2="64" y1="-64" y2="0" x1="64" />
         </blockdef>
         <blockdef name="counter_16">
-            <timestamp>2015-4-2T13:12:45</timestamp>
+            <timestamp>2015-4-2T13:31:38</timestamp>
             <line x2="384" y1="-96" y2="-96" x1="320" />
             <rect width="64" x="320" y="-108" height="24" />
             <line x2="64" y1="-16" y2="-16" x1="0" />
@@ -249,7 +249,7 @@
             <line x2="320" y1="-32" y2="-32" x1="384" />
         </blockdef>
         <blockdef name="event_handler">
-            <timestamp>2014-11-29T15:28:23</timestamp>
+            <timestamp>2015-4-2T13:29:26</timestamp>
             <rect width="256" x="64" y="-320" height="320" />
             <line x2="384" y1="-224" y2="-224" x1="320" />
             <line x2="384" y1="-160" y2="-160" x1="320" />
@@ -266,12 +266,12 @@
             <line x2="320" y1="-32" y2="-32" x1="384" />
             <line x2="320" y1="-256" y2="-256" x1="384" />
             <line x2="320" y1="-192" y2="-192" x1="384" />
-            <line x2="324" y1="-128" y2="-128" x1="388" />
             <line x2="324" y1="-64" y2="-64" x1="384" />
             <line x2="64" y1="-256" y2="-256" x1="0" />
+            <line x2="320" y1="-128" y2="-128" x1="384" />
         </blockdef>
         <blockdef name="bRAM_module2">
-            <timestamp>2014-11-1T17:14:49</timestamp>
+            <timestamp>2015-4-2T13:53:57</timestamp>
             <line x2="0" y1="-672" y2="-672" x1="64" />
             <line x2="0" y1="-608" y2="-608" x1="64" />
             <rect width="64" x="0" y="-620" height="24" />
@@ -299,9 +299,9 @@
             <line x2="64" y1="-64" y2="-64" x1="0" />
             <line x2="320" y1="-512" y2="-512" x1="384" />
             <line x2="320" y1="-64" y2="-64" x1="384" />
-            <line x2="320" y1="-48" y2="-48" x1="388" />
             <rect width="256" x="64" y="-780" height="788" />
             <line x2="64" y1="-704" y2="-704" x1="0" />
+            <line x2="384" y1="-48" y2="-48" x1="320" />
         </blockdef>
         <blockdef name="IMux4x1x8">
             <timestamp>2006-4-12T8:57:50</timestamp>
@@ -544,10 +544,10 @@
         <block symbolname="event_handler" name="XLXI_97">
             <blockpin signalname="cs1" name="cs" />
             <blockpin signalname="ready_ctrl(0)" name="ready" />
-            <blockpin signalname="main_bus1(28:0)" name="main_bus(28:0)" />
+            <blockpin signalname="main_bus1(60:0)" name="main_bus(60:0)" />
             <blockpin signalname="saw1" name="saw" />
             <blockpin signalname="adc1" name="sdata" />
-            <blockpin signalname="q(15:0)" name="counter(15:0)" />
+            <blockpin signalname="q(47:0)" name="counter(47:0)" />
             <blockpin signalname="evt_1" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(0)" name="reset" />
@@ -562,10 +562,10 @@
         <block symbolname="event_handler" name="XLXI_98">
             <blockpin signalname="cs4" name="cs" />
             <blockpin signalname="ready_ctrl(3)" name="ready" />
-            <blockpin signalname="main_bus4(28:0)" name="main_bus(28:0)" />
+            <blockpin signalname="main_bus4(60:0)" name="main_bus(60:0)" />
             <blockpin signalname="saw4" name="saw" />
             <blockpin signalname="adc4" name="sdata" />
-            <blockpin signalname="q(15:0)" name="counter(15:0)" />
+            <blockpin signalname="q(47:0)" name="counter(47:0)" />
             <blockpin signalname="evt_4" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(3)" name="reset" />
@@ -580,10 +580,10 @@
         <block symbolname="event_handler" name="XLXI_100">
             <blockpin signalname="cs3" name="cs" />
             <blockpin signalname="ready_ctrl(2)" name="ready" />
-            <blockpin signalname="main_bus3(28:0)" name="main_bus(28:0)" />
+            <blockpin signalname="main_bus3(60:0)" name="main_bus(60:0)" />
             <blockpin signalname="saw3" name="saw" />
             <blockpin signalname="adc3" name="sdata" />
-            <blockpin signalname="q(15:0)" name="counter(15:0)" />
+            <blockpin signalname="q(47:0)" name="counter(47:0)" />
             <blockpin signalname="evt_3" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(2)" name="reset" />
@@ -598,10 +598,10 @@
         <block symbolname="bRAM_module2" name="XLXI_94">
             <blockpin signalname="CLK80" name="clka" />
             <blockpin signalname="ready(3:0)" name="ready_bus(3:0)" />
-            <blockpin signalname="main_bus1(28:0)" name="main_bus1(28:0)" />
-            <blockpin signalname="main_bus2(28:0)" name="main_bus2(28:0)" />
-            <blockpin signalname="main_bus3(28:0)" name="main_bus3(28:0)" />
-            <blockpin signalname="main_bus4(28:0)" name="main_bus4(28:0)" />
+            <blockpin signalname="main_bus1(60:0)" name="main_bus1(60:0)" />
+            <blockpin signalname="main_bus2(60:0)" name="main_bus2(60:0)" />
+            <blockpin signalname="main_bus3(60:0)" name="main_bus3(60:0)" />
+            <blockpin signalname="main_bus4(60:0)" name="main_bus4(60:0)" />
             <blockpin signalname="XLXN_274" name="reset_c" />
             <blockpin signalname="reset_main(3:0)" name="reset_bus(3:0)" />
             <blockpin signalname="CLK80" name="clkb_ctrl" />
@@ -623,10 +623,10 @@
         <block symbolname="event_handler" name="XLXI_101">
             <blockpin signalname="cs2" name="cs" />
             <blockpin signalname="ready_ctrl(1)" name="ready" />
-            <blockpin signalname="main_bus2(28:0)" name="main_bus(28:0)" />
+            <blockpin signalname="main_bus2(60:0)" name="main_bus(60:0)" />
             <blockpin signalname="saw2" name="saw" />
             <blockpin signalname="adc2" name="sdata" />
-            <blockpin signalname="q(15:0)" name="counter(15:0)" />
+            <blockpin signalname="q(47:0)" name="counter(47:0)" />
             <blockpin signalname="evt_2" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(1)" name="reset" />
@@ -639,7 +639,7 @@
             <blockpin signalname="window_mode" name="window_mode" />
         </block>
         <block symbolname="counter_16" name="XLXI_85">
-            <blockpin signalname="q(15:0)" name="q(31:0)" />
+            <blockpin signalname="q(47:0)" name="q(47:0)" />
             <blockpin signalname="XLXN_431" name="reset" />
             <blockpin signalname="evt_std" name="CLK_OOL_16" />
             <blockpin signalname="CLK80" name="CLK_OOL" />
@@ -1053,21 +1053,21 @@
         <branch name="saw1">
             <wire x2="2512" y1="992" y2="992" x1="2480" />
         </branch>
-        <branch name="main_bus2(28:0)">
+        <branch name="main_bus2(60:0)">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="2896" y="1840" type="branch" />
             <wire x2="2768" y1="1616" y2="1616" x1="2464" />
             <wire x2="2768" y1="1616" y2="1840" x1="2768" />
             <wire x2="2896" y1="1840" y2="1840" x1="2768" />
             <wire x2="3136" y1="1840" y2="1840" x1="2896" />
         </branch>
-        <branch name="main_bus3(28:0)">
+        <branch name="main_bus3(60:0)">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="2896" y="1904" type="branch" />
             <wire x2="2768" y1="2032" y2="2032" x1="2480" />
             <wire x2="2896" y1="1904" y2="1904" x1="2768" />
             <wire x2="3136" y1="1904" y2="1904" x1="2896" />
             <wire x2="2768" y1="1904" y2="2032" x1="2768" />
         </branch>
-        <branch name="main_bus4(28:0)">
+        <branch name="main_bus4(60:0)">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="2896" y="1968" type="branch" />
             <wire x2="2784" y1="2480" y2="2480" x1="2480" />
             <wire x2="2784" y1="1968" y2="2480" x1="2784" />
@@ -1138,7 +1138,7 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="3600" y="1744" type="branch" />
             <wire x2="3600" y1="1744" y2="1744" x1="3520" />
         </branch>
-        <branch name="q(15:0)">
+        <branch name="q(47:0)">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1824" y="1808" type="branch" />
             <wire x2="1824" y1="1808" y2="1808" x1="1184" />
             <wire x2="1936" y1="1808" y2="1808" x1="1824" />
@@ -1356,11 +1356,11 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2752" type="branch" />
             <wire x2="432" y1="2752" y2="2752" x1="384" />
         </branch>
-        <branch name="main_bus1(28:0)">
+        <branch name="main_bus1(60:0)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2656" y="1184" type="branch" />
             <wire x2="2656" y1="1184" y2="1184" x1="2480" />
         </branch>
-        <branch name="main_bus1(28:0)">
+        <branch name="main_bus1(60:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3024" y="1776" type="branch" />
             <wire x2="3136" y1="1776" y2="1776" x1="3024" />
         </branch>
