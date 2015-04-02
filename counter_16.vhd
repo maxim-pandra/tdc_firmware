@@ -6,7 +6,7 @@
 --generic(N: integer:=8);
  port(
 	clk, CLK_OOL, reset: in std_logic; --CLK_Mid
-	q: out std_logic_vector (15 downto 0);
+	q: out std_logic_vector (47 downto 0);
 	CLK_OOL_16: out std_logic;
 	c_out: out std_logic_vector(12 downto 0)
 	);
@@ -14,9 +14,9 @@ end counter_16;
 
 architecture arch_counter of counter_16 is
 	signal r_reg_low, r_next_low: unsigned(12 downto 0);
-	signal r_reg: unsigned(15 downto 0);
-	signal r_next: unsigned(15 downto 0);
-	signal 	q_big: std_logic_vector (15 downto 0);
+	signal r_reg: unsigned(47 downto 0);
+	signal r_next: unsigned(47 downto 0);
+	signal 	q_big: std_logic_vector (47 downto 0);
 	signal eventLow: std_logic;
 begin
 	c_out<= std_logic_vector(r_reg_low);

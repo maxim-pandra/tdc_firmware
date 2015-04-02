@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="main_distribution_system">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2014-11-29T15:29:4</timestamp>
+    <timestamp>2015-4-2T13:38:40</timestamp>
     <pin polarity="Input" x="0" y="-288" name="clk" />
     <pin polarity="Input" x="0" y="-224" name="reset" />
     <pin polarity="Input" x="0" y="-96" name="evt_ext" />
-    <pin polarity="Input" x="0" y="-32" name="counter(15:0)" />
+    <pin polarity="Input" x="0" y="-32" name="counter(47:0)" />
     <pin polarity="Output" x="384" y="-96" name="err" />
     <pin polarity="Output" x="384" y="-160" name="saw" />
     <pin polarity="Output" x="384" y="-224" name="attached_signal_out" />
-    <pin polarity="Output" x="384" y="-288" name="counter_out(15:0)" />
+    <pin polarity="Output" x="384" y="-288" name="counter_out(47:0)" />
     <pin polarity="Input" x="0" y="-128" name="evt_std" />
     <pin polarity="Output" x="384" y="-64" name="s0_dbg" />
     <pin polarity="Output" x="384" y="-32" name="s1_dbg" />
@@ -22,14 +22,14 @@
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin reset" />
         <line x2="0" y1="-96" y2="-96" x1="64" />
         <line x2="0" y1="-32" y2="-32" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-32" type="pin counter(15:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-32" type="pin counter(47:0)" />
         <line x2="384" y1="-96" y2="-96" x1="320" />
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-96" type="pin err" />
         <line x2="384" y1="-160" y2="-160" x1="320" />
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-160" type="pin saw" />
         <line x2="384" y1="-224" y2="-224" x1="320" />
         <line x2="384" y1="-288" y2="-288" x1="320" />
-        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-288" type="pin counter_out(15:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-288" type="pin counter_out(47:0)" />
         <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-344" type="symbol" />
         <rect width="256" x="64" y="-320" height="320" />
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-196" type="pin attached_signal_out" />

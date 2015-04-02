@@ -77,8 +77,7 @@
         <signal name="reset(1)" />
         <signal name="toIMuxData(7:0)" />
         <signal name="q(15:0)" />
-        <signal name="evt_std">
-        </signal>
+        <signal name="evt_std" />
         <signal name="XLXN_274" />
         <signal name="XLXN_431" />
         <signal name="c_out(12:0)" />
@@ -239,7 +238,7 @@
             <line x2="64" y1="-64" y2="0" x1="64" />
         </blockdef>
         <blockdef name="counter_16">
-            <timestamp>2013-10-5T14:3:58</timestamp>
+            <timestamp>2015-4-2T13:12:45</timestamp>
             <line x2="384" y1="-96" y2="-96" x1="320" />
             <rect width="64" x="320" y="-108" height="24" />
             <line x2="64" y1="-16" y2="-16" x1="0" />
@@ -640,7 +639,7 @@
             <blockpin signalname="window_mode" name="window_mode" />
         </block>
         <block symbolname="counter_16" name="XLXI_85">
-            <blockpin signalname="q(15:0)" name="q(15:0)" />
+            <blockpin signalname="q(15:0)" name="q(31:0)" />
             <blockpin signalname="XLXN_431" name="reset" />
             <blockpin signalname="evt_std" name="CLK_OOL_16" />
             <blockpin signalname="CLK80" name="CLK_OOL" />

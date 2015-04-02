@@ -8,17 +8,17 @@
     <netlist>
         <signal name="CLK_High" />
         <signal name="evt" />
-        <signal name="main_bus(15:0)" />
+        <signal name="main_bus(47:0)" />
         <signal name="saw" />
-        <signal name="main_bus(28)" />
+        <signal name="main_bus(60)" />
         <signal name="reset" />
-        <signal name="counter(15:0)" />
-        <signal name="main_bus(28:0)" />
+        <signal name="counter(47:0)" />
+        <signal name="main_bus(60:0)" />
         <signal name="evt_std" />
         <signal name="sdata" />
         <signal name="ready" />
         <signal name="cs" />
-        <signal name="main_bus(27:16)" />
+        <signal name="main_bus(59:48)" />
         <signal name="CLK_ADC" />
         <signal name="adc_reset" />
         <signal name="XLXN_217" />
@@ -33,8 +33,8 @@
         <port polarity="Input" name="evt" />
         <port polarity="Output" name="saw" />
         <port polarity="Input" name="reset" />
-        <port polarity="Input" name="counter(15:0)" />
-        <port polarity="Output" name="main_bus(28:0)" />
+        <port polarity="Input" name="counter(47:0)" />
+        <port polarity="Output" name="main_bus(60:0)" />
         <port polarity="Input" name="evt_std" />
         <port polarity="Input" name="sdata" />
         <port polarity="Output" name="ready" />
@@ -58,7 +58,7 @@
             <line x2="320" y1="-32" y2="-32" x1="384" />
         </blockdef>
         <blockdef name="main_distribution_system">
-            <timestamp>2014-11-29T15:29:5</timestamp>
+            <timestamp>2015-4-2T13:38:40</timestamp>
             <line x2="0" y1="-288" y2="-288" x1="64" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
             <line x2="0" y1="-96" y2="-96" x1="64" />
@@ -107,18 +107,18 @@
             <blockpin signalname="sdata" name="sdata" />
             <blockpin signalname="ready" name="ready_sync" />
             <blockpin signalname="cs" name="cs" />
-            <blockpin signalname="main_bus(27:16)" name="data_bus(11:0)" />
+            <blockpin signalname="main_bus(59:48)" name="data_bus(11:0)" />
             <blockpin signalname="adc_reset" name="adc_reset" />
         </block>
         <block symbolname="main_distribution_system" name="XLXI_85">
             <blockpin signalname="CLK_High" name="clk" />
             <blockpin signalname="reset" name="reset" />
             <blockpin signalname="evt" name="evt_ext" />
-            <blockpin signalname="counter(15:0)" name="counter(15:0)" />
-            <blockpin signalname="main_bus(28)" name="err" />
+            <blockpin signalname="counter(47:0)" name="counter(47:0)" />
+            <blockpin signalname="main_bus(60)" name="err" />
             <blockpin signalname="saw" name="saw" />
             <blockpin signalname="attached_signal" name="attached_signal_out" />
-            <blockpin signalname="main_bus(15:0)" name="counter_out(15:0)" />
+            <blockpin signalname="main_bus(47:0)" name="counter_out(47:0)" />
             <blockpin signalname="evt_std" name="evt_std" />
             <blockpin signalname="s0_dbg" name="s0_dbg" />
             <blockpin signalname="s1_dbg" name="s1_dbg" />
@@ -151,19 +151,19 @@
             <wire x2="1680" y1="784" y2="800" x1="1680" />
             <wire x2="1696" y1="784" y2="784" x1="1680" />
         </branch>
-        <branch name="main_bus(15:0)">
+        <branch name="main_bus(47:0)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2256" y="592" type="branch" />
             <wire x2="2256" y1="592" y2="592" x1="2080" />
         </branch>
         <branch name="saw">
             <wire x2="2112" y1="720" y2="720" x1="2080" />
         </branch>
-        <branch name="main_bus(28)">
+        <branch name="main_bus(60)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2112" y="784" type="branch" />
             <wire x2="2112" y1="784" y2="784" x1="2080" />
         </branch>
-        <iomarker fontsize="28" x="2976" y="1104" name="main_bus(28:0)" orien="R0" />
-        <branch name="main_bus(28:0)">
+        <iomarker fontsize="28" x="2976" y="1104" name="main_bus(60:0)" orien="R0" />
+        <branch name="main_bus(60:0)">
             <wire x2="2976" y1="1104" y2="1104" x1="2672" />
         </branch>
         <iomarker fontsize="28" x="2112" y="720" name="saw" orien="R0" />
@@ -180,7 +180,7 @@
         <branch name="cs">
             <wire x2="2080" y1="1168" y2="1168" x1="2048" />
         </branch>
-        <branch name="main_bus(27:16)">
+        <branch name="main_bus(59:48)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2080" y="1232" type="branch" />
             <wire x2="2080" y1="1232" y2="1232" x1="2048" />
         </branch>
@@ -193,7 +193,7 @@
         <iomarker fontsize="28" x="2080" y="1104" name="ready" orien="R0" />
         <iomarker fontsize="28" x="1600" y="1296" name="sdata" orien="R180" />
         <iomarker fontsize="28" x="2096" y="1296" name="adc_reset" orien="R0" />
-        <iomarker fontsize="28" x="1616" y="848" name="counter(15:0)" orien="R180" />
+        <iomarker fontsize="28" x="1616" y="848" name="counter(47:0)" orien="R180" />
         <iomarker fontsize="28" x="1440" y="800" name="evt" orien="R180" />
         <iomarker fontsize="28" x="1616" y="752" name="evt_std" orien="R180" />
         <iomarker fontsize="28" x="1600" y="656" name="reset" orien="R180" />
@@ -218,7 +218,7 @@
             <wire x2="2240" y1="848" y2="848" x1="2224" />
         </branch>
         <iomarker fontsize="28" x="3040" y="960" name="attached_signal" orien="R0" />
-        <branch name="counter(15:0)">
+        <branch name="counter(47:0)">
             <wire x2="1632" y1="848" y2="848" x1="1616" />
             <wire x2="1696" y1="848" y2="848" x1="1632" />
         </branch>

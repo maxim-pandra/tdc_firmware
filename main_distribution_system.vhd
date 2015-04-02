@@ -7,9 +7,9 @@ use ieee.numeric_std.all;
 entity main_distribution_system is
 port(
 	clk, reset, evt_ext, evt_std, window_mode: in std_logic;            -- clock, reset, enable, event
-	counter: in std_logic_vector (15 downto 0);  -- counter
+	counter: in std_logic_vector (47 downto 0);  -- counter
 	err, saw, attached_signal_out, as, s0_dbg, s1_dbg: out std_logic;     -- error, saw, conected_signal
-	counter_out: out std_logic_vector (15 downto 0)  -- counter
+	counter_out: out std_logic_vector (47 downto 0)  -- counter
 		
 	);
 end main_distribution_system;

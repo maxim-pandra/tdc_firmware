@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="bRAM_module2">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2014-11-1T17:14:49</timestamp>
+    <timestamp>2015-4-2T13:53:57</timestamp>
     <pin polarity="Input" x="0" y="-672" name="clka" />
     <pin polarity="Input" x="0" y="-608" name="ready_bus(3:0)" />
-    <pin polarity="Input" x="0" y="-544" name="main_bus1(28:0)" />
-    <pin polarity="Input" x="0" y="-480" name="main_bus2(28:0)" />
-    <pin polarity="Input" x="0" y="-416" name="main_bus3(28:0)" />
-    <pin polarity="Input" x="0" y="-352" name="main_bus4(28:0)" />
+    <pin polarity="Input" x="0" y="-544" name="main_bus1(60:0)" />
+    <pin polarity="Input" x="0" y="-480" name="main_bus2(60:0)" />
+    <pin polarity="Input" x="0" y="-416" name="main_bus3(60:0)" />
+    <pin polarity="Input" x="0" y="-352" name="main_bus4(60:0)" />
     <pin polarity="Input" x="0" y="-288" name="reset_c" />
     <pin polarity="Output" x="384" y="-672" name="reset_bus(3:0)" />
     <pin polarity="Input" x="0" y="-224" name="clkb_ctrl" />
@@ -32,16 +32,16 @@
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-608" type="pin ready_bus(3:0)" />
         <rect width="64" x="0" y="-620" height="24" />
         <line x2="0" y1="-544" y2="-544" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-544" type="pin main_bus1(28:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-544" type="pin main_bus1(60:0)" />
         <rect width="64" x="0" y="-556" height="24" />
         <line x2="0" y1="-480" y2="-480" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-480" type="pin main_bus2(28:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-480" type="pin main_bus2(60:0)" />
         <rect width="64" x="0" y="-492" height="24" />
         <line x2="0" y1="-416" y2="-416" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-416" type="pin main_bus3(28:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-416" type="pin main_bus3(60:0)" />
         <rect width="64" x="0" y="-428" height="24" />
         <line x2="0" y1="-352" y2="-352" x1="64" />
-        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-352" type="pin main_bus4(28:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-352" type="pin main_bus4(60:0)" />
         <rect width="64" x="0" y="-364" height="24" />
         <line x2="0" y1="-288" y2="-288" x1="64" />
         <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-288" type="pin reset_c" />
@@ -75,10 +75,10 @@
         <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="-48" type="pin curr_wr_lsb(7:0)" />
         <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="-64" type="pin curr_wr_msb(7:0)" />
         <line x2="320" y1="-64" y2="-64" x1="384" />
-        <line x2="320" y1="-48" y2="-48" x1="388" />
         <rect width="256" x="64" y="-780" height="788" />
         <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="184" y="-780" type="symbol" />
         <attrtext attrname="PinName" x="88" y="-704" type="pin mem_overflow_reset" />
         <line x2="64" y1="-704" y2="-704" x1="0" />
+        <line x2="384" y1="-48" y2="-48" x1="320" />
     </graph>
 </symbol>
