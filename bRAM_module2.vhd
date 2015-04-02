@@ -6,7 +6,7 @@ library ieee;
  port(
 	clka,reset_c										   		: in std_logic;
 	ready_bus											   		: in std_logic_vector(3 downto 0);
-	main_bus1, main_bus2, main_bus3, main_bus4			: in std_logic_vector(28 downto 0);
+	main_bus1, main_bus2, main_bus3, main_bus4			: in std_logic_vector(60 downto 0);
 	reset_bus						   				   		: out std_logic_vector(3 downto 0);
 	addra_curr0,addra_curr1,curr_wr_lsb,curr_wr_msb		: out std_logic_vector(7 downto 0);
 	present0															: out std_logic;
@@ -27,19 +27,21 @@ end bRAM_module2;
 
 architecture bRAM_arch of bRAM_module2 is 
 	
-	------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-COMPONENT blk_mem_gen_v6_1
+------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
+COMPONENT memory64
   PORT (
-    clka 	: IN STD_LOGIC;
-    wea		: IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addra 	: IN STD_LOGIC_VECTOR(8 DOWNTO 0);
-    dina 	: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-    douta 	: OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
-    clkb 	: IN STD_LOGIC;
-    web 		: IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addrb 	: IN STD_LOGIC_VECTOR(10 DOWNTO 0);
-    dinb 	: IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-    doutb 	: OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    clka : IN STD_LOGIC;
+    ena : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+    clkb : IN STD_LOGIC;
+    enb : IN STD_LOGIC;
+    web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    addrb : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    dinb : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -55,22 +57,24 @@ END COMPONENT;
 	signal  addra_next						: unsigned(15 downto 0);
 	signal addra_reg                    : std_logic_vector(15 downto 0);
 	signal wea,web								: std_logic_vector(3 downto 0);
-	signal data_pack                    : std_logic_vector(31 downto 0);
-	signal internal_rd_index				: std_logic_vector(12 downto 0);
+	signal data_pack                    : std_logic_vector(63 downto 0);
+	signal internal_rd_index				: std_logic_vector(13 downto 0);
 	signal enable, web0dbug_buff, flag,memOverflowFlag, flag1, reasonStop, reasonContinue :std_logic;
 
 begin
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	first_bram : blk_mem_gen_v6_1
+	first_bram : memory64
 	  PORT MAP (
 		clka => clka,
+	   ena => ena,	
 		wea => wea(0 downto 0),
 		addra => addra,
 		dina => data_pack,
 		douta => open, --douta,
 		clkb => clkb_ctrl,
+		enb => enb,
 		web => web(0 downto 0),
-		addrb => addrb_ctrl(10 downto 0),
+		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
 		doutb => doutb1
 	  );
@@ -78,16 +82,18 @@ begin
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	second_bram : blk_mem_gen_v6_1
+	second_bram : memory64
 	  PORT MAP (
 		clka => clka,
+	   ena => ena,	
 		wea => wea(1 downto 1),
 		addra => addra,
 		dina => data_pack,
 		douta => open, --douta,
 		clkb => clkb_ctrl,
+		enb => enb,
 		web => web(1 downto 1),
-		addrb => addrb_ctrl(10 downto 0),
+		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
 		doutb => doutb2
 	  );
@@ -95,16 +101,18 @@ begin
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	third_bram : blk_mem_gen_v6_1
+	third_bram : memory64
 	  PORT MAP (
 		clka => clka,
+		ena => ena,
 		wea => wea(2 downto 2),
 		addra => addra,
 		dina => data_pack,
 		douta => open, --douta,
 		clkb => clkb_ctrl,
+		enb => enb,
 		web => web(2 downto 2),
-		addrb => addrb_ctrl(10 downto 0),
+		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
 		doutb => doutb3
 	  );
@@ -112,16 +120,18 @@ begin
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	option_bram : blk_mem_gen_v6_1
+	option_bram : memory64
 	   PORT MAP (
 		 clka => clka,
+		 ena => ena,
 		 wea => wea(3 downto 3),
 		 addra => addra,
 		 dina => data_pack,
 		 douta => open, --douta,
 		 clkb => clkb_ctrl,
+		 enb => enb,
 		 web => web(3 downto 3),
-		 addrb => addrb_ctrl(10 downto 0),
+		 addrb => addrb_ctrl(11 downto 0),
 		 dinb => dinb_ctrl_shifted,
 		 doutb => doutb4
 	   );
@@ -152,7 +162,7 @@ begin
 			addra_reg_u<=addra_reg_u;
 			enable<='0';
 			flag<='0';
-			data_pack <="11111111111111111111111111111111";	
+			data_pack <="1111111111111111111111111111111111111111111111111111111111111111";	
 		elsif (state_reg=WRITE1)then
 			if (reasonStop='1') then
 			state_reg<=SLEEP;
@@ -201,7 +211,7 @@ begin
 			addra_reg_u<=addra_reg_u;
 			enable<='0';
 			flag<='0';
-			data_pack <="11111111111111111111111111111111";	
+			data_pack <="1111111111111111111111111111111111111111111111111111111111111111";	
 			reset_bus(0)<='0';
 			reset_bus(1)<='0';
 			reset_bus(2)<='0';
@@ -230,7 +240,7 @@ begin
 	 addra_reg<=std_logic_vector(addra_reg_u);	
 	 addra<=addra_reg(8 downto 0);
 	 
-	 bram_selected<=addrb_ctrl(12 downto 11);
+	 bram_selected<=addrb_ctrl(13 downto 12);
 	 
 	 addra_curr0<= addrb_ctrl(7 downto 0); --addra_reg(7  downto 0);
 	 addra_curr1<= addrb_ctrl(15 downto 8); --addra_reg(15 downto 8);
@@ -240,13 +250,14 @@ begin
 	process(clka)
 	begin
 	if (clka'event and clka='1') then
-		if	  (addrb_ctrl(13 downto 11)="100" and web_ctrl='1') then web<="0001";		--data_b_in_reg<=dinb_ctrl;
-		elsif(addrb_ctrl(13 downto 11)="101" and web_ctrl='1') then web<="0010";
-		elsif(addrb_ctrl(13 downto 11)="110" and web_ctrl='1') then web<="0100";
-		elsif(addrb_ctrl(13 downto 11)="111" and web_ctrl='1') then web<="1000";
+		if	  (addrb_ctrl(14 downto 12)="100" and web_ctrl='1') then web<="0001";		--data_b_in_reg<=dinb_ctrl;
+		elsif(addrb_ctrl(14 downto 12)="101" and web_ctrl='1') then web<="0010";
+		elsif(addrb_ctrl(14 downto 12)="110" and web_ctrl='1') then web<="0100";
+		elsif(addrb_ctrl(14 downto 12)="111" and web_ctrl='1') then web<="1000";
 		else web<="0000";
 		end if;
 		if IntRegSel = '1' then
+			internal_rd_index(13)<=addrb_ctrl(13);
 			internal_rd_index(12)<=addrb_ctrl(12);
 			internal_rd_index(11)<=addrb_ctrl(11);
 			internal_rd_index(10)<=addrb_ctrl(10);
@@ -275,7 +286,8 @@ web0dbug_buff<=
 	end if;
 	end process;
 	
-	reasonStop	 <=(addra_reg(10) xor not internal_rd_index(12)) and
+	reasonStop	 <=(addra_reg(11) xor not internal_rd_index(13)) and
+						(addra_reg(10) xor not internal_rd_index(12)) and
 						(addra_reg(9) xor not internal_rd_index(11)) and
 						(addra_reg(8) xor not internal_rd_index(10)) and
 						(addra_reg(7) xor not internal_rd_index(9)) and
@@ -287,7 +299,7 @@ web0dbug_buff<=
 						(addra_reg(1) xor not internal_rd_index(3)) and
 						(addra_reg(0) xor not internal_rd_index(2));
 	
-	reasonContinue<=(addra_reg(3) xor internal_rd_index(5));
+	reasonContinue<=(addra_reg(4) xor internal_rd_index(6));
 	
 	process(clka)
 	begin
