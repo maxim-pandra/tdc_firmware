@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<Interface Version="1" Minor="1">
+	<Ifc Id="ROOT" Top="1">
+		<Bus Id="FTDIbus">
+			<Port Id="7" Dir="INOUT"/>
+			<Port Id="6" Dir="INOUT"/>
+			<Port Id="5" Dir="INOUT"/>
+			<Port Id="4" Dir="INOUT"/>
+			<Port Id="3" Dir="INOUT"/>
+			<Port Id="2" Dir="INOUT"/>
+			<Port Id="1" Dir="INOUT"/>
+			<Port Id="0" Dir="INOUT"/>
+		</Bus>
+		<Port Id="adc1" Dir="IN"/>
+		<Port Id="adc2" Dir="IN"/>
+		<Port Id="adc3" Dir="IN"/>
+		<Port Id="adc4" Dir="IN"/>
+		<Port Id="CLK80" Dir="IN"/>
+		<Port Id="evt_std" Dir="IN"/>
+		<Port Id="evt_1" Dir="IN"/>
+		<Port Id="evt_2" Dir="IN"/>
+		<Port Id="evt_3" Dir="IN"/>
+		<Port Id="evt_4" Dir="IN"/>
+		<Port Id="MISO" Dir="IN"/>
+		<Port Id="rxf" Dir="IN"/>
+		<Port Id="txe" Dir="IN"/>
+		<Port Id="adc_reset_0" Dir="OUT"/>
+		<Port Id="adc_reset_1" Dir="OUT"/>
+		<Port Id="adc_reset_2" Dir="OUT"/>
+		<Port Id="adc_reset_3" Dir="OUT"/>
+		<Port Id="CLK_ADC_0" Dir="OUT"/>
+		<Port Id="CLK_ADC_1" Dir="OUT"/>
+		<Port Id="CLK_ADC_2" Dir="OUT"/>
+		<Port Id="clk_adc_3" Dir="OUT"/>
+		<Port Id="cs1" Dir="OUT"/>
+		<Port Id="cs2" Dir="OUT"/>
+		<Port Id="cs3" Dir="OUT"/>
+		<Port Id="cs4" Dir="OUT"/>
+		<Port Id="MOSI" Dir="OUT"/>
+		<Port Id="RD_FTDI" Dir="OUT"/>
+		<Port Id="saw1" Dir="OUT"/>
+		<Port Id="saw2" Dir="OUT"/>
+		<Port Id="saw3" Dir="OUT"/>
+		<Port Id="saw4" Dir="OUT"/>
+		<Port Id="SPI_CLK" Dir="OUT"/>
+		<Port Id="SPI_CS" Dir="OUT"/>
+		<Port Id="TestA0" Dir="OUT"/>
+		<Port Id="TestA1" Dir="OUT"/>
+		<Port Id="TestA2" Dir="OUT"/>
+		<Port Id="TestA3" Dir="OUT"/>
+		<Port Id="TestA4" Dir="OUT"/>
+		<Port Id="TestA5" Dir="OUT"/>
+		<Port Id="TestA6" Dir="OUT"/>
+		<Port Id="TestA7" Dir="OUT"/>
+		<Port Id="TestB0" Dir="OUT"/>
+		<Port Id="TestB1" Dir="OUT"/>
+		<Port Id="TestB2" Dir="OUT"/>
+		<Port Id="TestB3" Dir="OUT"/>
+		<Port Id="TestB4" Dir="OUT"/>
+		<Port Id="TestB5" Dir="OUT"/>
+		<Port Id="TestB6" Dir="OUT"/>
+		<Port Id="TestB7" Dir="OUT"/>
+		<Port Id="WR_FTDI" Dir="OUT"/>
+	</Ifc>
+</Interface>
+

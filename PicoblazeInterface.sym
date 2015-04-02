@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="PicoblazeInterface">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2014-3-10T10:28:26</timestamp>
+    <pin polarity="Input" x="0" y="-800" name="MCU_CLK" />
+    <pin polarity="Input" x="0" y="-736" name="ToMCUData1(7:0)" />
+    <pin polarity="Input" x="0" y="-672" name="Present1" />
+    <pin polarity="Output" x="432" y="-800" name="DATA_OUT(15:0)" />
+    <pin polarity="Output" x="432" y="-736" name="PORT_ID(7:0)" />
+    <pin polarity="Output" x="432" y="-672" name="WR" />
+    <pin polarity="Output" x="432" y="-608" name="RD" />
+    <pin polarity="Input" x="0" y="-384" name="controlFTDI(7:0)" />
+    <pin polarity="Output" x="432" y="-496" name="ProgAddr(11:0)" />
+    <pin polarity="Output" x="432" y="-368" name="IRQAck" />
+    <pin polarity="Output" x="432" y="-304" name="data_out_ftd_ioi(7:0)" />
+    <pin polarity="Output" x="432" y="-272" name="RD_FTDI" />
+    <pin polarity="Output" x="432" y="-240" name="WR_FTDI" />
+    <pin polarity="Output" x="432" y="-432" name="data_from_FTDI(7:0)" />
+    <pin polarity="Output" x="432" y="-560" name="presentFTDIControl" />
+    <pin polarity="Output" x="432" y="-208" name="PB_INt0" />
+    <pin polarity="Output" x="432" y="-176" name="PB_INt1" />
+    <graph>
+        <rect width="304" x="64" y="-832" height="732" />
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-840" type="symbol" />
+        <line x2="0" y1="-800" y2="-800" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-800" type="pin MCU_CLK" />
+        <line x2="0" y1="-736" y2="-736" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-736" type="pin ToMCUData1(7:0)" />
+        <rect width="64" x="0" y="-748" height="24" />
+        <line x2="0" y1="-672" y2="-672" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-672" type="pin Present1" />
+        <line x2="432" y1="-800" y2="-800" x1="368" />
+        <rect width="64" x="368" y="-812" height="24" />
+        <line x2="432" y1="-736" y2="-736" x1="368" />
+        <rect width="64" x="368" y="-748" height="24" />
+        <line x2="432" y1="-672" y2="-672" x1="368" />
+        <line x2="432" y1="-608" y2="-608" x1="368" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="356" y="-800" type="pin DATA_OUT(15:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="356" y="-736" type="pin PORT_ID(7:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="352" y="-672" type="pin WR" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="352" y="-608" type="pin RD" />
+        <attrtext attrname="PinName" x="88" y="-384" type="pin controlFTDI(7:0)" />
+        <line x2="64" y1="-384" y2="-384" x1="0" />
+        <rect width="64" x="0" y="-392" height="16" />
+        <line x2="364" y1="-496" y2="-496" x1="432" />
+        <rect width="60" x="368" y="-504" height="16" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="348" y="-368" type="pin IRQAck" />
+        <line x2="364" y1="-368" y2="-368" x1="432" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-304" type="pin data_out_ftd_ioi(7:0)" />
+        <line x2="364" y1="-304" y2="-304" x1="432" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-272" type="pin RD_FTDI" />
+        <line x2="364" y1="-272" y2="-272" x1="432" />
+        <line x2="432" y1="-240" y2="-240" x1="364" />
+        <rect width="64" x="368" y="-312" height="16" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="348" y="-240" type="pin WR_FTDI" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="348" y="-496" type="pin ProgAddr(11:0)" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-432" type="pin data_from_FTDI(7:0)" />
+        <line x2="368" y1="-432" y2="-432" x1="432" />
+        <rect width="60" x="368" y="-440" height="16" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-560" type="pin presentFTDIControl" />
+        <line x2="368" y1="-560" y2="-560" x1="432" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-208" type="pin PB_INt0" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-176" type="pin PB_INt1" />
+        <line x2="368" y1="-208" y2="-208" x1="432" />
+        <line x2="368" y1="-176" y2="-176" x1="432" />
+    </graph>
+</symbol>

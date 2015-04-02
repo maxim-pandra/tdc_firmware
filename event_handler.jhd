@@ -1,0 +1,7 @@
+MODULE event_handler
+	SUBMODULE adc_drive
+		INSTANCE XLXI_84
+	SUBMODULE main_distribution_system
+		INSTANCE XLXI_85
+	SUBMODULE CB2RE_cr
+		INSTANCE XLXI_97

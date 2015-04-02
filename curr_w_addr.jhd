@@ -1,0 +1,3 @@
+MODULE curr_w_addr
+	SUBMODULE IMux4x1x8
+		INSTANCE XLXI_26

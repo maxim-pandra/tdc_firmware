@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="ClockSystem">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2012-4-14T14:56:31</timestamp>
+    <pin polarity="Input" x="0" y="-224" name="CLK_1In" />
+    <pin polarity="Input" x="0" y="-160" name="CLK_2In" />
+    <pin polarity="Output" x="384" y="-224" name="CLK_1out" />
+    <pin polarity="Output" x="384" y="-160" name="CLK_2out" />
+    <pin polarity="Output" x="384" y="32" name="CLK_Low" />
+    <pin polarity="Output" x="384" y="-96" name="CLK_High" />
+    <pin polarity="Output" x="384" y="-32" name="CLK_Mid" />
+    <pin polarity="Output" x="384" y="96" name="CLK_DAC(11:0)" />
+    <pin polarity="Output" x="384" y="160" name="F7kHz" />
+    <pin polarity="Output" x="384" y="224" name="F112Hz" />
+    <pin polarity="Input" x="384" y="128" name="clk_new" />
+    <graph>
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-264" type="symbol" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin CLK_1In" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-160" type="pin CLK_2In" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-224" type="pin CLK_1out" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="308" y="-160" type="pin CLK_2out" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="32" type="pin CLK_Low" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-96" type="pin CLK_High" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="304" y="-32" type="pin CLK_Mid" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="96" type="pin CLK_DAC(11:0)" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="300" y="160" type="pin F7kHz" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="308" y="224" type="pin F112Hz" />
+        <rect width="256" x="64" y="-256" height="528" />
+        <line x2="0" y1="-224" y2="-224" x1="64" />
+        <line x2="0" y1="-160" y2="-160" x1="64" />
+        <line x2="384" y1="-224" y2="-224" x1="320" />
+        <line x2="384" y1="-160" y2="-160" x1="320" />
+        <line x2="384" y1="-96" y2="-96" x1="320" />
+        <line x2="384" y1="-32" y2="-32" x1="320" />
+        <line x2="320" y1="32" y2="32" x1="384" />
+        <line x2="320" y1="96" y2="96" x1="384" />
+        <rect width="64" x="320" y="88" height="16" />
+        <line x2="380" y1="160" y2="160" x1="384" />
+        <line x2="384" y1="160" y2="160" x1="320" />
+        <line x2="384" y1="224" y2="224" x1="320" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="128" type="pin clk_new" />
+        <line x2="320" y1="128" y2="128" x1="384" />
+    </graph>
+</symbol>

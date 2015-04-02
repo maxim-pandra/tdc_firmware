@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="event_control">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2012-4-24T8:51:50</timestamp>
+    <pin polarity="Input" x="0" y="-288" name="nonsync_evt" />
+    <pin polarity="Input" x="0" y="-224" name="sync_evt" />
+    <pin polarity="Input" x="0" y="-96" name="WR" />
+    <pin polarity="Input" x="0" y="-32" name="data" />
+    <pin polarity="Output" x="384" y="-288" name="evt_int" />
+    <pin polarity="Input" x="0" y="-176" name="from_MCU_addr(11:0)" />
+    <pin polarity="Input" x="0" y="-144" name="intRegSel" />
+    <pin polarity="Input" x="0" y="-256" name="low_evt" />
+    <graph>
+        <rect width="256" x="64" y="-320" height="320" />
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-328" type="symbol" />
+        <line x2="0" y1="-288" y2="-288" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-288" type="pin nonsync_evt" />
+        <line x2="0" y1="-224" y2="-224" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin sync_evt" />
+        <line x2="0" y1="-96" y2="-96" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-96" type="pin WR" />
+        <line x2="0" y1="-32" y2="-32" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-32" type="pin data" />
+        <line x2="384" y1="-288" y2="-288" x1="320" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-288" type="pin evt_int" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="68" y="-176" type="pin from_MCU_addr(11:0)" />
+        <line x2="0" y1="-176" y2="-176" x1="64" />
+        <attrtext attrname="PinName" x="88" y="-144" type="pin intRegSel" />
+        <line x2="64" y1="-144" y2="-144" x1="0" />
+        <line x2="64" y1="-256" y2="-256" x1="0" />
+        <attrtext attrname="PinName" x="72" y="-256" type="pin low_evt" />
+    </graph>
+</symbol>

@@ -1,0 +1,482 @@
+Release 14.4 Map P.49d (nt)
+Xilinx Mapping Report File for Design 'MaiModule'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6slx9-tqg144-2 -w -logic_opt off -ol
+high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off
+-pr off -lc off -power off -o MaiModule_map.ncd MaiModule.ngd MaiModule.pcf 
+Target Device  : xc6slx9
+Target Package : tqg144
+Target Speed   : -2
+Mapper Version : spartan6 -- $Revision: 1.55 $
+Mapped Date    : Sat Mar 28 16:59:15 2015
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    5
+Slice Logic Utilization:
+  Number of Slice Registers:                   427 out of  11,440    3%
+    Number used as Flip Flops:                 427
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                        437 out of   5,720    7%
+    Number used as logic:                      393 out of   5,720    6%
+      Number using O6 output only:             236
+      Number using O5 output only:              44
+      Number using O5 and O6:                  113
+      Number used as ROM:                        0
+    Number used as Memory:                      29 out of   1,440    2%
+      Number used as Dual Port RAM:              8
+        Number using O6 output only:             0
+        Number using O5 output only:             0
+        Number using O5 and O6:                  8
+      Number used as Single Port RAM:           16
+        Number using O6 output only:             8
+        Number using O5 output only:             0
+        Number using O5 and O6:                  8
+      Number used as Shift Register:             5
+        Number using O6 output only:             1
+        Number using O5 output only:             0
+        Number using O5 and O6:                  4
+    Number used exclusively as route-thrus:     15
+      Number with same-slice register load:      7
+      Number with same-slice carry load:         8
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                   183 out of   1,430   12%
+  Number of MUXCYs used:                       140 out of   2,860    4%
+  Number of LUT Flip Flop pairs used:          559
+    Number with an unused Flip Flop:           177 out of     559   31%
+    Number with an unused LUT:                 122 out of     559   21%
+    Number of fully used LUT-FF pairs:         260 out of     559   46%
+    Number of unique control sets:              56
+    Number of slice register sites lost
+      to control set restrictions:             196 out of  11,440    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        57 out of     102   55%
+    Number of LOCed IOBs:                       57 out of      57  100%
+
+Specific Feature Utilization:
+  Number of RAMB16BWERs:                         5 out of      32   15%
+  Number of RAMB8BWERs:                          0 out of      64    0%
+  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
+  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
+  Number of BUFG/BUFGMUXs:                       4 out of      16   25%
+    Number used as BUFGs:                        4
+    Number used as BUFGMUX:                      0
+  Number of DCM/DCM_CLKGENs:                     0 out of       4    0%
+  Number of ILOGIC2/ISERDES2s:                   0 out of     200    0%
+  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     200    0%
+  Number of OLOGIC2/OSERDES2s:                   0 out of     200    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHs:                               0 out of     128    0%
+  Number of BUFPLLs:                             0 out of       8    0%
+  Number of BUFPLL_MCBs:                         0 out of       4    0%
+  Number of DSP48A1s:                            0 out of      16    0%
+  Number of ICAPs:                               0 out of       1    0%
+  Number of MCBs:                                0 out of       2    0%
+  Number of PCILOGICSEs:                         0 out of       2    0%
+  Number of PLL_ADVs:                            0 out of       2    0%
+  Number of PMVs:                                0 out of       1    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+
+Average Fanout of Non-Clock Nets:                3.61
+
+Peak Memory Usage:  264 MB
+Total REAL time to MAP completion:  14 secs 
+Total CPU time to MAP completion:   14 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Pack:1186 - One or more I/O components have conflicting property values.
+    For each occurrence, the system will use the property value attached to the
+   pad.  Otherwise, the system will use the first property value read.  To view
+   each occurrence, create a detailed map report (run map using the -detail
+   option).
+WARNING:PhysDesignRules:372 - Gated clock. Clock net XLXI_101/XLXI_85/evt is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net XLXI_100/XLXI_85/evt is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net XLXI_97/XLXI_85/evt is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net XLXI_98/XLXI_85/evt is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+
+Section 3 - Informational
+-------------------------
+INFO:LIT:243 - Logical network XLXI_272/curr_wr_msb_delayed<3> has no load.
+INFO:LIT:395 - The above info message is repeated 135 more times for the
+   following (max. 5 shown):
+   XLXI_272/curr_wr_msb_delayed<4>,
+   XLXI_272/curr_wr_msb_delayed<5>,
+   XLXI_272/curr_wr_msb_delayed<6>,
+   XLXI_272/addra_curr1_dellayed<6>,
+   XLXI_272/addra_curr1_dellayed<7>
+   To see the details of these info messages, please use the -detail switch.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+  23 block(s) removed
+  18 block(s) optimized away
+ 135 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+Loadless block "XLXI_100/XLXI_97/XLXI_17" (MUX) removed.
+Loadless block "XLXI_101/XLXI_97/XLXI_17" (MUX) removed.
+Loadless block "XLXI_103/XLXI_115" (AND) removed.
+Loadless block "XLXI_103/XLXI_142/XLXI_37" (OR) removed.
+ The signal "XLXI_103/XLXN_1164" is loadless and has been removed.
+  Loadless block "XLXI_103/XLXI_472" (BUF) removed.
+Loadless block "XLXI_103/XLXI_419/interrupt_ack_flop" (FF) removed.
+Loadless block "XLXI_103/XLXI_419/k_write_strobe_flop" (SFF) removed.
+ The signal "XLXI_103/XLXI_419/k_write_strobe_value" is loadless and has been
+removed.
+Loadless block "XLXI_103/XLXI_426" (BUF) removed.
+Loadless block "XLXI_103/XLXI_427" (BUF) removed.
+Loadless block "XLXI_103/XLXI_428" (BUF) removed.
+Loadless block "XLXI_103/XLXI_429" (BUF) removed.
+Loadless block "XLXI_103/XLXI_430" (BUF) removed.
+Loadless block "XLXI_103/XLXI_431" (BUF) removed.
+Loadless block "XLXI_103/XLXI_432" (BUF) removed.
+Loadless block "XLXI_103/XLXI_433" (BUF) removed.
+Loadless block "XLXI_103/XLXI_470" (BUF) removed.
+Loadless block "XLXI_103/XLXI_471" (BUF) removed.
+Loadless block "XLXI_325/XLXI_321/XLXI_16" (BUF) removed.
+Loadless block "XLXI_97/XLXI_97/XLXI_17" (MUX) removed.
+Loadless block "XLXI_98/XLXI_97/XLXI_17" (MUX) removed.
+The signal "XLXI_94/option_bram/douta<31>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<30>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<29>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<28>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<27>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<26>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<25>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<24>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<23>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<22>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<21>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<20>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<19>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<18>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<17>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<16>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<15>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<14>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<13>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<12>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<11>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<10>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<9>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<8>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<7>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<6>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<5>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<4>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<3>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<2>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<1>" is sourceless and has been removed.
+The signal "XLXI_94/option_bram/douta<0>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<31>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<30>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<29>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<28>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<27>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<26>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<25>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<24>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<23>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<22>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<21>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<20>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<19>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<18>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<17>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<16>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<15>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<14>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<13>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<12>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<11>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<10>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<9>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<8>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<7>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<6>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<5>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<4>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<3>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<2>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<1>" is sourceless and has been removed.
+The signal "XLXI_94/third_bram/douta<0>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<31>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<30>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<29>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<28>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<27>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<26>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<25>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<24>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<23>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<22>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<21>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<20>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<19>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<18>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<17>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<16>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<15>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<14>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<13>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<12>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<11>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<10>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<9>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<8>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<7>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<6>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<5>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<4>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<3>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<2>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<1>" is sourceless and has been removed.
+The signal "XLXI_94/second_bram/douta<0>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<31>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<30>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<29>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<28>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<27>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<26>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<25>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<24>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<23>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<22>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<21>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<20>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<19>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<18>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<17>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<16>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<15>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<14>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<13>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<12>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<11>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<10>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<9>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<8>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<7>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<6>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<5>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<4>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<3>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<2>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<1>" is sourceless and has been removed.
+The signal "XLXI_94/first_bram/douta<0>" is sourceless and has been removed.
+
+The trimmed logic reported below is either:
+   1. part of a cycle
+   2. part of disabled logic
+   3. a side-effect of other trimmed logic
+
+The signal "reset<3>" is unused and has been removed.
+The signal "XLXI_325/SPI_CS_Present" is unused and has been removed.
+The signal "XLXI_325/XLXN_51" is unused and has been removed.
+ Unused block "XLXI_325/XLXI_328" (AND) removed.
+  The signal "XLXI_325/XLXN_42" is unused and has been removed.
+   Unused block "XLXI_325/XLXI_330" (AND) removed.
+  The signal "XLXI_325/XLXN_41" is unused and has been removed.
+   Unused block "XLXI_325/XLXI_335" (AND) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+FD 		XLXI_103/XLXI_419/sync_sleep_flop
+   optimized to 0
+GND 		XLXI_260/XLXI_2/XST_GND
+GND 		XLXI_260/XLXI_3/XST_GND
+OR2 		XLXI_320
+AND2 		XLXI_325/XLXI_331
+FDE 		XLXI_325/XLXI_333
+   optimized to 1
+GND 		XLXI_94/first_bram/XST_GND
+VCC 		XLXI_94/first_bram/XST_VCC
+GND 		XLXI_94/option_bram/XST_GND
+VCC 		XLXI_94/option_bram/XST_VCC
+GND 		XLXI_94/second_bram/XST_GND
+VCC 		XLXI_94/second_bram/XST_VCC
+GND 		XLXI_94/third_bram/XST_GND
+VCC 		XLXI_94/third_bram/XST_VCC
+OR2 		XLXI_96/XLXI_36
+VCC 		XLXI_97/XLXI_99
+GND 		XLXI_98/XLXI_97/XLXI_10
+
+To enable printing of redundant blocks removed and signals merged, set the
+detailed map report option and rerun map.
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CLK80                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| CLK_ADC_0                          | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          |          |
+| CLK_ADC_1                          | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          |          |
+| CLK_ADC_2                          | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          |          |
+| FTDIbus<0>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<1>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<2>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<3>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<4>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<5>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<6>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| FTDIbus<7>                         | IOB              | BIDIR     | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| MISO                               | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| MOSI                               | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| RD_FTDI                            | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| SPI_CLK                            | IOB              | OUTPUT    | LVCMOS33             |       | 4        | FAST |              |          |          |
+| SPI_CS                             | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| TestA0                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA1                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA2                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA3                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA4                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA5                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA6                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestA7                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB0                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB1                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB2                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB3                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB4                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB5                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB6                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| TestB7                             | IOB              | OUTPUT    | LVCMOS33             |       | 6        | SLOW |              |          |          |
+| WR_FTDI                            | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| adc1                               | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| adc2                               | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| adc3                               | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| adc4                               | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| adc_reset_0                        | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| adc_reset_1                        | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| adc_reset_2                        | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| adc_reset_3                        | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| clk_adc_3                          | IOB              | OUTPUT    | LVCMOS33             |       | 4        | SLOW |              |          |          |
+| cs1                                | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| cs2                                | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| cs3                                | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| cs4                                | IOB              | OUTPUT    | LVCMOS33             |       | 2        | SLOW |              |          |          |
+| evt_1                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| evt_2                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| evt_3                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| evt_4                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| rxf                                | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| saw1                               | IOB              | OUTPUT    | LVCMOS33             |       | 6        | FAST |              |          |          |
+| saw2                               | IOB              | OUTPUT    | LVCMOS33             |       | 6        | FAST |              |          |          |
+| saw3                               | IOB              | OUTPUT    | LVCMOS33             |       | 6        | FAST |              |          |          |
+| saw4                               | IOB              | OUTPUT    | LVCMOS33             |       | 6        | FAST |              |          |          |
+| txe                                | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+Use the "-detail" map option to print out Configuration Strings
+
+Section 12 - Control Set Information
+------------------------------------
+Use the "-detail" map option to print out Control Set Information.
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
+Use the "-detail" map option to print out the Utilization by Hierarchy section.

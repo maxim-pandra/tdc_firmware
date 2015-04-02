@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=D:\projects\diploma\buisnes\current\spartan6_tcspc\MaiModule.ncd
+OUTFILE=D:\projects\diploma\buisnes\current\spartan6_tcspc\MaiModule.bit
+FAMILY=Spartan6
+PART=xc6slx9-2tqg144
+WORKINGDIR=D:\projects\diploma\buisnes\current\spartan6_tcspc
+LICENSE=WebPack
+USER_INFO=__0_0_0

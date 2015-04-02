@@ -1,0 +1,472 @@
+;special sybmol codes
+StartSymbol		.equ		$FD
+StopSymbol		.equ		$FE
+ShiftSymbol		.equ		$FF
+
+;error codes
+LengthMisErr	.equ		$E0      ;data length mismatch
+ChecksumMisErr	.equ		$E1	  ;cheksm mismatch
+CommAbsentErr	.equ		$E2	  ;command with code recieved is absent
+OutOfMemErr		.equ		$E3	  ;adress goes over $FF thrue writing or reading
+TooLittleErr	.equ		$E4	  ;too little data sent
+DataFormatErr	.equ		$E5	  ;improper data for specified command
+ParamAbsentErr	.equ		$E6	  ;r.equested parameter is undefined
+MethForbidErr	.equ		$E7	  ;method of parameter is not available
+
+;system constants
+OKReplyCode		.equ		 $DA
+MaxRecvData		.equ		 $20
+NodeAddress		.equ		 $01		  ;Ram location
+MaxParamQty		.equ		 16
+
+;state flags
+NodeState		.equ		 sF	
+ShiftFlag		.equ		 $80
+RecvFlag		.equ		 $40
+AddrFlag		.equ		 $20
+DebugModeFlag	.equ		 $04
+BroadcFlag		.equ		 $01
+
+;reserved registers
+TransmCounter 	.equ		 sE
+RecvCounter		.equ		 sD
+CheckSumReg		.equ		 sC
+
+;comand codes
+SetMemWIncComm	.equ		 $00      ;writes data to IO with address increment (addr+data)
+SetMemConstComm	.equ		 $01      ;writes all data to a fixed address (addr+data)
+Set16RegComm	.equ		 $02	  ;sets a 16-bit register, MSB @ addr+1, then LSB @ addr (addr+data)
+GetMemWIncComm	.equ		 $03	  ;reads data from IO with address increment (addr+qty)
+GetMemConstComm	.equ		 $04      ;reads data from a fixed address (addr+qty)
+SetDebugMComm	.equ		 $08	  ;sets/resets Debug mode fag and allow/prohibit 'SetBinary' method for parameters
+ParamHandler	.equ		 $09	  ;working with parameters, param number & method code in first data byte
+WriteAddSRAM	.equ		 $0A
+ReadAddSRAM		.equ		 $0B
+ReadMainSRAM	.equ		 $0C
+TSTC Command		.equ		 $0D
+GetDeviceID		.equ		 $0E	  ;returnes: PCB index, Hardvare version, Software version, Serial number
+DoEchoComm		.equ		 $0F	  ;returnes all sent data
+
+;io ports
+UARTDataIn	 	.equ  	 	$F0
+UARTDataOut	 	.equ  		$F1
+UARTState		.equ		$F2	;bit0-RX full,1-RX half full,2-RX data present,4-TX full,5-TX half full,7-SPI transmission done
+
+.ORG 0; Programs always start at reset vector 0
+	
+EINT ; If using interrupts, be sure to enable	
+BEGIN:
+JUMP BEGIN ; Embedded applications never end
+
+UART_IRQ:
+		out	 	s0,UARTDataIn
+		load    s0,s0                ;nope
+		in		s0,UARTDataIn
+		CMPC 	s0,StartSymbol
+		jump	NZ,UART_IRQ_0   ; not a start symbol
+		and		NodeState,DebugModeFlag
+		or		NodeState,RecvFlag
+		load	RecvCounter,0
+		ret
+	UART_IRQ_0:
+		TSTC 	NodeState,RecvFlag
+		ret 	Z
+		CMPC 	s0,ShiftSymbol
+		jump	Z,UART_IRQ_Shift
+		CMPC 	s0,StopSymbol
+		jump	Z,UART_IRQ_Decode
+		TSTC 	NodeState,ShiftFlag
+		jump	Z,UART_IRQ_1
+		add		s0,StartSymbol   ;previous symbol was ShiftSymbol
+		and		NodeState,$FF-ShiftFlag
+	UART_IRQ_1:
+		TSTC 	NodeState,AddrFlag ; that is the point when I loose the thread
+		jump	NZ,UART_IRQ_3
+		TSTC 	RecvCounter,$FF
+		jump	NZ,UART_IRQ_Terminate
+		CMPC  	s0,NodeAddress
+		jump	Z,UART_IRQ_2
+		 CMPC 	s0,0
+		jump	Z,UART_IRQ_11
+		and		NodeState,DebugModeFlag
+		ret
+	UART_IRQ_11:
+		or		NodeState,BroadcFlag ;global node addressing (seems that it means something.. but what?) may be comand to describing errors
+	UART_IRQ_2:
+		or		NodeState,AddrFlag
+		load	CheckSumReg,s0
+		ret
+	UART_IRQ_3:
+		xor		CheckSumReg,s0 ;something wrong with all that checkSum thing (why do we start checking only if strang constant equels receved byte
+		 CMPC 	RecvCounter,MaxRecvData
+		jump	NC,UART_IRQ_Over
+		store	s0,RecvCounter
+		add		RecvCounter,1
+		ret
+	UART_IRQ_Over:	
+		load	s3,LengthMisErr
+		jump	UART_IRQ_Error		 ;31 symbols are recieved - too long message	
+	UART_IRQ_SHIFT:
+		or 		NodeState,ShiftFlag
+		ret
+	UART_IRQ_Terminate:
+		and		NodeState,DebugModeFlag
+		ret
+UART_IRQ_Decode:			   ;recieved qty in s1, data in scratchpad 0..(s1)-1
+	TSTC 	CheckSumReg,$FF
+	load	s3,ChecksumMisErr
+	jump	NZ,UART_IRQ_Error	  ;checksum mismatch
+	load	s3,LengthMisErr
+	fetch	s0,0			   ;command code, s1,s2-full data qty (with command & checksum)
+	CMPC 	s0,SetMemWIncComm
+	jump	Z,SetMemWIncProc	
+	CMPC 	s0,SetMemConstComm
+	jump	Z,SetMemConstProc
+    CMPC 	s0,Set16RegComm
+	jump	Z,Set16RegProc
+	CMPC 	s0,GetMemWIncComm
+	jump	Z,GetMemWIncProc
+	CMPC 	s0,GetMemConstComm
+	jump	Z,GetMemConstProc
+	CMPC 	s0,GetDeviceID
+	jump	Z,DoGetDeviceID
+	CMPC 	s0,DoEchoComm
+	jump	Z,DoEchoProc
+	CMPC 	s0,SetDebugMComm
+	jump	Z,SetDebugMode
+	CMPC 	s0,ParamHandler
+	jump	Z,ParameterHandler
+	CMPC 	s0,WriteAddSRAM
+	jump	Z,WriteAddSRAMDo
+	CMPC 	s0,ReadAddSRAM
+	jump	Z,ReadAddSRAMDo
+	CMPC 	s0,TSTC Command
+	jump	Z,TSTC CommandDo
+	CMPC 	s0,ReadMainSRAM
+	jump	Z,ReadMainSRAMDo
+	load	s3,CommAbsentErr 	  ;command not found			
+UART_IRQ_Error:				  ;++
+		TSTC 	NodeState,BroadcFlag
+		ret		NZ
+	UART_IRQ_Error_00:
+		out		s3,UARTDataOut
+		xor		s3,$FF
+	UART_IRQ_Error_1:
+		in		   	s4,UARTState
+		TSTC 	   	s4,$01
+		jump	   	NZ,UART_IRQ_Error_1
+		out			s3,UARTDataOut
+		load	  	s3,StopSymbol
+	UART_IRQ_Error_2:
+		in			s4,UARTState
+		TSTC 	   	s4,$01
+		jump	   	NZ,UART_IRQ_Error_2
+		out	   		s3,UARTDataOut
+		and	  		NodeState,DebugModeFlag				
+		ret
+TSTC CommandDo:
+	jump 0
+SetMemWIncProc:							;++
+	   CMPC 	RecvCounter,4
+	   jump		C,UART_IRQ_Error					
+	   load		s0,2		;address of first data byte	
+	   sub		RecvCounter,3		;pure data qty
+	   fetch	s2,1		;address
+	   load		s4,s2
+	   load		s3,OutOfMemErr
+	   add		s4,s1
+	   jump		C,UART_IRQ_Error
+	SetMemWIncProc_1:
+	   fetch	s3,s0
+	   out		s3,s2
+	   add		s0,1
+	   add		s2,1
+	   sub		RecvCounter,1
+	   jump		NZ,SetMemWIncProc_1
+	   load		s3,OKReplyCode
+	   jump		UART_IRQ_Error
+SetMemConstProc:		  ;++
+	   CMPC 	RecvCounter,4
+	   jump		C,UART_IRQ_Error					
+	   load		s0,2		;address of first data byte	
+	   sub		RecvCounter,3		;pure data qty
+	   fetch	s2,1		;address
+	SetMemConstProc_1:
+	   fetch	s3,s0
+	   out		s3,s2
+	   add		s0,1
+	   sub		RecvCounter,1
+	   jump		NZ,SetMemConstProc_1
+	   load		s3,OKReplyCode
+	   jump		UART_IRQ_Error		 								
+Set16RegProc:					;++								
+	   CMPC 	RecvCounter,5
+	   jump		C,UART_IRQ_Error
+	   load		s0,2		;address of first data byte
+	   fetch	s2,1		;address
+	   load		s3,DataFormatErr
+	   TSTC 		s2,1
+	   jump		NZ,UART_IRQ_Error	 ;address must be even
+	   sub		RecvCounter,3		;pure data qty
+	   TSTC 		RecvCounter,1
+	   jump		NZ,UART_IRQ_Error	 ;data qty must be even
+	   load		s4,s2
+	   load		s3,OutOfMemErr
+	   add		s4,s1
+	   jump		C,UART_IRQ_Error	 ;address over $FF
+	   add		s2,1
+	Set16RegProc_1:   	
+	   fetch	s3,s0				 ;MSB
+	   out		s3,s2
+	   add		s0,1
+	   sub		s2,1
+	   fetch	s3,s0				 ;LSB
+	   out		s3,s2
+	   add		s0,1
+	   add		s2,3
+	   sub		RecvCounter,2
+	   jump		NZ,Set16RegProc_1	
+	   load		s3,OKReplyCode
+	   jump		UART_IRQ_Error
+GetMemWIncProc:				;address with increment	++
+  TSTC 		NodeState,BroadcFlag
+  ret		NZ
+  CMPC 		RecvCounter,4
+  jump		NZ,UART_IRQ_Error
+  fetch		s1,1				;address
+  fetch		s0,2				;data qty
+  load		s3,OutOfMemErr
+  TSTC 		s0,$FF
+  jump		Z,UART_IRQ_Error
+  load		s2,s0
+  add		s2,s1
+  jump		C,UART_IRQ_Error	;address in s1,data qty in s0
+GetMemWIncProc_Int:
+	  call		StartUARTTransmission
+	GetMemWIncProc_1:
+	  in		s3,s1
+	  call		SendSymbolProc
+	  add		s1,1
+	  sub		s0,1
+	  jump		NZ,GetMemWIncProc_1	;not all data bytes was sent
+	  jump		EndDataTrans
+
+GetMemConstProc:				;constant address, up to 256 bytes ++
+  TSTC 		NodeState,BroadcFlag
+  ret		NZ
+  CMPC 		RecvCounter,4
+  jump		NZ,UART_IRQ_Error
+  fetch		s1,1				;address
+  fetch		s0,2				;data qty
+GetMemConstProc_Int:
+	  call		StartUARTTransmission
+	GetMemConstProc_1:
+	  in		s3,s1
+	  call		SendSymbolProc
+	  sub		s0,1
+	  jump		NZ,GetMemConstProc_1	;not all data bytes was sent
+
+EndDataTrans:				;cheksum & stop symbol transmission  ++
+	  TSTC 		NodeState,BroadcFlag
+	  ret		NZ 										
+	  load	   	s3,CheckSumReg
+	  call		SendSymbolProc
+	EndDataTrans_0:
+	  load		s3,StopSymbol
+	EndDataTrans_1:
+	  in	   s4,UARTState
+	  TSTC 	   s4,$01
+	  jump	   NZ,EndDataTrans_1
+	  out	   s3,UARTDataOut
+	  and	  NodeState,DebugModeFlag
+	  ret
+SendSymbolProc:					;data in s3  ++	
+	  TSTC 		NodeState,BroadcFlag
+	  ret		NZ
+	  xor		CheckSumReg,s3								
+	  CMPC 		s3,StartSymbol
+	  jump		C,SendSymbolProc_1	;no shift required
+	  load		s5,s3
+	  sub		s5,StartSymbol
+	  load		s3,ShiftSymbol
+	SendSymbolProc_1:
+	  in	   s4,UARTState
+	  TSTC 	   s4,$01
+	  jump	   NZ,SendSymbolProc_1	;buffer full, waiting
+	  out	   s3,UARTDataOut
+	  add	   TransmCounter,1		;
+	  jump	   NC,SendSymbolProc_3
+	  load	   s4,30			  	;delay regulation
+	SendSymbolProc_2:
+	  sub	   TransmCounter,1
+	  jump	   NZ,SendSymbolProc_2
+	  sub	   s4,1
+	  jump	   NZ,SendSymbolProc_2		
+	SendSymbolProc_3:
+	  CMPC 	   s3,ShiftSymbol
+	  ret	   NZ
+	  load	   s3,s5
+	  jump	   SendSymbolProc_1		;after shift symbol
+StartUARTTransmission:
+  TSTC 		NodeState,BroadcFlag
+  ret		NZ
+  load		CheckSumReg,0
+  load		TransmCounter,0
+  load		s3,StartSymbol
+  out		s3,UARTDataOut
+  ret
+DoGetDeviceID:
+  call		StartUARTTransmission
+  load		s0,4
+  DoGetDeviceID_1:
+  load		s3,8
+  call		SendSymbolProc
+  sub		s0,1
+  jump		NZ,DoGetDeviceID_1		
+  jump		EndDataTrans
+DoEchoProc:						;;DEBUG++
+	  call		StartUARTTransmission
+	  load	    s0,0
+	  sub		RecvCounter,1
+	DoEchoProc_1:
+	  fetch		s3,s0
+	  call		SendSymbolProc
+	  add		s0,1
+	  sub		RecvCounter,1
+	  jump		NZ,DoEchoProc_1
+	  jump		EndDataTrans
+ParameterHandler:			;CMD code/param number in SRAM 1
+	  fetch		s8,1
+	  load		s9,s8
+	  and		s8,$3F			;parameter number
+	  load		s6,4
+	  load		s7,0
+	  CMPC 		s8,MaxParamQty
+	  jump		C,ParameterHandler_1
+	  load		s3,ParamAbsentErr
+	  jump		NZ,UART_IRQ_Error
+	ParameterHandler_1:
+	  sl0		s8
+	  sla		s7
+	  sub		s6,1
+	  jump		NZ,ParameterHandler_1	    ;address of param record
+	  and		s9,$C0						;method only
+	  jump		Z,ParameterHandler_Read
+	  CMPC 		s9,$C0
+	  jump		NZ,ParameterHandler_2
+ParameterHandler_forbidden:
+	  load		s3,MethForbidErr
+	  jump		NZ,UART_IRQ_Error	   		;illegal method
+	ParameterHandler_2:
+	  sub		RecvCounter,3  				 ;pure data qty
+	  CMPC 		RecvCounter,2				 ;only 2 byte params
+	  jump		Z,ParameterHandler_3	
+	  load		s3,LengthMisErr
+	  jump		NZ,UART_IRQ_Error
+	ParameterHandler_3:		 			 ;check  CMPC leted
+	  load		sA,s8
+	  load		sB,s7				   		;pointer copy
+	  fetch		s0,2
+	  fetch		s1,3						;new parameter/increment value
+	   CMPC 		s9,$80
+	  jump		NZ,ParameterHandler_Write
+	  call		GetCurrParamValue			;value in s3(Lo),s2(Hi)
+	  add		s0,s3
+	  addc		s1,s2	
+	ParameterHandler_Write:
+	  call		 CMPC areValues
+	  jump		C,ParameterHandler_Write_1
+	  load		s0,s4
+	  load		s1,s5
+	ParameterHandler_Write_1:
+	  call		 CMPC areValues
+	  jump		NC,ParameterHandler_Write_2
+	  load		s0,s4
+	  load		s1,s5
+	ParameterHandler_Write_2:			   ;value is limited
+	ParameterHandler_Write_3:
+	ParameterHandler_Read:			 		;s8,s9-pointer to param record
+	  CMPC 		RecvCounter,3
+	  jump		Z,ParameterHandler_Read_1								
+	  load		s3,LengthMisErr
+	  jump		NZ,UART_IRQ_Error
+	ParameterHandler_Read_1:
+	  call		StartUARTTransmission
+	  call		GetCurrParamValue
+	  call		SendSymbolProc
+	  load		s3,s2
+	  call		SendSymbolProc
+	  jump		EndDataTrans
+GetCurrParamValue:
+  add		s8,4
+  addc		s7,0							;pointer to current value;						
+  ret				   						;value in s3(Lo),s2(Hi)		
+SetDebugMode:
+  fetch		s0,1
+  and		s0,DebugModeFlag
+  and		NodeState,$FF-DebugModeFlag
+  or		NodeState,s0
+  load		s3,OKReplyCode
+  jump		UART_IRQ_Error
+CompareValues:				  ;add sram at proper value, parameter in s0,s1(Hi)
+  sub		s2,s0
+  subc		s3,s1
+  ret
+WriteAddSRAMDo:
+	   CMPC 		RecvCounter,5
+	   jump		C,UART_IRQ_Error
+	   TSTC 		NodeState,DebugModeFlag
+	   jump		Z,ParameterHandler_forbidden   					
+	   load		s0,3				;address of first data byte	
+	   sub		RecvCounter,4		;pure data qty
+	   fetch	s1,1
+	   fetch	s2,2				;address
+	   load		s4,s1
+	   load		s3,s2
+	   add		s3,RecvCounter
+	   addc		s4,0
+	   load		s3,OutOfMemErr
+	   TSTC 		s4,$F8
+	   jump		NZ,UART_IRQ_Error
+	WriteAddSRAMDo_1:
+	   add		s0,1
+	   sub		RecvCounter,1
+	   jump		NZ,WriteAddSRAMDo_1
+	   load		s3,OKReplyCode
+	   jump		UART_IRQ_Error		
+ReadAddSRAMDo:
+  TSTC 		NodeState,BroadcFlag
+  ret		NZ
+  CMPC 		RecvCounter,5
+  jump		NZ,UART_IRQ_Error
+  fetch		s1,1				
+  fetch		s2,2				;address
+  fetch		s0,3				;data qty
+ReadAddSRAMDo_Int:
+	  call		StartUARTTransmission
+	ReadAddSRAMDo_1:
+	  call		SendSymbolProc
+	  sub		s0,1
+	  jump		NZ,ReadAddSRAMDo_1	;not all data bytes was sent
+	  jump		EndDataTrans
+ReadMainSRAMDo:
+	  TSTC 		NodeState,BroadcFlag
+	  ret		NZ
+	   CMPC 		RecvCounter,4
+	  jump		NZ,UART_IRQ_Error
+	  fetch		s1,1			   	;address
+	  fetch		s0,2				;data qty
+	  call		StartUARTTransmission
+	ReadMainSRAMDo_1:
+	  fetch		s3,s1
+	  call		SendSymbolProc
+	  add		s1,1
+	  sub		s0,1
+	  jump		NZ,ReadMainSRAMDo_1	;not all data bytes was sent
+	  jump		EndDataTrans
+ISR:
+  call		UART_IRQ
+  RETI 		ENABLE
+.ORG $3FF
+JUMP ISR ; Jump to interrupt service routine, ISR
+

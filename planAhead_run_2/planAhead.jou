@@ -1,0 +1,19 @@
+#-----------------------------------------------------------
+# PlanAhead v14.4
+# Build 222254 by xbuild on Tue Dec 18 05:23:01 MST 2012
+# Start of session at: Sat Mar 28 11:38:44 2015
+# Process ID: 5500
+# Log file: D:/projects/diploma/buisnes/current/spartan6_tcspc/planAhead_run_2/planAhead.log
+# Journal file: D:/projects/diploma/buisnes/current/spartan6_tcspc/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source D:/projects/diploma/buisnes/current/spartan6_tcspc/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+set_property package_pin "" [get_ports [list  evt_std]]
+startgroup
+set_property package_pin P59 [get_ports evt_1]
+endgroup
+startgroup
+set_property package_pin P67 [get_ports evt_std]
+endgroup
+save_constraints
