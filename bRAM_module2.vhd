@@ -59,7 +59,7 @@ END COMPONENT;
 	signal wea,web								: std_logic_vector(3 downto 0);
 	signal data_pack                    : std_logic_vector(63 downto 0);
 	signal internal_rd_index				: std_logic_vector(13 downto 0);
-	signal enable, ena, web0dbug_buff, flag,memOverflowFlag, flag1, reasonStop, reasonContinue :std_logic;
+	signal enable, ena, enb, web0dbug_buff, flag,memOverflowFlag, flag1, reasonStop, reasonContinue :std_logic;
 
 begin
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
@@ -138,6 +138,7 @@ begin
 	 --INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	ena<='1';
+	enb<='1';
 	flag1<=flag;
 	process(clka, reset_c)
 	begin
