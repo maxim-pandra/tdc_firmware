@@ -107,3 +107,11 @@ ipcore_dir/memory64/simulation/timing/wave_ncsim.sv
 ipcore_dir/memory64_flist.txt
 spartan6_tcspc.gise
 *.xise
+MaiModule.bld
+MaiModule.ngr
+_ngo/netlist.lst
+ipcore_dir/iseconfig/memory64.projectmgr
+iseconfig/spartan6_tcspc.projectmgr
+memory64.asy
+memory64.gise
+memory64.vho
