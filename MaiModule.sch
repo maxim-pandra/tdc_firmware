@@ -1636,10 +1636,6 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4512" y="2592" type="branch" />
             <wire x2="4560" y1="2592" y2="2592" x1="4512" />
         </branch>
-        <branch name="CLK80">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="592" y="1824" type="branch" />
-            <wire x2="800" y1="1824" y2="1824" x1="592" />
-        </branch>
         <branch name="evt_std">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="176" y="2432" type="branch" />
             <wire x2="432" y1="2432" y2="2432" x1="176" />
@@ -1647,6 +1643,10 @@
         <branch name="evt_std">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1248" y="1856" type="branch" />
             <wire x2="1248" y1="1856" y2="1856" x1="1184" />
+        </branch>
+        <branch name="CLK80">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="608" y="1824" type="branch" />
+            <wire x2="800" y1="1824" y2="1824" x1="608" />
         </branch>
     </sheet>
 </drawing>

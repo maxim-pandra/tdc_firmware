@@ -288,18 +288,17 @@ web0dbug_buff<=
 	end if;
 	end process;
 	
-	reasonStop	 <=(addra_reg(11) xor not internal_rd_index(13)) and
-						(addra_reg(10) xor not internal_rd_index(12)) and
-						(addra_reg(9) xor not internal_rd_index(11)) and
-						(addra_reg(8) xor not internal_rd_index(10)) and
-						(addra_reg(7) xor not internal_rd_index(9)) and
-						(addra_reg(6) xor not internal_rd_index(8)) and
-						(addra_reg(5) xor not internal_rd_index(7)) and
-						(addra_reg(4) xor not internal_rd_index(6)) and
-						(addra_reg(3) xor not internal_rd_index(5)) and
-						(addra_reg(2) xor not internal_rd_index(4)) and
-						(addra_reg(1) xor not internal_rd_index(3)) and
-						(addra_reg(0) xor not internal_rd_index(2));
+	reasonStop	 <=(addra_reg(10) xor not internal_rd_index(13)) and
+						(addra_reg(9) xor not internal_rd_index(12)) and
+						(addra_reg(8) xor not internal_rd_index(11)) and
+						(addra_reg(7) xor not internal_rd_index(10)) and
+						(addra_reg(6) xor not internal_rd_index(9)) and
+						(addra_reg(5) xor not internal_rd_index(8)) and
+						(addra_reg(4) xor not internal_rd_index(7)) and
+						(addra_reg(3) xor not internal_rd_index(6)) and
+						(addra_reg(2) xor not internal_rd_index(5)) and
+						(addra_reg(1) xor not internal_rd_index(4)) and
+						(addra_reg(0) xor not internal_rd_index(3));
 	
 	reasonContinue<=(addra_reg(4) xor internal_rd_index(6));
 	
