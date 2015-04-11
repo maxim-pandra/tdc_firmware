@@ -49,7 +49,7 @@ begin
 	begin
 	if(CLK_OOL'event and CLK_OOL='1') then
 			eventLow<='0';
-		if (r_reg_low(4 downto 0)="10111") then            --or r_reg=(2**20-2**10)) ---THERE was r_reg_low(8)
+		if (r_reg(13 downto 0)="01111111111111") then            --or r_reg=(2**20-2**10)) ---THERE was r_reg_low(8)
 			eventLow<='1';                  --some changes here
 		end if;
 	end if;

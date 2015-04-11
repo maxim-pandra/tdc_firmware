@@ -193,5 +193,18 @@ NET "evt_3" LOC = P134;
 
 NET "evt_4" LOC = P123;
 
+
+
+# PlanAhead Generated IO constraints 
+
+NET "evt_std" IOSTANDARD = LVCMOS33;
+
 # PlanAhead Generated physical constraints 
 
+NET "evt_std" LOC = P67;
+
+# PlanAhead Generated IO constraints 
+
+NET "evt_1" PULLDOWN;
+NET "evt_2" PULLDOWN;
+NET "evt_std" PULLDOWN;

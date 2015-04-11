@@ -47,11 +47,9 @@
         <signal name="curr_rw_addr(15:0)" />
         <signal name="pb_data_out(15:0)" />
         <signal name="evt_1" />
-        <signal name="evt_2" />
         <signal name="adc1" />
         <signal name="adc2" />
         <signal name="adc3" />
-        <signal name="evt_3" />
         <signal name="evt_4" />
         <signal name="adc4" />
         <signal name="cs1" />
@@ -147,6 +145,11 @@
         <signal name="ready(1)" />
         <signal name="ready(2)" />
         <signal name="main_bus1(60:0)" />
+        <signal name="evt_2_tmp" />
+        <signal name="evt_2" />
+        <signal name="XLXN_508" />
+        <signal name="evt_3" />
+        <signal name="curr_wr_msb(7)" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -169,11 +172,9 @@
         <port polarity="Input" name="CLK80" />
         <port polarity="BiDirectional" name="FTDIbus(7:0)" />
         <port polarity="Input" name="evt_1" />
-        <port polarity="Input" name="evt_2" />
         <port polarity="Input" name="adc1" />
         <port polarity="Input" name="adc2" />
         <port polarity="Input" name="adc3" />
-        <port polarity="Input" name="evt_3" />
         <port polarity="Input" name="evt_4" />
         <port polarity="Input" name="adc4" />
         <port polarity="Output" name="cs1" />
@@ -184,6 +185,7 @@
         <port polarity="Output" name="saw3" />
         <port polarity="Output" name="saw2" />
         <port polarity="Output" name="saw1" />
+        <port polarity="Input" name="evt_std" />
         <port polarity="Output" name="adc_reset_3" />
         <port polarity="Output" name="adc_reset_2" />
         <port polarity="Output" name="CLK_ADC_0" />
@@ -197,6 +199,8 @@
         <port polarity="Output" name="MOSI" />
         <port polarity="Output" name="SPI_CLK" />
         <port polarity="Output" name="SPI_CS" />
+        <port polarity="Input" name="evt_2" />
+        <port polarity="Input" name="evt_3" />
         <blockdef name="obuf4">
             <timestamp>2001-4-12T12:11:56</timestamp>
             <line x2="64" y1="0" y2="-64" x1="64" />
@@ -483,7 +487,7 @@
             <blockpin signalname="ready_ctrl(0)" name="I0" />
             <blockpin signalname="ready_ctrl(1)" name="I1" />
             <blockpin signalname="ready_ctrl(2)" name="I2" />
-            <blockpin signalname="evt_std" name="I3" />
+            <blockpin signalname="curr_wr_msb(7)" name="I3" />
             <blockpin signalname="TestA0" name="O0" />
             <blockpin signalname="TestA1" name="O1" />
             <blockpin signalname="TestA2" name="O2" />
@@ -641,7 +645,7 @@
         <block symbolname="counter_16" name="XLXI_85">
             <blockpin signalname="q(47:0)" name="q(47:0)" />
             <blockpin signalname="XLXN_431" name="reset" />
-            <blockpin signalname="evt_std" name="CLK_OOL_16" />
+            <blockpin signalname="evt_2_tmp" name="CLK_OOL_16" />
             <blockpin signalname="CLK80" name="CLK_OOL" />
             <blockpin signalname="CLK80" name="clk" />
             <blockpin signalname="c_out(12:0)" name="c_out(12:0)" />
@@ -1005,12 +1009,6 @@
             <wire x2="2080" y1="1424" y2="1424" x1="1808" />
             <wire x2="2096" y1="992" y2="992" x1="1808" />
         </branch>
-        <branch name="evt_1">
-            <wire x2="2096" y1="1184" y2="1184" x1="1920" />
-        </branch>
-        <branch name="evt_2">
-            <wire x2="2080" y1="1616" y2="1616" x1="1920" />
-        </branch>
         <branch name="adc1">
             <wire x2="2096" y1="1248" y2="1248" x1="1920" />
         </branch>
@@ -1019,9 +1017,6 @@
         </branch>
         <branch name="adc3">
             <wire x2="2096" y1="2096" y2="2096" x1="1920" />
-        </branch>
-        <branch name="evt_3">
-            <wire x2="2096" y1="2032" y2="2032" x1="1920" />
         </branch>
         <branch name="evt_4">
             <wire x2="2096" y1="2480" y2="2480" x1="1920" />
@@ -1239,11 +1234,8 @@
         <iomarker fontsize="28" x="2512" y="2288" name="saw4" orien="R0" />
         <iomarker fontsize="28" x="2512" y="1424" name="saw2" orien="R0" />
         <iomarker fontsize="28" x="2512" y="992" name="saw1" orien="R0" />
-        <iomarker fontsize="28" x="1920" y="1184" name="evt_1" orien="R180" />
         <iomarker fontsize="28" x="1920" y="1248" name="adc1" orien="R180" />
-        <iomarker fontsize="28" x="1920" y="1616" name="evt_2" orien="R180" />
         <iomarker fontsize="28" x="1920" y="1680" name="adc2" orien="R180" />
-        <iomarker fontsize="28" x="1920" y="2032" name="evt_3" orien="R180" />
         <iomarker fontsize="28" x="1920" y="2096" name="adc3" orien="R180" />
         <iomarker fontsize="28" x="1920" y="2480" name="evt_4" orien="R180" />
         <iomarker fontsize="28" x="1920" y="2544" name="adc4" orien="R180" />
@@ -1636,11 +1628,11 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4512" y="2592" type="branch" />
             <wire x2="4560" y1="2592" y2="2592" x1="4512" />
         </branch>
-        <branch name="evt_std">
+        <branch name="curr_wr_msb(7)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="176" y="2432" type="branch" />
             <wire x2="432" y1="2432" y2="2432" x1="176" />
         </branch>
-        <branch name="evt_std">
+        <branch name="evt_2_tmp">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1248" y="1856" type="branch" />
             <wire x2="1248" y1="1856" y2="1856" x1="1184" />
         </branch>
@@ -1648,5 +1640,35 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="608" y="1824" type="branch" />
             <wire x2="800" y1="1824" y2="1824" x1="608" />
         </branch>
+        <branch name="evt_2">
+            <wire x2="1472" y1="1488" y2="1488" x1="1344" />
+        </branch>
+        <iomarker fontsize="28" x="1344" y="1488" name="evt_2" orien="R180" />
+        <branch name="evt_1">
+            <wire x2="1472" y1="1424" y2="1424" x1="1328" />
+        </branch>
+        <iomarker fontsize="28" x="1328" y="1424" name="evt_1" orien="R180" />
+        <branch name="evt_3">
+            <wire x2="1488" y1="1568" y2="1568" x1="1328" />
+        </branch>
+        <iomarker fontsize="28" x="1328" y="1568" name="evt_3" orien="R180" />
+        <branch name="evt_1">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1696" y="1184" type="branch" />
+            <wire x2="2096" y1="1184" y2="1184" x1="1696" />
+        </branch>
+        <branch name="evt_2">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1760" y="1616" type="branch" />
+            <wire x2="2080" y1="1616" y2="1616" x1="1760" />
+        </branch>
+        <branch name="evt_3">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1680" y="2016" type="branch" />
+            <wire x2="2080" y1="2016" y2="2016" x1="1680" />
+            <wire x2="2080" y1="2016" y2="2032" x1="2080" />
+            <wire x2="2096" y1="2032" y2="2032" x1="2080" />
+        </branch>
+        <branch name="evt_std">
+            <wire x2="1488" y1="1616" y2="1616" x1="1328" />
+        </branch>
+        <iomarker fontsize="28" x="1328" y="1616" name="evt_std" orien="R180" />
     </sheet>
 </drawing>

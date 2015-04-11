@@ -115,3 +115,9 @@ iseconfig/spartan6_tcspc.projectmgr
 memory64.asy
 memory64.gise
 memory64.vho
+*.wdf
+*.psg
+*.edif
+*.debug
+*.jou
+*.ppr
