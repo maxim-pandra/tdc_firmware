@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="autoinc_bramAddr">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2013-11-30T15:8:50</timestamp>
+    <timestamp>2015-4-18T12:25:59</timestamp>
     <pin polarity="Input" x="0" y="-288" name="CLK80" />
     <pin polarity="Input" x="0" y="-224" name="addr_start(7:0)" />
     <pin polarity="Input" x="0" y="-160" name="PORT_ID(7:0)" />
@@ -10,6 +10,7 @@
     <pin polarity="Output" x="480" y="-288" name="curr_rd_addr(15:0)" />
     <pin polarity="Output" x="480" y="-224" name="b_wr_en" />
     <pin polarity="Output" x="480" y="-176" name="br_rd_p" />
+    <pin polarity="Output" x="480" y="-128" name="debug" />
     <graph>
         <rect width="352" x="64" y="-320" height="320" />
         <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="240" y="-328" type="symbol" />
@@ -32,5 +33,7 @@
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="408" y="-224" type="pin b_wr_en" />
         <attrtext style="alignment:RIGHT" attrname="PinName" x="392" y="-176" type="pin br_rd_p" />
         <line x2="416" y1="-176" y2="-176" x1="480" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="392" y="-128" type="pin debug" />
+        <line x2="480" y1="-128" y2="-128" x1="416" />
     </graph>
 </symbol>

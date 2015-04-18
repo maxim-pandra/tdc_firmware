@@ -9,10 +9,13 @@ library ieee;
 	main_bus1, main_bus2, main_bus3, main_bus4			: in std_logic_vector(60 downto 0);
 	reset_bus						   				   		: out std_logic_vector(3 downto 0);
 	addra_curr0,addra_curr1,curr_wr_lsb,curr_wr_msb		: out std_logic_vector(7 downto 0);
+	bramDebug														: out std_logic_vector(7 downto 0);
 	present0															: out std_logic;
 	present1															: out std_logic;
 	bramEnable														: in std_logic;
 	IntRegSel, mem_overflow_reset								: in std_logic;
+	pb_wr_strobe													: in std_logic;
+	PORT_ID															: in std_logic_vector(7 downto 0);
 	
 	-- controller bram interface signals begin
 	clkb_ctrl							   : in std_logic;
@@ -53,12 +56,14 @@ END COMPONENT;
 	signal bram_selected						: std_logic_vector(1 downto 0);
 	signal addrb1,addrb2,addrb3,addrb4	: std_logic_vector(8 downto 0);
 	signal addra								: std_logic_vector(8 downto 0);
-	signal addra_reg_u						: unsigned(15 downto 0) := "0000000000000111";
+	signal addra_reg_u						: unsigned(15 downto 0) := "0000000000000000";
 	signal  addra_next						: unsigned(15 downto 0);
+	signal internal_rd_index_prev			: unsigned(13 downto 0);
 	signal addra_reg                    : std_logic_vector(15 downto 0);
 	signal wea,web								: std_logic_vector(3 downto 0);
 	signal data_pack                    : std_logic_vector(63 downto 0);
 	signal internal_rd_index				: std_logic_vector(13 downto 0);
+	signal reset_memory_pointers_port_id, reset_bram_manager			: std_logic;
 	signal enable, ena, enb, web0dbug_buff, flag,memOverflowFlag, flag1, reasonStop, reasonContinue :std_logic;
 
 begin
@@ -136,16 +141,17 @@ begin
 		 doutb => doutb4
 	   );
 	 --INST_TAG_END ------ End INSTANTIATION Template ------------
-	
 	ena<='1';
 	enb<='1';
 	flag1<=flag;
-	process(clka, reset_c)
+	process(clka, reset_bram_manager)
 	begin
-	if reset_c='1' then
-		state_reg<=READ1;
-	elsif (clka'event and clka='1') then
 	
+	if (clka'event and clka='1') then
+	if reset_bram_manager='1' then
+		state_reg<=READ1;
+		addra_reg_u<="0000000000000000";
+	else
 		reset_bus(0)<='0';
 		reset_bus(1)<='0';
 		reset_bus(2)<='0';
@@ -235,7 +241,7 @@ begin
 		else
 		  doutb_ctrl<="10011001";
       end if;	
-	
+	end if;
 	end if;
 	end process;
 	
@@ -258,7 +264,8 @@ begin
 		elsif(addrb_ctrl(14 downto 12)="111" and web_ctrl='1') then web<="1000";
 		else web<="0000";
 		end if;
-		if IntRegSel = '1' then
+		
+--		if IntRegSel = '1' then
 			internal_rd_index(13)<=addrb_ctrl(13);
 			internal_rd_index(12)<=addrb_ctrl(12);
 			internal_rd_index(11)<=addrb_ctrl(11);
@@ -273,33 +280,35 @@ begin
 			internal_rd_index(2)	<=addrb_ctrl(2);
 			internal_rd_index(1)	<=addrb_ctrl(1);
 			internal_rd_index(0)	<=addrb_ctrl(0);
-		end if;
-
-web0dbug_buff<=
-						(addra_reg(8) xor not addrb_ctrl(8))and
-						(addra_reg(7) xor not addrb_ctrl(7))and
-						(addra_reg(6) xor not addrb_ctrl(6)) and
-						(addra_reg(5) xor not addrb_ctrl(5)) and
-						(addra_reg(4) xor not addrb_ctrl(4)) and
-						(addra_reg(3) xor not addrb_ctrl(3)) and
-						(addra_reg(2) xor not addrb_ctrl(2)) and
-						(addra_reg(1) xor not addrb_ctrl(1)) and
-						(addra_reg(0) xor not addrb_ctrl(0));
+			internal_rd_index_prev(13 downto 0) <= unsigned(internal_rd_index(13 downto 0)) - 8;
+--		end if;
 	end if;
 	end process;
 	
-	reasonStop	 <=(addra_reg(10) xor not internal_rd_index(13)) and
-						(addra_reg(9) xor not internal_rd_index(12)) and
-						(addra_reg(8) xor not internal_rd_index(11)) and
-						(addra_reg(7) xor not internal_rd_index(10)) and
-						(addra_reg(6) xor not internal_rd_index(9)) and
-						(addra_reg(5) xor not internal_rd_index(8)) and
-						(addra_reg(4) xor not internal_rd_index(7)) and
-						(addra_reg(3) xor not internal_rd_index(6)) and
-						(addra_reg(2) xor not internal_rd_index(5)) and
-						(addra_reg(1) xor not internal_rd_index(4)) and
-						(addra_reg(0) xor not internal_rd_index(3));
-	
+--	reasonStop	 <=(addra_reg(10) xor not internal_rd_index(13)) and
+--						(addra_reg(9) xor not internal_rd_index(12)) and
+--						(addra_reg(8) xor not internal_rd_index(11)) and
+--						(addra_reg(7) xor not internal_rd_index(10)) and
+--						(addra_reg(6) xor not internal_rd_index(9)) and
+--						(addra_reg(5) xor not internal_rd_index(8)) and
+--						(addra_reg(4) xor not internal_rd_index(7)) and
+--						(addra_reg(3) xor not internal_rd_index(6)) and
+--						(addra_reg(2) xor not internal_rd_index(5)) and
+--						(addra_reg(1) xor not internal_rd_index(4)) and
+--						(addra_reg(0) xor not internal_rd_index(3));
+--	
+	reasonStop	 <=(addra_reg(10) xor not internal_rd_index_prev(13)) and
+						(addra_reg(9) xor not internal_rd_index_prev(12)) and
+						(addra_reg(8) xor not internal_rd_index_prev(11)) and
+						(addra_reg(7) xor not internal_rd_index_prev(10)) and
+						(addra_reg(6) xor not internal_rd_index_prev(9)) and
+						(addra_reg(5) xor not internal_rd_index_prev(8)) and
+						(addra_reg(4) xor not internal_rd_index_prev(7)) and
+						(addra_reg(3) xor not internal_rd_index_prev(6)) and
+						(addra_reg(2) xor not internal_rd_index_prev(5)) and
+						(addra_reg(1) xor not internal_rd_index_prev(4)) and
+						(addra_reg(0) xor not internal_rd_index_prev(3));
+
 	reasonContinue<=(addra_reg(4) xor internal_rd_index(6));
 	
 	process(clka)
@@ -317,7 +326,6 @@ web0dbug_buff<=
 	end process;
 	
 	curr_wr_msb(7)<=memOverflowFlag;
-	web0dbug <= reasonContinue;
 	present0 <= reasonStop;
 	
 	wea<="0001" when (addra_reg(10 downto 9)= "00" and enable='1') else   --and addra_reg(8:0) <> addrb_reg(8:0)
@@ -328,4 +336,27 @@ web0dbug_buff<=
 		  
 --	web0dbug<=wea(0);
 	
+bramDebug(0)<= reasonStop;
+bramDebug(1)<= reasonContinue;
+bramDebug(2)<= enable;
+bramDebug(3)<= reset_bram_manager;
+bramDebug(4)<=internal_rd_index_prev(3);
+bramDebug(5)<=addra_reg(0);
+bramDebug(6)<=internal_rd_index(3);
+
+--deshifrate PORT_ID and wr to generate reset memory flag;
+reset_memory_pointers_port_id<= '1' when PORT_ID = x"FF" else '0';
+
+process (clka)							
+begin
+	if(clka = '1' and clka'event) then
+		if (pb_wr_strobe = '1' and reset_memory_pointers_port_id = '1') then
+			reset_bram_manager<=dinb_ctrl(0);
+		else
+			reset_bram_manager<='0';
+		end if;
+	end if;	
+end process;
+web0dbug<=reset_memory_pointers_port_id;	
+
 end bRAM_arch;

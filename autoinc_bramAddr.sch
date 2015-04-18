@@ -26,8 +26,6 @@
         <signal name="PORT_ID(7:0)" />
         <signal name="pb_rd" />
         <signal name="addr_start(7:0)" />
-        <signal name="XLXN_107" />
-        <signal name="XLXN_109" />
         <signal name="curr_rd_addr(7:0)" />
         <signal name="curr_rd_addr_raw(7:0)" />
         <signal name="XLXN_155" />
@@ -55,8 +53,14 @@
         <signal name="br_rd_p" />
         <signal name="curr_rd_addr(13)" />
         <signal name="curr_rd_addr_raw(5)" />
-        <signal name="XLXN_197" />
-        <signal name="XLXN_198" />
+        <signal name="XLXN_199" />
+        <signal name="XLXN_200" />
+        <signal name="XLXN_209" />
+        <signal name="comand_bus_present" />
+        <signal name="addr_start(0)" />
+        <signal name="pointers_reset" />
+        <signal name="pointers_reset_sync" />
+        <signal name="debug" />
         <port polarity="Input" name="CLK80" />
         <port polarity="Input" name="pb_wr" />
         <port polarity="Output" name="curr_rd_addr(15:0)" />
@@ -65,6 +69,7 @@
         <port polarity="Input" name="addr_start(7:0)" />
         <port polarity="Output" name="b_wr_en" />
         <port polarity="Output" name="br_rd_p" />
+        <port polarity="Output" name="debug" />
         <blockdef name="cb8cle">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <rect width="256" x="64" y="-448" height="384" />
@@ -168,6 +173,15 @@
             <line x2="64" y1="0" y2="-32" x1="64" />
             <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
+        <blockdef name="fd">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <rect width="256" x="64" y="-320" height="256" />
+            <line x2="64" y1="-128" y2="-128" x1="0" />
+            <line x2="64" y1="-256" y2="-256" x1="0" />
+            <line x2="320" y1="-256" y2="-256" x1="384" />
+            <line x2="64" y1="-128" y2="-144" x1="80" />
+            <line x2="80" y1="-112" y2="-128" x1="64" />
+        </blockdef>
         <block symbolname="and2" name="XLXI_15">
             <blockpin signalname="XLXN_77" name="I0" />
             <blockpin signalname="XLXN_75" name="I1" />
@@ -216,26 +230,10 @@
             <blockpin signalname="pb_wr" name="I1" />
             <blockpin signalname="bram_wr_en" name="O" />
         </block>
-        <block symbolname="cb8cle" name="XLXI_2">
-            <blockpin signalname="CLK80" name="C" />
-            <blockpin signalname="count_enable" name="CE" />
-            <blockpin signalname="XLXN_107" name="CLR" />
-            <blockpin signalname="addr_start(7:0)" name="D(7:0)" />
-            <blockpin signalname="load_enable0" name="L" />
-            <blockpin signalname="XLXN_155" name="CEO" />
-            <blockpin signalname="curr_rd_addr(7:0)" name="Q(7:0)" />
-            <blockpin name="TC" />
-        </block>
-        <block symbolname="gnd" name="XLXI_23">
-            <blockpin signalname="XLXN_107" name="G" />
-        </block>
-        <block symbolname="gnd" name="XLXI_22">
-            <blockpin signalname="XLXN_109" name="G" />
-        </block>
         <block symbolname="cb8cle" name="XLXI_3">
             <blockpin signalname="CLK80" name="C" />
             <blockpin signalname="XLXN_155" name="CE" />
-            <blockpin signalname="XLXN_109" name="CLR" />
+            <blockpin signalname="pointers_reset_sync" name="CLR" />
             <blockpin signalname="addr_start(7:0)" name="D(7:0)" />
             <blockpin signalname="load_enable1" name="L" />
             <blockpin name="CEO" />
@@ -314,6 +312,54 @@
         </block>
         <block symbolname="vcc" name="XLXI_56">
             <blockpin signalname="curr_rd_addr(14)" name="P" />
+        </block>
+        <block symbolname="and4" name="XLXI_57">
+            <blockpin signalname="PORT_ID(7)" name="I0" />
+            <blockpin signalname="PORT_ID(6)" name="I1" />
+            <blockpin signalname="PORT_ID(5)" name="I2" />
+            <blockpin signalname="PORT_ID(4)" name="I3" />
+            <blockpin signalname="XLXN_200" name="O" />
+        </block>
+        <block symbolname="and2" name="XLXI_58">
+            <blockpin signalname="XLXN_200" name="I0" />
+            <blockpin signalname="XLXN_199" name="I1" />
+            <blockpin signalname="XLXN_209" name="O" />
+        </block>
+        <block symbolname="and2" name="XLXI_59">
+            <blockpin signalname="XLXN_209" name="I0" />
+            <blockpin signalname="pb_wr" name="I1" />
+            <blockpin signalname="comand_bus_present" name="O" />
+        </block>
+        <block symbolname="and4" name="XLXI_61">
+            <blockpin signalname="PORT_ID(3)" name="I0" />
+            <blockpin signalname="PORT_ID(2)" name="I1" />
+            <blockpin signalname="PORT_ID(1)" name="I2" />
+            <blockpin signalname="PORT_ID(0)" name="I3" />
+            <blockpin signalname="XLXN_199" name="O" />
+        </block>
+        <block symbolname="cb8cle" name="XLXI_2">
+            <blockpin signalname="CLK80" name="C" />
+            <blockpin signalname="count_enable" name="CE" />
+            <blockpin signalname="pointers_reset_sync" name="CLR" />
+            <blockpin signalname="addr_start(7:0)" name="D(7:0)" />
+            <blockpin signalname="load_enable0" name="L" />
+            <blockpin signalname="XLXN_155" name="CEO" />
+            <blockpin signalname="curr_rd_addr(7:0)" name="Q(7:0)" />
+            <blockpin name="TC" />
+        </block>
+        <block symbolname="fd" name="XLXI_62">
+            <blockpin signalname="CLK80" name="C" />
+            <blockpin signalname="pointers_reset" name="D" />
+            <blockpin signalname="pointers_reset_sync" name="Q" />
+        </block>
+        <block symbolname="and2" name="XLXI_63">
+            <blockpin signalname="addr_start(0)" name="I0" />
+            <blockpin signalname="comand_bus_present" name="I1" />
+            <blockpin signalname="pointers_reset" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_64">
+            <blockpin signalname="pointers_reset_sync" name="I" />
+            <blockpin signalname="debug" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -443,7 +489,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2304" y="2208" type="branch" />
             <wire x2="2352" y1="2208" y2="2208" x1="2304" />
         </branch>
-        <instance x="1632" y="1024" name="XLXI_2" orien="R0" />
         <branch name="addr_start(7:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1440" y="640" type="branch" />
             <wire x2="1632" y1="640" y2="640" x1="1440" />
@@ -451,9 +496,6 @@
         <branch name="CLK80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1536" y="896" type="branch" />
             <wire x2="1632" y1="896" y2="896" x1="1536" />
-        </branch>
-        <branch name="XLXN_107">
-            <wire x2="1632" y1="992" y2="992" x1="1536" />
         </branch>
         <branch name="count_enable">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1536" y="832" type="branch" />
@@ -463,7 +505,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1536" y="768" type="branch" />
             <wire x2="1632" y1="768" y2="768" x1="1536" />
         </branch>
-        <instance x="1472" y="1120" name="XLXI_23" orien="R0" />
         <branch name="addr_start(7:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1440" y="1408" type="branch" />
             <wire x2="1616" y1="1408" y2="1408" x1="1440" />
@@ -549,11 +590,6 @@
         </branch>
         <instance x="656" y="2048" name="XLXI_36" orien="R0" />
         <instance x="976" y="2016" name="XLXI_37" orien="R0" />
-        <branch name="XLXN_109">
-            <wire x2="1536" y1="1760" y2="1776" x1="1536" />
-            <wire x2="1616" y1="1760" y2="1760" x1="1536" />
-        </branch>
-        <instance x="1472" y="1904" name="XLXI_22" orien="R0" />
         <instance x="352" y="1984" name="XLXI_38" orien="R0" />
         <branch name="pb_wr">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2912" y="2368" type="branch" />
@@ -587,9 +623,8 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2912" y="1392" type="branch" />
             <wire x2="2608" y1="1456" y2="1472" x1="2608" />
             <wire x2="2672" y1="1472" y2="1472" x1="2608" />
-            <wire x2="2672" y1="1392" y2="1456" x1="2672" />
-            <wire x2="2672" y1="1456" y2="1472" x1="2672" />
             <wire x2="2912" y1="1392" y2="1392" x1="2672" />
+            <wire x2="2672" y1="1392" y2="1472" x1="2672" />
         </branch>
         <branch name="curr_rd_addr(8)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2896" y="1280" type="branch" />
@@ -655,8 +690,7 @@
         <instance x="2944" y="2288" name="XLXI_54" orien="R0" />
         <branch name="pb_rd">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2912" y="2160" type="branch" />
-            <wire x2="2928" y1="2160" y2="2160" x1="2912" />
-            <wire x2="2944" y1="2160" y2="2160" x1="2928" />
+            <wire x2="2944" y1="2160" y2="2160" x1="2912" />
         </branch>
         <branch name="br_rd_p">
             <wire x2="3264" y1="2192" y2="2192" x1="3200" />
@@ -666,8 +700,7 @@
         <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="724" y="2632">PORT_F3</text>
         <branch name="count_enable">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="3392" y="2624" type="branch" />
-            <wire x2="3344" y1="2624" y2="2624" x1="3296" />
-            <wire x2="3392" y1="2624" y2="2624" x1="3344" />
+            <wire x2="3392" y1="2624" y2="2624" x1="3296" />
             <wire x2="3424" y1="2624" y2="2624" x1="3392" />
         </branch>
         <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="2656" y="2336">PORT_F4</text>
@@ -682,5 +715,107 @@
         </branch>
         <instance x="2416" y="1536" name="XLXI_45" orien="R0" />
         <instance x="2544" y="1456" name="XLXI_56" orien="R0" />
+        <instance x="304" y="1616" name="XLXI_57" orien="R0" />
+        <branch name="XLXN_199">
+            <wire x2="576" y1="1216" y2="1216" x1="560" />
+            <wire x2="576" y1="1216" y2="1312" x1="576" />
+            <wire x2="608" y1="1312" y2="1312" x1="576" />
+        </branch>
+        <branch name="XLXN_200">
+            <wire x2="576" y1="1456" y2="1456" x1="560" />
+            <wire x2="576" y1="1376" y2="1456" x1="576" />
+            <wire x2="608" y1="1376" y2="1376" x1="576" />
+        </branch>
+        <branch name="PORT_ID(2)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="160" y="1248" type="branch" />
+            <wire x2="304" y1="1248" y2="1248" x1="160" />
+        </branch>
+        <branch name="PORT_ID(3)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="160" y="1312" type="branch" />
+            <wire x2="304" y1="1312" y2="1312" x1="160" />
+        </branch>
+        <branch name="PORT_ID(4)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="160" y="1360" type="branch" />
+            <wire x2="304" y1="1360" y2="1360" x1="160" />
+        </branch>
+        <branch name="PORT_ID(5)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="144" y="1424" type="branch" />
+            <wire x2="304" y1="1424" y2="1424" x1="144" />
+        </branch>
+        <branch name="PORT_ID(6)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="144" y="1488" type="branch" />
+            <wire x2="304" y1="1488" y2="1488" x1="144" />
+        </branch>
+        <branch name="PORT_ID(7)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="144" y="1552" type="branch" />
+            <wire x2="304" y1="1552" y2="1552" x1="144" />
+        </branch>
+        <branch name="PORT_ID(1)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="160" y="1184" type="branch" />
+            <wire x2="304" y1="1184" y2="1184" x1="160" />
+        </branch>
+        <branch name="PORT_ID(0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="160" y="1120" type="branch" />
+            <wire x2="304" y1="1120" y2="1120" x1="160" />
+        </branch>
+        <branch name="XLXN_209">
+            <wire x2="928" y1="1344" y2="1344" x1="864" />
+        </branch>
+        <branch name="pb_wr">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="896" y="1280" type="branch" />
+            <wire x2="928" y1="1280" y2="1280" x1="896" />
+        </branch>
+        <branch name="comand_bus_present">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1248" y="1312" type="branch" />
+            <wire x2="1248" y1="1312" y2="1312" x1="1184" />
+        </branch>
+        <instance x="608" y="1440" name="XLXI_58" orien="R0" />
+        <instance x="928" y="1408" name="XLXI_59" orien="R0" />
+        <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="612" y="1460">PORT_FF</text>
+        <instance x="304" y="1376" name="XLXI_61" orien="R0" />
+        <instance x="1632" y="1024" name="XLXI_2" orien="R0" />
+        <instance x="368" y="944" name="XLXI_62" orien="R0" />
+        <branch name="pointers_reset">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="224" y="688" type="branch" />
+            <wire x2="368" y1="688" y2="688" x1="224" />
+        </branch>
+        <branch name="CLK80">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="224" y="816" type="branch" />
+            <wire x2="368" y1="816" y2="816" x1="224" />
+        </branch>
+        <instance x="992" y="480" name="XLXI_63" orien="R0" />
+        <branch name="addr_start(0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="960" y="416" type="branch" />
+            <wire x2="992" y1="416" y2="416" x1="960" />
+        </branch>
+        <branch name="comand_bus_present">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="960" y="352" type="branch" />
+            <wire x2="992" y1="352" y2="352" x1="960" />
+        </branch>
+        <branch name="pointers_reset">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1280" y="384" type="branch" />
+            <wire x2="1280" y1="384" y2="384" x1="1248" />
+        </branch>
+        <branch name="pointers_reset_sync">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1504" y="992" type="branch" />
+            <wire x2="1632" y1="992" y2="992" x1="1504" />
+        </branch>
+        <branch name="pointers_reset_sync">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1520" y="1760" type="branch" />
+            <wire x2="1616" y1="1760" y2="1760" x1="1520" />
+        </branch>
+        <branch name="pointers_reset_sync">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="832" y="688" type="branch" />
+            <wire x2="832" y1="688" y2="688" x1="752" />
+        </branch>
+        <branch name="debug">
+            <wire x2="3376" y1="384" y2="384" x1="3136" />
+        </branch>
+        <iomarker fontsize="28" x="3376" y="384" name="debug" orien="R0" />
+        <instance x="2912" y="416" name="XLXI_64" orien="R0" />
+        <branch name="pointers_reset_sync">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2768" y="384" type="branch" />
+            <wire x2="2912" y1="384" y2="384" x1="2768" />
+        </branch>
     </sheet>
 </drawing>

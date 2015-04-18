@@ -100,8 +100,6 @@
         <signal name="XLXN_1163" />
         <signal name="DATA_OUT(15:0)" />
         <signal name="presentFTDIibus" />
-        <signal name="PB_INPUT(0)" />
-        <signal name="PB_INPUT(1)" />
         <signal name="PB_INt0" />
         <signal name="PB_INt1" />
         <signal name="XLXN_1164" />
@@ -623,11 +621,11 @@
             <blockpin signalname="RD_FTDI" name="O" />
         </block>
         <block symbolname="buf" name="XLXI_470">
-            <blockpin signalname="PB_INPUT(0)" name="I" />
+            <blockpin signalname="presentFTDIibus" name="I" />
             <blockpin signalname="PB_INt0" name="O" />
         </block>
         <block symbolname="buf" name="XLXI_471">
-            <blockpin signalname="PB_INPUT(1)" name="I" />
+            <blockpin signalname="WR_FTDI_INV" name="I" />
             <blockpin signalname="PB_INt1" name="O" />
         </block>
         <block symbolname="inv" name="XLXI_472">
@@ -991,8 +989,7 @@
         <instance x="3888" y="1712" name="XLXI_113" orien="R0" />
         <branch name="dataFromFlashPresent">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="608" y="2032" type="branch" />
-            <wire x2="880" y1="2032" y2="2032" x1="608" />
-            <wire x2="992" y1="2032" y2="2032" x1="880" />
+            <wire x2="992" y1="2032" y2="2032" x1="608" />
         </branch>
         <branch name="ToMCUData1(7:0)">
             <wire x2="992" y1="1840" y2="1840" x1="608" />
@@ -1343,15 +1340,13 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2336" y="2928" type="branch" />
             <wire x2="2560" y1="2928" y2="2928" x1="2336" />
         </branch>
-        <branch name="PB_INPUT(0)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1840" y="1440" type="branch" />
-            <wire x2="1840" y1="1440" y2="1440" x1="1824" />
-            <wire x2="2000" y1="1440" y2="1440" x1="1840" />
+        <branch name="presentFTDIibus">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1824" y="1440" type="branch" />
+            <wire x2="2000" y1="1440" y2="1440" x1="1824" />
         </branch>
-        <branch name="PB_INPUT(1)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1840" y="1504" type="branch" />
-            <wire x2="1840" y1="1504" y2="1504" x1="1824" />
-            <wire x2="2000" y1="1504" y2="1504" x1="1840" />
+        <branch name="WR_FTDI_INV">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1824" y="1504" type="branch" />
+            <wire x2="2000" y1="1504" y2="1504" x1="1824" />
         </branch>
         <instance x="2000" y="1472" name="XLXI_470" orien="R0" />
         <instance x="2000" y="1536" name="XLXI_471" orien="R0" />
@@ -1423,8 +1418,7 @@
         </branch>
         <branch name="PORT_ID(4)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2928" y="432" type="branch" />
-            <wire x2="2960" y1="432" y2="432" x1="2928" />
-            <wire x2="2976" y1="432" y2="432" x1="2960" />
+            <wire x2="2976" y1="432" y2="432" x1="2928" />
         </branch>
         <instance x="3552" y="464" name="XLXI_478" orien="R0" />
         <branch name="RD">
