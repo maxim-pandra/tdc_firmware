@@ -1,8 +1,0 @@
-Storage Target: Generic Parallel PROM
-Auto Select Storage Device
-FF
-correlator_firmware0
-D:\projects\diploma\buisnes\current\spartan6_tcspc/
-
-UFP ('C' format)
-1

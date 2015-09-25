@@ -9,8 +9,7 @@
         <signal name="PORT_ID(7:0)" />
         <signal name="Data_From_Pb(7:0)" />
         <signal name="clk80" />
-        <signal name="Data_From_Flash" />
-        <signal name="Data_To_Flash" />
+        <signal name="MOSI" />
         <signal name="SPI_CLK" />
         <signal name="SPI_CS" />
         <signal name="Byte_From_Flash(7:0)" />
@@ -35,20 +34,23 @@
         <signal name="WR" />
         <signal name="Data_From_Pb(0)" />
         <signal name="XLXN_64" />
-        <signal name="XLXN_65" />
-        <signal name="XLXN_66" />
-        <signal name="XLXN_67" />
-        <signal name="XLXN_68" />
+        <signal name="MISO" />
+        <signal name="PB_Flash_In" />
+        <signal name="XLXN_83" />
+        <signal name="XLXN_84" />
+        <signal name="XLXN_91" />
         <port polarity="Input" name="PORT_ID(7:0)" />
         <port polarity="Input" name="Data_From_Pb(7:0)" />
         <port polarity="Input" name="clk80" />
-        <port polarity="Input" name="Data_From_Flash" />
-        <port polarity="Output" name="Data_To_Flash" />
+        <port polarity="Output" name="MOSI" />
         <port polarity="Output" name="SPI_CLK" />
         <port polarity="Output" name="SPI_CS" />
         <port polarity="Output" name="Byte_From_Flash(7:0)" />
         <port polarity="Output" name="SPI_Ready" />
         <port polarity="Input" name="RD" />
+        <port polarity="Input" name="WR" />
+        <port polarity="Input" name="MISO" />
+        <port polarity="Output" name="PB_Flash_In" />
         <blockdef name="SPIinterface">
             <timestamp>2009-3-28T12:55:36</timestamp>
             <rect width="256" x="64" y="-256" height="256" />
@@ -139,16 +141,6 @@
             <arc ex="144" ey="-208" sx="144" sy="-112" r="48" cx="144" cy="-160" />
             <line x2="144" y1="-208" y2="-208" x1="64" />
         </blockdef>
-        <block symbolname="SPIinterface" name="XLXI_321">
-            <blockpin signalname="SPI_Data_Wr" name="DataWr" />
-            <blockpin signalname="Data_From_Pb(7:0)" name="DataIn(7:0)" />
-            <blockpin signalname="Data_From_Flash" name="MISO" />
-            <blockpin signalname="clk80" name="ClkIn" />
-            <blockpin signalname="SPI_CLK" name="SCK" />
-            <blockpin signalname="SPI_Ready" name="Ready" />
-            <blockpin signalname="Data_To_Flash" name="MOSI" />
-            <blockpin signalname="Byte_From_Flash(7:0)" name="DataOut(7:0)" />
-        </block>
         <block symbolname="and2" name="XLXI_7">
             <blockpin signalname="XLXN_33" name="I0" />
             <blockpin signalname="XLXN_32" name="I1" />
@@ -156,15 +148,8 @@
         </block>
         <block symbolname="and2" name="XLXI_325">
             <blockpin signalname="XLXN_34" name="I0" />
-            <blockpin signalname="RD" name="I1" />
+            <blockpin signalname="WR" name="I1" />
             <blockpin signalname="SPI_Data_Wr" name="O" />
-        </block>
-        <block symbolname="and4b4" name="XLXI_326">
-            <blockpin signalname="PORT_ID(3)" name="I0" />
-            <blockpin signalname="PORT_ID(2)" name="I1" />
-            <blockpin signalname="PORT_ID(1)" name="I2" />
-            <blockpin signalname="PORT_ID(0)" name="I3" />
-            <blockpin signalname="XLXN_32" name="O" />
         </block>
         <block symbolname="and4b1" name="XLXI_327">
             <blockpin signalname="PORT_ID(4)" name="I0" />
@@ -211,6 +196,47 @@
             <blockpin signalname="PORT_ID(1)" name="I3" />
             <blockpin signalname="XLXN_41" name="O" />
         </block>
+        <block symbolname="SPIinterface" name="XLXI_321">
+            <blockpin signalname="SPI_Data_Wr" name="DataWr" />
+            <blockpin signalname="Data_From_Pb(7:0)" name="DataIn(7:0)" />
+            <blockpin signalname="MISO" name="MISO" />
+            <blockpin signalname="clk80" name="ClkIn" />
+            <blockpin signalname="SPI_CLK" name="SCK" />
+            <blockpin signalname="SPI_Ready" name="Ready" />
+            <blockpin signalname="MOSI" name="MOSI" />
+            <blockpin signalname="Byte_From_Flash(7:0)" name="DataOut(7:0)" />
+        </block>
+        <block symbolname="and2" name="XLXI_338">
+            <blockpin signalname="XLXN_91" name="I0" />
+            <blockpin signalname="RD" name="I1" />
+            <blockpin signalname="PB_Flash_In" name="O" />
+        </block>
+        <block symbolname="and2" name="XLXI_339">
+            <blockpin signalname="XLXN_84" name="I0" />
+            <blockpin signalname="XLXN_83" name="I1" />
+            <blockpin signalname="XLXN_91" name="O" />
+        </block>
+        <block symbolname="and4b1" name="XLXI_341">
+            <blockpin signalname="PORT_ID(4)" name="I0" />
+            <blockpin signalname="PORT_ID(5)" name="I1" />
+            <blockpin signalname="PORT_ID(6)" name="I2" />
+            <blockpin signalname="PORT_ID(7)" name="I3" />
+            <blockpin signalname="XLXN_84" name="O" />
+        </block>
+        <block symbolname="and4b4" name="XLXI_326">
+            <blockpin signalname="PORT_ID(3)" name="I0" />
+            <blockpin signalname="PORT_ID(2)" name="I1" />
+            <blockpin signalname="PORT_ID(1)" name="I2" />
+            <blockpin signalname="PORT_ID(0)" name="I3" />
+            <blockpin signalname="XLXN_32" name="O" />
+        </block>
+        <block symbolname="and4b3" name="XLXI_343">
+            <blockpin signalname="PORT_ID(3)" name="I0" />
+            <blockpin signalname="PORT_ID(2)" name="I1" />
+            <blockpin signalname="PORT_ID(1)" name="I2" />
+            <blockpin signalname="PORT_ID(0)" name="I3" />
+            <blockpin signalname="XLXN_83" name="O" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
         <branch name="PORT_ID(7:0)">
@@ -225,14 +251,14 @@
             <wire x2="480" y1="1344" y2="1344" x1="320" />
         </branch>
         <iomarker fontsize="28" x="320" y="1344" name="clk80" orien="R180" />
-        <branch name="Data_From_Flash">
+        <branch name="MISO">
             <wire x2="480" y1="1696" y2="1696" x1="320" />
         </branch>
-        <iomarker fontsize="28" x="320" y="1696" name="Data_From_Flash" orien="R180" />
-        <branch name="Data_To_Flash">
+        <iomarker fontsize="28" x="320" y="1696" name="MISO" orien="R180" />
+        <branch name="MOSI">
             <wire x2="3200" y1="640" y2="640" x1="3040" />
         </branch>
-        <iomarker fontsize="28" x="3200" y="640" name="Data_To_Flash" orien="R0" />
+        <iomarker fontsize="28" x="3200" y="640" name="MOSI" orien="R0" />
         <branch name="SPI_CLK">
             <wire x2="3200" y1="928" y2="928" x1="3040" />
         </branch>
@@ -249,40 +275,6 @@
             <wire x2="3200" y1="1792" y2="1792" x1="3040" />
         </branch>
         <iomarker fontsize="28" x="3200" y="1792" name="Byte_From_Flash(7:0)" orien="R0" />
-        <branch name="clk80">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1472" y="512" type="branch" />
-            <wire x2="1536" y1="512" y2="512" x1="1472" />
-        </branch>
-        <branch name="Data_From_Pb(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1472" y="384" type="branch" />
-            <wire x2="1536" y1="384" y2="384" x1="1472" />
-        </branch>
-        <branch name="Data_From_Flash">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1472" y="320" type="branch" />
-            <wire x2="1536" y1="320" y2="320" x1="1472" />
-        </branch>
-        <branch name="Data_To_Flash">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2016" y="320" type="branch" />
-            <wire x2="2016" y1="320" y2="320" x1="1920" />
-        </branch>
-        <branch name="SPI_CLK">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2016" y="384" type="branch" />
-            <wire x2="2016" y1="384" y2="384" x1="1920" />
-        </branch>
-        <branch name="SPI_Ready">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2016" y="448" type="branch" />
-            <wire x2="2016" y1="448" y2="448" x1="1920" />
-        </branch>
-        <branch name="Byte_From_Flash(7:0)">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="2016" y="512" type="branch" />
-            <wire x2="2016" y1="512" y2="512" x1="1920" />
-        </branch>
-        <branch name="SPI_Data_Wr">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1472" y="448" type="branch" />
-            <wire x2="1536" y1="448" y2="448" x1="1472" />
-        </branch>
-        <instance x="1536" y="544" name="XLXI_321" orien="R0">
-        </instance>
         <branch name="XLXN_32">
             <wire x2="1808" y1="1216" y2="1216" x1="1792" />
             <wire x2="1808" y1="1216" y2="1312" x1="1808" />
@@ -333,10 +325,9 @@
         <branch name="RD">
             <wire x2="480" y1="1952" y2="1952" x1="304" />
         </branch>
-        <instance x="1536" y="1376" name="XLXI_326" orien="R0" />
         <instance x="1536" y="1616" name="XLXI_327" orien="R0" />
         <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="1848" y="1512">PORT_E0</text>
-        <branch name="RD">
+        <branch name="WR">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2128" y="1280" type="branch" />
             <wire x2="2160" y1="1280" y2="1280" x1="2128" />
         </branch>
@@ -429,5 +420,108 @@
         </branch>
         <instance x="2112" y="1968" name="XLXI_334" orien="R0" />
         <instance x="1440" y="2128" name="XLXI_335" orien="R0" />
+        <branch name="WR">
+            <wire x2="480" y1="2032" y2="2032" x1="304" />
+        </branch>
+        <iomarker fontsize="28" x="304" y="2032" name="WR" orien="R180" />
+        <branch name="clk80">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="2544" type="branch" />
+            <wire x2="384" y1="2544" y2="2544" x1="320" />
+        </branch>
+        <branch name="Data_From_Pb(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="2416" type="branch" />
+            <wire x2="384" y1="2416" y2="2416" x1="320" />
+        </branch>
+        <branch name="MISO">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="2352" type="branch" />
+            <wire x2="384" y1="2352" y2="2352" x1="320" />
+        </branch>
+        <branch name="MOSI">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="864" y="2352" type="branch" />
+            <wire x2="864" y1="2352" y2="2352" x1="768" />
+        </branch>
+        <branch name="SPI_CLK">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="864" y="2416" type="branch" />
+            <wire x2="864" y1="2416" y2="2416" x1="768" />
+        </branch>
+        <branch name="SPI_Ready">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="864" y="2480" type="branch" />
+            <wire x2="864" y1="2480" y2="2480" x1="768" />
+        </branch>
+        <branch name="Byte_From_Flash(7:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="864" y="2544" type="branch" />
+            <wire x2="864" y1="2544" y2="2544" x1="768" />
+        </branch>
+        <branch name="SPI_Data_Wr">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="2480" type="branch" />
+            <wire x2="384" y1="2480" y2="2480" x1="320" />
+        </branch>
+        <instance x="384" y="2576" name="XLXI_321" orien="R0">
+        </instance>
+        <instance x="2160" y="720" name="XLXI_338" orien="R0" />
+        <branch name="PB_Flash_In">
+            <wire x2="2464" y1="624" y2="624" x1="2416" />
+            <wire x2="2544" y1="624" y2="624" x1="2464" />
+        </branch>
+        <branch name="XLXN_84">
+            <wire x2="1808" y1="768" y2="768" x1="1792" />
+            <wire x2="1808" y1="688" y2="768" x1="1808" />
+            <wire x2="1840" y1="688" y2="688" x1="1808" />
+        </branch>
+        <branch name="PORT_ID(2)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1392" y="560" type="branch" />
+            <wire x2="1408" y1="560" y2="560" x1="1392" />
+            <wire x2="1536" y1="560" y2="560" x1="1408" />
+        </branch>
+        <branch name="PORT_ID(3)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1392" y="624" type="branch" />
+            <wire x2="1408" y1="624" y2="624" x1="1392" />
+            <wire x2="1536" y1="624" y2="624" x1="1408" />
+        </branch>
+        <branch name="PORT_ID(7)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1376" y="672" type="branch" />
+            <wire x2="1536" y1="672" y2="672" x1="1376" />
+        </branch>
+        <branch name="PORT_ID(6)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1376" y="736" type="branch" />
+            <wire x2="1536" y1="736" y2="736" x1="1376" />
+        </branch>
+        <branch name="PORT_ID(1)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1392" y="496" type="branch" />
+            <wire x2="1408" y1="496" y2="496" x1="1392" />
+            <wire x2="1536" y1="496" y2="496" x1="1408" />
+        </branch>
+        <branch name="PORT_ID(0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1392" y="432" type="branch" />
+            <wire x2="1408" y1="432" y2="432" x1="1392" />
+            <wire x2="1536" y1="432" y2="432" x1="1408" />
+        </branch>
+        <instance x="1840" y="752" name="XLXI_339" orien="R0" />
+        <branch name="XLXN_91">
+            <wire x2="2160" y1="656" y2="656" x1="2096" />
+        </branch>
+        <branch name="RD">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2128" y="592" type="branch" />
+            <wire x2="2160" y1="592" y2="592" x1="2128" />
+        </branch>
+        <branch name="PORT_ID(5)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="1376" y="800" type="branch" />
+            <wire x2="1536" y1="800" y2="800" x1="1376" />
+        </branch>
+        <branch name="PORT_ID(4)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1376" y="864" type="branch" />
+            <wire x2="1536" y1="864" y2="864" x1="1376" />
+        </branch>
+        <instance x="1536" y="928" name="XLXI_341" orien="R0" />
+        <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="2008" y="760">PORT_E1</text>
+        <instance x="1536" y="1376" name="XLXI_326" orien="R0" />
+        <branch name="XLXN_83">
+            <wire x2="1808" y1="528" y2="528" x1="1792" />
+            <wire x2="1808" y1="528" y2="624" x1="1808" />
+            <wire x2="1824" y1="624" y2="624" x1="1808" />
+            <wire x2="1840" y1="624" y2="624" x1="1824" />
+        </branch>
+        <instance x="1536" y="688" name="XLXI_343" orien="R0" />
+        <iomarker fontsize="28" x="2544" y="624" name="PB_Flash_In" orien="R0" />
     </sheet>
 </drawing>

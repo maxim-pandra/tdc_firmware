@@ -90,14 +90,11 @@
         <signal name="presentToPBData" />
         <signal name="curr_w_addrr(7:0)" />
         <signal name="br_rd_p" />
-        <signal name="XLXN_477(7:0)" />
         <signal name="XLXN_478(7:0)" />
-        <signal name="XLXN_479" />
         <signal name="XLXN_480" />
         <signal name="resetPointerRD" />
         <signal name="rdDebug" />
         <signal name="wrInvDebug" />
-        <signal name="RD_FTDI" />
         <signal name="pFTDIctrl" />
         <signal name="att_sig(0)" />
         <signal name="s1_dbg" />
@@ -134,8 +131,6 @@
         <signal name="reset_main(3)" />
         <signal name="test_signal" />
         <signal name="window_mode" />
-        <signal name="MISO" />
-        <signal name="MOSI" />
         <signal name="SPI_CLK" />
         <signal name="SPI_Ready" />
         <signal name="SPI_CS" />
@@ -146,12 +141,21 @@
         <signal name="evt_2" />
         <signal name="evt_3" />
         <signal name="resetPointerWR" />
-        <signal name="ready(0)" />
         <signal name="bramDebug(7:0)" />
         <signal name="bramDebug(0)" />
         <signal name="bramDebug(1)" />
-        <signal name="bramDebug(4)" />
+        <signal name="MISO" />
+        <signal name="MOSI" />
+        <signal name="MOSI_i" />
+        <signal name="SPI_CLK_i" />
+        <signal name="SPI_CS_i" />
+        <signal name="MISO_i" />
+        <signal name="controlBus(6)" />
+        <signal name="controlBus(7)" />
+        <signal name="WR_FTDI_DEBUG" />
+        <signal name="RD_FTDI" />
         <signal name="bramDebug(3)" />
+        <signal name="pb_flash_in" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -194,15 +198,15 @@
         <port polarity="Output" name="CLK_ADC_1" />
         <port polarity="Output" name="CLK_ADC_2" />
         <port polarity="Output" name="clk_adc_3" />
-        <port polarity="Output" name="RD_FTDI" />
         <port polarity="Output" name="adc_reset_1" />
         <port polarity="Output" name="adc_reset_0" />
-        <port polarity="Input" name="MISO" />
-        <port polarity="Output" name="MOSI" />
         <port polarity="Output" name="SPI_CLK" />
         <port polarity="Output" name="SPI_CS" />
         <port polarity="Input" name="evt_2" />
         <port polarity="Input" name="evt_3" />
+        <port polarity="Input" name="MISO" />
+        <port polarity="Output" name="MOSI" />
+        <port polarity="Output" name="RD_FTDI" />
         <blockdef name="obuf4">
             <timestamp>2001-4-12T12:11:56</timestamp>
             <line x2="64" y1="0" y2="-64" x1="64" />
@@ -444,8 +448,8 @@
             <line x2="48" y1="-48" y2="-48" x1="112" />
         </blockdef>
         <blockdef name="SPI_Wraper">
-            <timestamp>2015-3-12T17:8:54</timestamp>
-            <rect width="336" x="64" y="-320" height="320" />
+            <timestamp>2015-9-16T15:25:48</timestamp>
+            <rect width="336" x="64" y="-468" height="468" />
             <line x2="0" y1="-288" y2="-288" x1="64" />
             <line x2="0" y1="-224" y2="-224" x1="64" />
             <line x2="0" y1="-160" y2="-160" x1="64" />
@@ -458,11 +462,13 @@
             <line x2="400" y1="-32" y2="-32" x1="464" />
             <rect width="68" x="0" y="-236" height="24" />
             <line x2="64" y1="-48" y2="-48" x1="0" />
+            <line x2="64" y1="-336" y2="-336" x1="0" />
+            <line x2="400" y1="-336" y2="-336" x1="464" />
         </blockdef>
         <block symbolname="obuf4" name="XLXI_14">
-            <blockpin signalname="bramDebug(4)" name="I0" />
+            <blockpin signalname="reset(0)" name="I0" />
             <blockpin signalname="resetPointerWR" name="I1" />
-            <blockpin signalname="resetPointerRD" name="I2" />
+            <blockpin signalname="br_rd_p" name="I2" />
             <blockpin signalname="bramDebug(3)" name="I3" />
             <blockpin signalname="TestB4" name="O0" />
             <blockpin signalname="TestB5" name="O1" />
@@ -470,8 +476,8 @@
             <blockpin signalname="TestB7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_15">
-            <blockpin signalname="pb_rd_strobe" name="I0" />
-            <blockpin signalname="pb_wr_strobe" name="I1" />
+            <blockpin signalname="controlBus(6)" name="I0" />
+            <blockpin signalname="controlBus(7)" name="I1" />
             <blockpin signalname="bramDebug(0)" name="I2" />
             <blockpin signalname="bramDebug(1)" name="I3" />
             <blockpin signalname="TestB0" name="O0" />
@@ -480,20 +486,20 @@
             <blockpin signalname="TestB3" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_16">
-            <blockpin signalname="controlBus(0)" name="I0" />
-            <blockpin signalname="controlBus(1)" name="I1" />
-            <blockpin signalname="wrInvDebug" name="I2" />
-            <blockpin signalname="rdDebug" name="I3" />
+            <blockpin signalname="SPI_CS" name="I0" />
+            <blockpin signalname="SPI_Ready" name="I1" />
+            <blockpin signalname="SPI_CLK" name="I2" />
+            <blockpin signalname="CLK80" name="I3" />
             <blockpin signalname="TestA4" name="O0" />
             <blockpin signalname="TestA5" name="O1" />
             <blockpin signalname="TestA6" name="O2" />
             <blockpin signalname="TestA7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_17">
-            <blockpin signalname="ready_ctrl(0)" name="I0" />
-            <blockpin signalname="saw1" name="I1" />
-            <blockpin signalname="reset_main(0)" name="I2" />
-            <blockpin signalname="ready(0)" name="I3" />
+            <blockpin signalname="pb_rd_strobe" name="I0" />
+            <blockpin signalname="pb_wr_strobe" name="I1" />
+            <blockpin signalname="MOSI" name="I2" />
+            <blockpin signalname="MISO" name="I3" />
             <blockpin signalname="TestA0" name="O0" />
             <blockpin signalname="TestA1" name="O1" />
             <blockpin signalname="TestA2" name="O2" />
@@ -502,10 +508,10 @@
         <block symbolname="IMux4x1x8" name="XLXI_96">
             <blockpin signalname="curr_w_addrr(7:0)" name="InData0(7:0)" />
             <blockpin signalname="toIMuxData(7:0)" name="InData1(7:0)" />
-            <blockpin signalname="XLXN_477(7:0)" name="InData2(7:0)" />
+            <blockpin signalname="Byte_From_Flash(7:0)" name="InData2(7:0)" />
             <blockpin signalname="XLXN_478(7:0)" name="InData3(7:0)" />
             <blockpin signalname="XLXN_480" name="Present3" />
-            <blockpin signalname="XLXN_479" name="Present2" />
+            <blockpin signalname="pb_flash_in" name="Present2" />
             <blockpin signalname="br_rd_p" name="Present1" />
             <blockpin signalname="p_curr_w_addrr" name="Present0" />
             <blockpin signalname="toPBData(7:0)" name="OutData(7:0)" />
@@ -532,7 +538,7 @@
             <blockpin signalname="ARQAck" name="IRQAck" />
             <blockpin signalname="FTDIbus(7:0)" name="data_out_ftd_ioi(7:0)" />
             <blockpin signalname="RD_FTDI" name="RD_FTDI" />
-            <blockpin signalname="WR_FTDI" name="WR_FTDI" />
+            <blockpin signalname="WR_FTDI_DEBUG" name="WR_FTDI" />
             <blockpin signalname="data_from_ftdi(7:0)" name="data_from_FTDI(7:0)" />
             <blockpin signalname="pFTDIctrl" name="presentFTDIControl" />
             <blockpin signalname="rdDebug" name="PB_INt0" />
@@ -675,17 +681,11 @@
             <blockpin signalname="p_curr_w_addrr" name="present_curr_addr" />
             <blockpin signalname="mem_overflow_reset" name="mem_overflow_reset" />
         </block>
-        <block symbolname="ZeroByte" name="XLXI_273">
-            <blockpin signalname="XLXN_477(7:0)" name="ZeroData(7:0)" />
-        </block>
         <block symbolname="ZeroByte" name="XLXI_274">
             <blockpin signalname="XLXN_478(7:0)" name="ZeroData(7:0)" />
         </block>
         <block symbolname="gnd" name="XLXI_275">
             <blockpin signalname="XLXN_480" name="G" />
-        </block>
-        <block symbolname="gnd" name="XLXI_276">
-            <blockpin signalname="XLXN_479" name="G" />
         </block>
         <block symbolname="gnd" name="XLXI_296">
             <blockpin signalname="main_bus1b(29)" name="G" />
@@ -746,18 +746,6 @@
             <blockpin signalname="reset_OOB(3)" name="I1" />
             <blockpin signalname="reset(3)" name="O" />
         </block>
-        <block symbolname="SPI_Wraper" name="XLXI_325">
-            <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
-            <blockpin signalname="pb_data_out(7:0)" name="Data_From_Pb(7:0)" />
-            <blockpin signalname="CLK80" name="clk80" />
-            <blockpin signalname="MISO" name="Data_From_Flash" />
-            <blockpin signalname="MOSI" name="Data_To_Flash" />
-            <blockpin signalname="SPI_CLK" name="SPI_CLK" />
-            <blockpin signalname="SPI_Ready" name="SPI_Ready" />
-            <blockpin signalname="SPI_CS" name="SPI_CS" />
-            <blockpin signalname="Byte_From_Flash(7:0)" name="Byte_From_Flash(7:0)" />
-            <blockpin signalname="pb_rd_strobe" name="RD" />
-        </block>
         <block symbolname="buf" name="XLXI_249">
             <blockpin signalname="CLK80" name="I" />
             <blockpin signalname="CLK80_INT" name="O" />
@@ -765,6 +753,40 @@
         <block symbolname="buf" name="XLXI_327">
             <blockpin signalname="SPI_Ready" name="I" />
             <blockpin signalname="controlBus(2)" name="O" />
+        </block>
+        <block symbolname="SPI_Wraper" name="XLXI_325">
+            <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
+            <blockpin signalname="pb_data_out(7:0)" name="Data_From_Pb(7:0)" />
+            <blockpin signalname="CLK80" name="clk80" />
+            <blockpin signalname="MISO_i" name="MISO" />
+            <blockpin signalname="MOSI_i" name="MOSI" />
+            <blockpin signalname="SPI_CLK_i" name="SPI_CLK" />
+            <blockpin signalname="SPI_Ready" name="SPI_Ready" />
+            <blockpin signalname="SPI_CS_i" name="SPI_CS" />
+            <blockpin signalname="Byte_From_Flash(7:0)" name="Byte_From_Flash(7:0)" />
+            <blockpin signalname="pb_rd_strobe" name="RD" />
+            <blockpin signalname="pb_rd_strobe" name="WR" />
+            <blockpin signalname="pb_flash_in" name="PB_Flash_In" />
+        </block>
+        <block symbolname="buf" name="XLXI_329">
+            <blockpin signalname="MOSI_i" name="I" />
+            <blockpin signalname="MOSI" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_330">
+            <blockpin signalname="SPI_CLK_i" name="I" />
+            <blockpin signalname="SPI_CLK" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_331">
+            <blockpin signalname="SPI_CS_i" name="I" />
+            <blockpin signalname="SPI_CS" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_332">
+            <blockpin signalname="MISO" name="I" />
+            <blockpin signalname="MISO_i" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_333">
+            <blockpin signalname="WR_FTDI_DEBUG" name="I" />
+            <blockpin signalname="WR_FTDI" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -834,19 +856,19 @@
             <wire x2="688" y1="3408" y2="3408" x1="656" />
         </branch>
         <iomarker fontsize="28" x="688" y="3408" name="TestB7" orien="R0" />
-        <branch name="controlBus(0)">
+        <branch name="SPI_CS">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2560" type="branch" />
             <wire x2="432" y1="2560" y2="2560" x1="352" />
         </branch>
-        <branch name="controlBus(1)">
+        <branch name="SPI_Ready">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2624" type="branch" />
             <wire x2="432" y1="2624" y2="2624" x1="352" />
         </branch>
-        <branch name="pb_rd_strobe">
+        <branch name="controlBus(6)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2896" type="branch" />
             <wire x2="432" y1="2896" y2="2896" x1="352" />
         </branch>
-        <branch name="pb_wr_strobe">
+        <branch name="controlBus(7)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2960" type="branch" />
             <wire x2="432" y1="2960" y2="2960" x1="352" />
         </branch>
@@ -858,7 +880,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3088" type="branch" />
             <wire x2="432" y1="3088" y2="3088" x1="352" />
         </branch>
-        <branch name="bramDebug(4)">
+        <branch name="reset(0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3216" type="branch" />
             <wire x2="432" y1="3216" y2="3216" x1="352" />
         </branch>
@@ -866,7 +888,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3280" type="branch" />
             <wire x2="432" y1="3280" y2="3280" x1="352" />
         </branch>
-        <branch name="resetPointerRD">
+        <branch name="br_rd_p">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3344" type="branch" />
             <wire x2="432" y1="3344" y2="3344" x1="352" />
         </branch>
@@ -908,12 +930,6 @@
         <iomarker fontsize="28" x="368" y="1168" name="txe" orien="R180" />
         <iomarker fontsize="28" x="352" y="1232" name="rxf" orien="R180" />
         <instance x="432" y="3120" name="XLXI_15" orien="R0" />
-        <branch name="RD_FTDI">
-            <wire x2="4928" y1="752" y2="752" x1="4848" />
-        </branch>
-        <branch name="WR_FTDI">
-            <wire x2="4928" y1="784" y2="784" x1="4848" />
-        </branch>
         <branch name="FTDIbus(7:0)">
             <wire x2="5152" y1="720" y2="720" x1="4848" />
         </branch>
@@ -955,8 +971,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4288" y="352" type="branch" />
             <wire x2="4416" y1="352" y2="352" x1="4288" />
         </branch>
-        <iomarker fontsize="28" x="4928" y="752" name="RD_FTDI" orien="R0" />
-        <iomarker fontsize="28" x="4928" y="784" name="WR_FTDI" orien="R0" />
         <iomarker fontsize="28" x="5152" y="720" name="FTDIbus(7:0)" orien="R0" />
         <instance x="2400" y="528" name="XLXI_260" orien="R0">
         </instance>
@@ -1283,14 +1297,13 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="400" y="576" type="branch" />
             <wire x2="464" y1="576" y2="576" x1="400" />
         </branch>
-        <branch name="XLXN_477(7:0)">
+        <branch name="Byte_From_Flash(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="640" type="branch" />
             <wire x2="464" y1="640" y2="640" x1="320" />
         </branch>
         <branch name="XLXN_478(7:0)">
             <wire x2="464" y1="768" y2="768" x1="320" />
         </branch>
-        <instance x="0" y="672" name="XLXI_273" orien="R0">
-        </instance>
         <instance x="0" y="800" name="XLXI_274" orien="R0">
         </instance>
         <instance x="368" y="1056" name="XLXI_275" orien="R0" />
@@ -1298,11 +1311,6 @@
             <wire x2="464" y1="832" y2="832" x1="432" />
             <wire x2="432" y1="832" y2="928" x1="432" />
         </branch>
-        <branch name="XLXN_479">
-            <wire x2="352" y1="704" y2="928" x1="352" />
-            <wire x2="464" y1="704" y2="704" x1="352" />
-        </branch>
-        <instance x="288" y="1056" name="XLXI_276" orien="R0" />
         <iomarker fontsize="28" x="2688" y="1872" name="CLK_ADC_2" orien="R0" />
         <instance x="3136" y="2320" name="XLXI_94" orien="R0">
         </instance>
@@ -1338,11 +1346,11 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2688" y="1152" type="branch" />
             <wire x2="2688" y1="1152" y2="1152" x1="2480" />
         </branch>
-        <branch name="wrInvDebug">
+        <branch name="SPI_CLK">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2688" type="branch" />
             <wire x2="432" y1="2688" y2="2688" x1="384" />
         </branch>
-        <branch name="rdDebug">
+        <branch name="CLK80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2752" type="branch" />
             <wire x2="432" y1="2752" y2="2752" x1="384" />
         </branch>
@@ -1566,24 +1574,14 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="2320" type="branch" />
             <wire x2="2096" y1="2320" y2="2320" x1="2048" />
         </branch>
-        <branch name="MOSI">
-            <wire x2="5104" y1="2352" y2="2352" x1="5024" />
-        </branch>
-        <branch name="SPI_CLK">
-            <wire x2="5104" y1="2416" y2="2416" x1="5024" />
-        </branch>
         <branch name="SPI_Ready">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5104" y="2480" type="branch" />
-            <wire x2="5104" y1="2480" y2="2480" x1="5024" />
-        </branch>
-        <branch name="SPI_CS">
-            <wire x2="5104" y1="2544" y2="2544" x1="5024" />
+            <wire x2="5104" y1="2480" y2="2480" x1="4688" />
         </branch>
         <branch name="Byte_From_Flash(7:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="5104" y="2608" type="branch" />
-            <wire x2="5104" y1="2608" y2="2608" x1="5024" />
+            <wire x2="5104" y1="2608" y2="2608" x1="4688" />
         </branch>
-        <iomarker fontsize="28" x="4480" y="2544" name="MISO" orien="R180" />
         <iomarker fontsize="28" x="5104" y="2352" name="MOSI" orien="R0" />
         <iomarker fontsize="28" x="5104" y="2416" name="SPI_CLK" orien="R0" />
         <iomarker fontsize="28" x="5104" y="2544" name="SPI_CS" orien="R0" />
@@ -1606,29 +1604,8 @@
             <wire x2="1040" y1="1296" y2="1296" x1="784" />
         </branch>
         <branch name="MISO">
-            <wire x2="4560" y1="2544" y2="2544" x1="4480" />
-        </branch>
-        <branch name="CLK80">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4480" y="2480" type="branch" />
-            <wire x2="4560" y1="2480" y2="2480" x1="4480" />
-        </branch>
-        <branch name="pb_data_out(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4480" y="2416" type="branch" />
-            <wire x2="4560" y1="2416" y2="2416" x1="4480" />
-        </branch>
-        <branch name="PORT_ID(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4480" y="2352" type="branch" />
-            <wire x2="4560" y1="2352" y2="2352" x1="4480" />
-        </branch>
-        <instance x="4560" y="2640" name="XLXI_325" orien="R0">
-        </instance>
-        <branch name="pb_rd_strobe">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4512" y="2592" type="branch" />
-            <wire x2="4560" y1="2592" y2="2592" x1="4512" />
-        </branch>
-        <branch name="ready(0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="176" y="2432" type="branch" />
-            <wire x2="432" y1="2432" y2="2432" x1="176" />
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="288" y="2432" type="branch" />
+            <wire x2="432" y1="2432" y2="2432" x1="288" />
         </branch>
         <branch name="evt_2_tmp">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1248" y="1856" type="branch" />
@@ -1681,7 +1658,7 @@
             <wire x2="2960" y1="400" y2="400" x1="2880" />
         </branch>
         <text x="400" y="2544">txe</text>
-        <text x="404" y="2608">rxf</text>
+        <text x="404" y="2608">rxf cB(1)</text>
         <branch name="bramDebug(7:0)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3584" y="1680" type="branch" />
             <wire x2="3584" y1="1680" y2="1680" x1="3520" />
@@ -1690,20 +1667,103 @@
         <text x="368" y="3068">reasonContinue</text>
         <text x="376" y="3200">enable</text>
         <text x="312" y="3384">reset_bram_manager</text>
-        <branch name="ready_ctrl(0)">
+        <branch name="pb_rd_strobe">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2240" type="branch" />
-            <wire x2="400" y1="2240" y2="2240" x1="320" />
-            <wire x2="432" y1="2240" y2="2240" x1="400" />
+            <wire x2="432" y1="2240" y2="2240" x1="320" />
         </branch>
-        <branch name="saw1">
+        <branch name="pb_wr_strobe">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2304" type="branch" />
-            <wire x2="400" y1="2304" y2="2304" x1="320" />
-            <wire x2="432" y1="2304" y2="2304" x1="400" />
+            <wire x2="432" y1="2304" y2="2304" x1="320" />
         </branch>
-        <branch name="reset_main(0)">
+        <branch name="MOSI">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2368" type="branch" />
-            <wire x2="400" y1="2368" y2="2368" x1="320" />
-            <wire x2="432" y1="2368" y2="2368" x1="400" />
+            <wire x2="432" y1="2368" y2="2368" x1="320" />
+        </branch>
+        <branch name="CLK80">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4144" y="2480" type="branch" />
+            <wire x2="4224" y1="2480" y2="2480" x1="4144" />
+        </branch>
+        <branch name="pb_data_out(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4144" y="2416" type="branch" />
+            <wire x2="4224" y1="2416" y2="2416" x1="4144" />
+        </branch>
+        <branch name="PORT_ID(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4144" y="2352" type="branch" />
+            <wire x2="4224" y1="2352" y2="2352" x1="4144" />
+        </branch>
+        <instance x="4224" y="2640" name="XLXI_325" orien="R0">
+        </instance>
+        <branch name="pb_rd_strobe">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4176" y="2592" type="branch" />
+            <wire x2="4224" y1="2592" y2="2592" x1="4176" />
+        </branch>
+        <branch name="MOSI_i">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4736" y="2352" type="branch" />
+            <wire x2="4736" y1="2352" y2="2352" x1="4688" />
+            <wire x2="4784" y1="2352" y2="2352" x1="4736" />
+        </branch>
+        <branch name="MOSI">
+            <wire x2="5104" y1="2352" y2="2352" x1="5008" />
+        </branch>
+        <instance x="4784" y="2384" name="XLXI_329" orien="R0" />
+        <branch name="SPI_CLK_i">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4720" y="2416" type="branch" />
+            <wire x2="4720" y1="2416" y2="2416" x1="4688" />
+            <wire x2="4784" y1="2416" y2="2416" x1="4720" />
+        </branch>
+        <branch name="SPI_CLK">
+            <wire x2="5104" y1="2416" y2="2416" x1="5008" />
+        </branch>
+        <branch name="SPI_CS">
+            <wire x2="5104" y1="2544" y2="2544" x1="5008" />
+        </branch>
+        <branch name="SPI_CS_i">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4720" y="2544" type="branch" />
+            <wire x2="4720" y1="2544" y2="2544" x1="4688" />
+            <wire x2="4784" y1="2544" y2="2544" x1="4720" />
+        </branch>
+        <instance x="4784" y="2576" name="XLXI_331" orien="R0" />
+        <instance x="4784" y="2448" name="XLXI_330" orien="R0" />
+        <iomarker fontsize="28" x="3872" y="2544" name="MISO" orien="R180" />
+        <branch name="MISO">
+            <wire x2="3968" y1="2544" y2="2544" x1="3872" />
+        </branch>
+        <branch name="MISO_i">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4208" y="2544" type="branch" />
+            <wire x2="4208" y1="2544" y2="2544" x1="4192" />
+            <wire x2="4224" y1="2544" y2="2544" x1="4208" />
+        </branch>
+        <instance x="3968" y="2576" name="XLXI_332" orien="R0" />
+        <branch name="WR_FTDI">
+            <wire x2="5056" y1="1024" y2="1040" x1="5056" />
+            <wire x2="5232" y1="1040" y2="1040" x1="5056" />
+        </branch>
+        <instance x="5024" y="800" name="XLXI_333" orien="R90" />
+        <iomarker fontsize="28" x="5232" y="1040" name="WR_FTDI" orien="R0" />
+        <branch name="WR_FTDI_DEBUG">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4960" y="784" type="branch" />
+            <wire x2="4960" y1="784" y2="784" x1="4848" />
+            <wire x2="5056" y1="784" y2="784" x1="4960" />
+            <wire x2="5056" y1="784" y2="800" x1="5056" />
+        </branch>
+        <branch name="RD_FTDI">
+            <wire x2="5104" y1="752" y2="752" x1="4848" />
+            <wire x2="5104" y1="752" y2="816" x1="5104" />
+            <wire x2="5200" y1="816" y2="816" x1="5104" />
+            <wire x2="5232" y1="816" y2="816" x1="5200" />
+        </branch>
+        <iomarker fontsize="28" x="5232" y="816" name="RD_FTDI" orien="R0" />
+        <branch name="pb_flash_in">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="384" y="704" type="branch" />
+            <wire x2="464" y1="704" y2="704" x1="384" />
+        </branch>
+        <branch name="pb_flash_in">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4752" y="2304" type="branch" />
+            <wire x2="4752" y1="2304" y2="2304" x1="4688" />
+        </branch>
+        <branch name="pb_rd_strobe">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4128" y="2304" type="branch" />
+            <wire x2="4224" y1="2304" y2="2304" x1="4128" />
         </branch>
     </sheet>
 </drawing>

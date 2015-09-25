@@ -122,3 +122,8 @@ memory64.vho
 *.jou
 *.ppr
 *.jhd
+*.schbak
+*.schcmd
+*.cfi
+*.prm
+*.ufp

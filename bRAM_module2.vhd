@@ -200,10 +200,6 @@ begin
 			else
 			state_reg<=WAIT1;
 			enable<='1';
-				--if flag1='1' then
-				--flag<= '0'; else
-				--flag<='1';
-				--end if;
 			addra_reg_u<=addra_reg_u + 1;
 			data_pack <="010"& main_bus3;
 			reset_bus(2)<='1';
@@ -309,7 +305,11 @@ begin
 						(addra_reg(1) xor not internal_rd_index_prev(4)) and
 						(addra_reg(0) xor not internal_rd_index_prev(3));
 
-	reasonContinue<=(addra_reg(4) xor internal_rd_index(6));
+	--reasonContinue<=(addra_reg(4) xor internal_rd_index(7));
+	reasonContinue<='1' when (addra_reg(10 downto 0)=(std_logic_vector((unsigned(internal_rd_index(13 downto 3)) + 2)))) else
+		  '0'; 
+
+
 	
 	process(clka)
 	begin
@@ -340,9 +340,7 @@ bramDebug(0)<= reasonStop;
 bramDebug(1)<= reasonContinue;
 bramDebug(2)<= enable;
 bramDebug(3)<= reset_bram_manager;
-bramDebug(4)<=internal_rd_index_prev(3);
-bramDebug(5)<=addra_reg(0);
-bramDebug(6)<=internal_rd_index(3);
+bramDebug(4 downto 7)<=wea(3 downto 0);
 
 --deshifrate PORT_ID and wr to generate reset memory flag;
 reset_memory_pointers_port_id<= '1' when PORT_ID = x"FF" else '0';
