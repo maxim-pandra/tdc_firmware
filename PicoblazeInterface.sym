@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="PicoblazeInterface">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2014-3-10T10:28:26</timestamp>
+    <timestamp>2015-9-30T9:54:51</timestamp>
     <pin polarity="Input" x="0" y="-800" name="MCU_CLK" />
     <pin polarity="Input" x="0" y="-736" name="ToMCUData1(7:0)" />
     <pin polarity="Input" x="0" y="-672" name="Present1" />
@@ -19,6 +19,7 @@
     <pin polarity="Output" x="432" y="-560" name="presentFTDIControl" />
     <pin polarity="Output" x="432" y="-208" name="PB_INt0" />
     <pin polarity="Output" x="432" y="-176" name="PB_INt1" />
+    <pin polarity="Output" x="432" y="-144" name="pb_input_debug(7:0)" />
     <graph>
         <rect width="304" x="64" y="-832" height="732" />
         <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-840" type="symbol" />
@@ -63,5 +64,8 @@
         <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-176" type="pin PB_INt1" />
         <line x2="368" y1="-208" y2="-208" x1="432" />
         <line x2="368" y1="-176" y2="-176" x1="432" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-144" type="pin pb_input_debug(7:0)" />
+        <line x2="368" y1="-144" y2="-144" x1="432" />
+        <rect width="64" x="368" y="-152" height="16" />
     </graph>
 </symbol>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="SPI_Wraper">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2015-9-16T15:25:48</timestamp>
+    <timestamp>2015-9-25T15:2:12</timestamp>
     <pin polarity="Input" x="0" y="-288" name="PORT_ID(7:0)" />
     <pin polarity="Input" x="0" y="-224" name="Data_From_Pb(7:0)" />
     <pin polarity="Input" x="0" y="-160" name="clk80" />
@@ -14,6 +14,8 @@
     <pin polarity="Input" x="0" y="-48" name="RD" />
     <pin polarity="Input" x="0" y="-336" name="WR" />
     <pin polarity="Output" x="464" y="-336" name="PB_Flash_In" />
+    <pin polarity="Output" x="464" y="-384" name="SPI_Debugg0" />
+    <pin polarity="Output" x="464" y="-432" name="SPI_Debugg1" />
     <graph>
         <rect width="336" x="64" y="-468" height="468" />
         <line x2="0" y1="-288" y2="-288" x1="64" />
@@ -43,5 +45,9 @@
         <line x2="64" y1="-336" y2="-336" x1="0" />
         <attrtext style="alignment:RIGHT" attrname="PinName" x="376" y="-336" type="pin PB_Flash_In" />
         <line x2="400" y1="-336" y2="-336" x1="464" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="376" y="-384" type="pin SPI_Debugg0" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="376" y="-432" type="pin SPI_Debugg1" />
+        <line x2="400" y1="-432" y2="-432" x1="464" />
+        <line x2="400" y1="-384" y2="-384" x1="464" />
     </graph>
 </symbol>

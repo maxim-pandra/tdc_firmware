@@ -29,7 +29,7 @@
         <signal name="PORT_ID(4)" />
         <signal name="XLXN_41" />
         <signal name="XLXN_42" />
-        <signal name="XLXN_51" />
+        <signal name="E2" />
         <signal name="SPI_CS_Present" />
         <signal name="WR" />
         <signal name="Data_From_Pb(0)" />
@@ -39,6 +39,8 @@
         <signal name="XLXN_83" />
         <signal name="XLXN_84" />
         <signal name="XLXN_91" />
+        <signal name="SPI_Debugg0" />
+        <signal name="SPI_Debugg1" />
         <port polarity="Input" name="PORT_ID(7:0)" />
         <port polarity="Input" name="Data_From_Pb(7:0)" />
         <port polarity="Input" name="clk80" />
@@ -51,6 +53,8 @@
         <port polarity="Input" name="WR" />
         <port polarity="Input" name="MISO" />
         <port polarity="Output" name="PB_Flash_In" />
+        <port polarity="Output" name="SPI_Debugg0" />
+        <port polarity="Output" name="SPI_Debugg1" />
         <blockdef name="SPIinterface">
             <timestamp>2009-3-28T12:55:36</timestamp>
             <rect width="256" x="64" y="-256" height="256" />
@@ -141,6 +145,14 @@
             <arc ex="144" ey="-208" sx="144" sy="-112" r="48" cx="144" cy="-160" />
             <line x2="144" y1="-208" y2="-208" x1="64" />
         </blockdef>
+        <blockdef name="buf">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="64" y1="-32" y2="-32" x1="0" />
+            <line x2="128" y1="-32" y2="-32" x1="224" />
+            <line x2="128" y1="0" y2="-32" x1="64" />
+            <line x2="64" y1="-32" y2="-64" x1="128" />
+            <line x2="64" y1="-64" y2="0" x1="64" />
+        </blockdef>
         <block symbolname="and2" name="XLXI_7">
             <blockpin signalname="XLXN_33" name="I0" />
             <blockpin signalname="XLXN_32" name="I1" />
@@ -161,7 +173,7 @@
         <block symbolname="and2" name="XLXI_328">
             <blockpin signalname="XLXN_42" name="I0" />
             <blockpin signalname="XLXN_41" name="I1" />
-            <blockpin signalname="XLXN_51" name="O" />
+            <blockpin signalname="E2" name="O" />
         </block>
         <block symbolname="and4b1" name="XLXI_330">
             <blockpin signalname="PORT_ID(4)" name="I0" />
@@ -171,7 +183,7 @@
             <blockpin signalname="XLXN_42" name="O" />
         </block>
         <block symbolname="and2" name="XLXI_331">
-            <blockpin signalname="XLXN_51" name="I0" />
+            <blockpin signalname="E2" name="I0" />
             <blockpin signalname="WR" name="I1" />
             <blockpin signalname="SPI_CS_Present" name="O" />
         </block>
@@ -188,13 +200,6 @@
         </block>
         <block symbolname="gnd" name="XLXI_334">
             <blockpin signalname="XLXN_64" name="G" />
-        </block>
-        <block symbolname="and4b3" name="XLXI_335">
-            <blockpin signalname="PORT_ID(3)" name="I0" />
-            <blockpin signalname="PORT_ID(2)" name="I1" />
-            <blockpin signalname="PORT_ID(0)" name="I2" />
-            <blockpin signalname="PORT_ID(1)" name="I3" />
-            <blockpin signalname="XLXN_41" name="O" />
         </block>
         <block symbolname="SPIinterface" name="XLXI_321">
             <blockpin signalname="SPI_Data_Wr" name="DataWr" />
@@ -236,6 +241,21 @@
             <blockpin signalname="PORT_ID(1)" name="I2" />
             <blockpin signalname="PORT_ID(0)" name="I3" />
             <blockpin signalname="XLXN_83" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_344">
+            <blockpin signalname="SPI_CS_Present" name="I" />
+            <blockpin signalname="SPI_Debugg0" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_345">
+            <blockpin signalname="Data_From_Pb(0)" name="I" />
+            <blockpin signalname="SPI_Debugg1" name="O" />
+        </block>
+        <block symbolname="and4b3" name="XLXI_335">
+            <blockpin signalname="PORT_ID(3)" name="I0" />
+            <blockpin signalname="PORT_ID(2)" name="I1" />
+            <blockpin signalname="PORT_ID(0)" name="I2" />
+            <blockpin signalname="PORT_ID(1)" name="I3" />
+            <blockpin signalname="XLXN_41" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -380,8 +400,10 @@
             <wire x2="1440" y1="1872" y2="1872" x1="1296" />
         </branch>
         <instance x="1744" y="2192" name="XLXI_328" orien="R0" />
-        <branch name="XLXN_51">
-            <wire x2="2064" y1="2096" y2="2096" x1="2000" />
+        <branch name="E2">
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="2032" y="2096" type="branch" />
+            <wire x2="2032" y1="2096" y2="2096" x1="2000" />
+            <wire x2="2064" y1="2096" y2="2096" x1="2032" />
         </branch>
         <instance x="1440" y="2368" name="XLXI_330" orien="R0" />
         <text style="fontsize:35;fontname:Arial;textcolor:rgb(255,0,255)" x="1752" y="2264">PORT_E2</text>
@@ -419,7 +441,6 @@
             <wire x2="2272" y1="1808" y2="1808" x1="2176" />
         </branch>
         <instance x="2112" y="1968" name="XLXI_334" orien="R0" />
-        <instance x="1440" y="2128" name="XLXI_335" orien="R0" />
         <branch name="WR">
             <wire x2="480" y1="2032" y2="2032" x1="304" />
         </branch>
@@ -523,5 +544,25 @@
         </branch>
         <instance x="1536" y="688" name="XLXI_343" orien="R0" />
         <iomarker fontsize="28" x="2544" y="624" name="PB_Flash_In" orien="R0" />
+        <branch name="SPI_CS_Present">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2960" y="2032" type="branch" />
+            <wire x2="2976" y1="2032" y2="2032" x1="2960" />
+            <wire x2="3040" y1="2032" y2="2032" x1="2976" />
+        </branch>
+        <instance x="3040" y="2064" name="XLXI_344" orien="R0" />
+        <branch name="SPI_Debugg0">
+            <wire x2="3344" y1="2032" y2="2032" x1="3264" />
+        </branch>
+        <iomarker fontsize="28" x="3344" y="2032" name="SPI_Debugg0" orien="R0" />
+        <branch name="Data_From_Pb(0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2960" y="2192" type="branch" />
+            <wire x2="3072" y1="2192" y2="2192" x1="2960" />
+        </branch>
+        <instance x="3072" y="2224" name="XLXI_345" orien="R0" />
+        <branch name="SPI_Debugg1">
+            <wire x2="3360" y1="2192" y2="2192" x1="3296" />
+        </branch>
+        <iomarker fontsize="28" x="3360" y="2192" name="SPI_Debugg1" orien="R0" />
+        <instance x="1440" y="2128" name="XLXI_335" orien="R0" />
     </sheet>
 </drawing>
