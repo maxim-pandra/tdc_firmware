@@ -306,7 +306,7 @@ begin
 						(addra_reg(0) xor not internal_rd_index_prev(3));
 
 	--reasonContinue<=(addra_reg(4) xor internal_rd_index(7));
-	reasonContinue<='1' when (addra_reg(10 downto 0)=(std_logic_vector((unsigned(internal_rd_index(13 downto 3)) + 2)))) else
+	reasonContinue<='1' when (addra_reg(10 downto 0)=(std_logic_vector((unsigned(internal_rd_index(13 downto 3)) - 2)))) else
 		  '0'; 
 
 
@@ -340,7 +340,8 @@ bramDebug(0)<= reasonStop;
 bramDebug(1)<= reasonContinue;
 bramDebug(2)<= enable;
 bramDebug(3)<= reset_bram_manager;
-bramDebug(4 downto 7)<=wea(3 downto 0);
+bramDebug(4)<= reset_memory_pointers_port_id;
+bramDebug(5 downto 7)<=wea(2 downto 0);
 
 --deshifrate PORT_ID and wr to generate reset memory flag;
 reset_memory_pointers_port_id<= '1' when PORT_ID = x"FF" else '0';
