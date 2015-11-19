@@ -19,7 +19,8 @@
         <signal name="ready" />
         <signal name="cs" />
         <signal name="main_bus(59:48)" />
-        <signal name="CLK_ADC" />
+        <signal name="clk_adc_no_mux">
+        </signal>
         <signal name="adc_reset" />
         <signal name="XLXN_217" />
         <signal name="XLXN_219" />
@@ -29,6 +30,10 @@
         <signal name="as" />
         <signal name="XLXN_227" />
         <signal name="window_mode" />
+        <signal name="XLXN_232" />
+        <signal name="CLK_ADC" />
+        <signal name="XLXN_250" />
+        <signal name="XLXN_245" />
         <port polarity="Input" name="CLK_High" />
         <port polarity="Input" name="evt" />
         <port polarity="Output" name="saw" />
@@ -39,12 +44,12 @@
         <port polarity="Input" name="sdata" />
         <port polarity="Output" name="ready" />
         <port polarity="Output" name="cs" />
-        <port polarity="Output" name="CLK_ADC" />
         <port polarity="Output" name="adc_reset" />
         <port polarity="Output" name="s0_dbg" />
         <port polarity="Output" name="s1_dbg" />
         <port polarity="Output" name="attached_signal" />
         <port polarity="Input" name="window_mode" />
+        <port polarity="Output" name="CLK_ADC" />
         <blockdef name="adc_drive">
             <timestamp>2012-4-11T13:20:28</timestamp>
             <line x2="0" y1="-224" y2="-224" x1="64" />
@@ -100,9 +105,20 @@
             <line x2="64" y1="0" y2="-64" x1="64" />
             <circle r="16" cx="144" cy="-32" />
         </blockdef>
+        <blockdef name="muxcy">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="192" y1="0" y2="-64" x1="192" />
+            <line x2="192" y1="-224" y2="-160" x1="192" />
+            <line x2="32" y1="-160" y2="-64" x1="96" />
+            <line x2="96" y1="-160" y2="-160" x1="224" />
+            <line x2="224" y1="-64" y2="-160" x1="288" />
+            <line x2="288" y1="-64" y2="-64" x1="32" />
+            <line x2="128" y1="0" y2="-64" x1="128" />
+            <line x2="56" y1="-96" y2="-96" x1="0" />
+        </blockdef>
         <block symbolname="adc_drive" name="XLXI_84">
             <blockpin signalname="attached_signal" name="attached_signal" />
-            <blockpin signalname="CLK_ADC" name="sCLK" />
+            <blockpin signalname="clk_adc_no_mux" name="sCLK" />
             <blockpin signalname="reset" name="reset" />
             <blockpin signalname="sdata" name="sdata" />
             <blockpin signalname="ready" name="ready_sync" />
@@ -131,7 +147,7 @@
             <blockpin signalname="XLXN_227" name="R" />
             <blockpin signalname="XLXN_217" name="CE" />
             <blockpin name="CarryOut" />
-            <blockpin signalname="CLK_ADC" name="Q1" />
+            <blockpin signalname="clk_adc_no_mux" name="Q1" />
             <blockpin name="Q0" />
         </block>
         <block symbolname="vcc" name="XLXI_99">
@@ -143,6 +159,15 @@
         <block symbolname="inv" name="XLXI_101">
             <blockpin signalname="as" name="I" />
             <blockpin signalname="XLXN_227" name="O" />
+        </block>
+        <block symbolname="muxcy" name="XLXI_102">
+            <blockpin signalname="XLXN_245" name="CI" />
+            <blockpin signalname="clk_adc_no_mux" name="DI" />
+            <blockpin signalname="cs" name="S" />
+            <blockpin signalname="CLK_ADC" name="O" />
+        </block>
+        <block symbolname="vcc" name="XLXI_106">
+            <blockpin signalname="XLXN_245" name="P" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -208,28 +233,21 @@
         <instance x="624" y="1024" name="XLXI_99" orien="R0" />
         <instance x="704" y="1024" name="XLXI_100" orien="R0" />
         <iomarker fontsize="28" x="320" y="592" name="CLK_High" orien="R180" />
-        <iomarker fontsize="28" x="1616" y="1552" name="CLK_ADC" orien="R0" />
         <branch name="attached_signal">
             <wire x2="3040" y1="960" y2="960" x1="2656" />
         </branch>
         <branch name="s1_dbg">
-            <wire x2="2096" y1="848" y2="848" x1="2080" />
-            <wire x2="2224" y1="848" y2="848" x1="2096" />
-            <wire x2="2240" y1="848" y2="848" x1="2224" />
+            <wire x2="2240" y1="848" y2="848" x1="2080" />
         </branch>
         <iomarker fontsize="28" x="3040" y="960" name="attached_signal" orien="R0" />
         <branch name="counter(47:0)">
-            <wire x2="1632" y1="848" y2="848" x1="1616" />
-            <wire x2="1696" y1="848" y2="848" x1="1632" />
+            <wire x2="1696" y1="848" y2="848" x1="1616" />
         </branch>
         <branch name="evt_std">
-            <wire x2="1632" y1="752" y2="752" x1="1616" />
-            <wire x2="1680" y1="752" y2="752" x1="1632" />
-            <wire x2="1696" y1="752" y2="752" x1="1680" />
+            <wire x2="1696" y1="752" y2="752" x1="1616" />
         </branch>
         <branch name="reset">
-            <wire x2="1616" y1="656" y2="656" x1="1600" />
-            <wire x2="1696" y1="656" y2="656" x1="1616" />
+            <wire x2="1696" y1="656" y2="656" x1="1600" />
         </branch>
         <branch name="CLK_High">
             <wire x2="432" y1="592" y2="592" x1="320" />
@@ -267,7 +285,27 @@
             <wire x2="560" y1="1296" y2="1296" x1="512" />
         </branch>
         <instance x="560" y="1328" name="XLXI_101" orien="R0" />
+        <branch name="window_mode">
+            <wire x2="1696" y1="720" y2="720" x1="1616" />
+        </branch>
+        <iomarker fontsize="28" x="1616" y="720" name="window_mode" orien="R180" />
+        <instance x="1504" y="1504" name="XLXI_102" orien="R90" />
         <branch name="CLK_ADC">
+            <wire x2="1840" y1="1696" y2="1696" x1="1728" />
+        </branch>
+        <branch name="cs">
+            <attrtext style="alignment:SOFT-VLEFT;fontsize:28;fontname:Arial" attrname="Name" x="1600" y="1424" type="branch" />
+            <wire x2="1600" y1="1424" y2="1504" x1="1600" />
+        </branch>
+        <instance x="1104" y="1696" name="XLXI_106" orien="R0" />
+        <branch name="XLXN_245">
+            <wire x2="1168" y1="1696" y2="1712" x1="1168" />
+            <wire x2="1488" y1="1712" y2="1712" x1="1168" />
+            <wire x2="1504" y1="1696" y2="1696" x1="1488" />
+            <wire x2="1488" y1="1696" y2="1712" x1="1488" />
+        </branch>
+        <iomarker fontsize="28" x="1840" y="1696" name="CLK_ADC" orien="R0" />
+        <branch name="clk_adc_no_mux">
             <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="1328" y="1104" type="branch" />
             <wire x2="1248" y1="1168" y2="1168" x1="1200" />
             <wire x2="1248" y1="1104" y2="1168" x1="1248" />
@@ -276,12 +314,8 @@
             <wire x2="1424" y1="1104" y2="1104" x1="1328" />
             <wire x2="1424" y1="1104" y2="1168" x1="1424" />
             <wire x2="1664" y1="1168" y2="1168" x1="1424" />
-            <wire x2="1312" y1="1104" y2="1552" x1="1312" />
-            <wire x2="1616" y1="1552" y2="1552" x1="1312" />
+            <wire x2="1312" y1="1104" y2="1632" x1="1312" />
+            <wire x2="1504" y1="1632" y2="1632" x1="1312" />
         </branch>
-        <branch name="window_mode">
-            <wire x2="1696" y1="720" y2="720" x1="1616" />
-        </branch>
-        <iomarker fontsize="28" x="1616" y="720" name="window_mode" orien="R180" />
     </sheet>
 </drawing>
