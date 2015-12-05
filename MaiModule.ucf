@@ -1,6 +1,6 @@
 
 
-NET "CLK80" LOC = P51;
+NET "clk80" LOC = P51;
 
 NET "RD_FTDI" LOC = P33;
 NET "TestA0" LOC = P6;
@@ -45,7 +45,7 @@ NET "adc_reset_3" LOC = P94;
 NET "evt_1" LOC = P59;
 NET "evt_2" LOC = P66;
 
-NET "CLK80" IOSTANDARD = LVCMOS33;
+NET "clk80" IOSTANDARD = LVCMOS33;
 NET "CLK_ADC_0" IOSTANDARD = LVCMOS33;
 NET "CLK_ADC_1" IOSTANDARD = LVCMOS33;
 NET "CLK_ADC_2" IOSTANDARD = LVCMOS33;
@@ -195,15 +195,12 @@ NET "evt_4" LOC = P123;
 
 
 
-# PlanAhead Generated IO constraints 
 
 NET "evt_std" IOSTANDARD = LVCMOS33;
 
-# PlanAhead Generated physical constraints 
 
 NET "evt_std" LOC = P67;
 
-# PlanAhead Generated IO constraints 
 
 NET "evt_1" PULLDOWN;
 NET "evt_2" PULLDOWN;

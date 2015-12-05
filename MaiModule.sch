@@ -27,7 +27,7 @@
         <signal name="present0" />
         <signal name="present1" />
         <signal name="WR_FTDI" />
-        <signal name="CLK80" />
+        <signal name="clk80" />
         <signal name="toPBData(7:0)" />
         <signal name="CLK80_INT" />
         <signal name="pb_rd_strobe" />
@@ -156,8 +156,7 @@
         <signal name="evt_int1" />
         <signal name="evt_int2" />
         <signal name="evt_int3" />
-        <signal name="evt_int4">
-        </signal>
+        <signal name="evt_int4" />
         <signal name="rxf" />
         <signal name="controlBus(0)" />
         <signal name="controlBus(1)" />
@@ -180,7 +179,7 @@
         <port polarity="Output" name="TestB7" />
         <port polarity="Output" name="TestB5" />
         <port polarity="Output" name="WR_FTDI" />
-        <port polarity="Input" name="CLK80" />
+        <port polarity="Input" name="clk80" />
         <port polarity="BiDirectional" name="FTDIbus(7:0)" />
         <port polarity="Input" name="evt_1" />
         <port polarity="Input" name="adc1" />
@@ -500,7 +499,7 @@
             <blockpin signalname="reset_OOB(0)" name="I0" />
             <blockpin signalname="reset_main(0)" name="I1" />
             <blockpin signalname="reset_OOB(1)" name="I2" />
-            <blockpin signalname="reset_main(1)" name="I3" />
+            <blockpin signalname="clk80" name="I3" />
             <blockpin signalname="TestB4" name="O0" />
             <blockpin signalname="TestB5" name="O1" />
             <blockpin signalname="TestB6" name="O2" />
@@ -527,7 +526,7 @@
             <blockpin signalname="TestA7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_17">
-            <blockpin signalname="pb_rd_strobe" name="I0" />
+            <blockpin signalname="evt_2_tmp" name="I0" />
             <blockpin signalname="saw2" name="I1" />
             <blockpin signalname="saw1" name="I2" />
             <blockpin signalname="evt_1" name="I3" />
@@ -569,7 +568,7 @@
             <blockpin signalname="pid(7:0)" name="pb_input_debug(7:0)" />
         </block>
         <block symbolname="autoinc_bramAddr" name="XLXI_260">
-            <blockpin signalname="CLK80" name="CLK80" />
+            <blockpin signalname="clk80" name="CLK80" />
             <blockpin signalname="pb_data_out(7:0)" name="addr_start(7:0)" />
             <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
             <blockpin signalname="pb_rd_strobe" name="pb_rd" />
@@ -637,7 +636,7 @@
             <blockpin signalname="window_mode" name="window_mode" />
         </block>
         <block symbolname="bRAM_module2" name="XLXI_94">
-            <blockpin signalname="CLK80" name="clka" />
+            <blockpin signalname="clk80" name="clka" />
             <blockpin signalname="ready(3:0)" name="ready_bus(3:0)" />
             <blockpin signalname="main_bus1(60:0)" name="main_bus1(60:0)" />
             <blockpin signalname="main_bus2(60:0)" name="main_bus2(60:0)" />
@@ -645,7 +644,7 @@
             <blockpin signalname="main_bus4(60:0)" name="main_bus4(60:0)" />
             <blockpin signalname="XLXN_274" name="reset_c" />
             <blockpin signalname="reset_main(3:0)" name="reset_bus(3:0)" />
-            <blockpin signalname="CLK80" name="clkb_ctrl" />
+            <blockpin signalname="clk80" name="clkb_ctrl" />
             <blockpin signalname="b_ev" name="web_ctrl" />
             <blockpin signalname="pb_data_out(7:0)" name="dinb_ctrl(7:0)" />
             <blockpin signalname="curr_rw_addr(15:0)" name="addrb_ctrl(15:0)" />
@@ -686,8 +685,8 @@
             <blockpin signalname="q(47:0)" name="q(47:0)" />
             <blockpin signalname="XLXN_431" name="reset" />
             <blockpin signalname="evt_2_tmp" name="CLK_OOL_16" />
-            <blockpin signalname="CLK80" name="CLK_OOL" />
-            <blockpin signalname="CLK80" name="clk" />
+            <blockpin signalname="clk80" name="CLK_OOL" />
+            <blockpin signalname="clk80" name="clk" />
             <blockpin signalname="c_out(12:0)" name="c_out(12:0)" />
         </block>
         <block symbolname="gnd" name="XLXI_248">
@@ -696,7 +695,7 @@
         <block symbolname="curr_w_addr" name="XLXI_272">
             <blockpin signalname="addra_curr0(7:0)" name="addra_curr0(7:0)" />
             <blockpin signalname="addra_curr1(7:0)" name="addra_curr1(7:0)" />
-            <blockpin signalname="CLK80" name="CLK80" />
+            <blockpin signalname="clk80" name="CLK80" />
             <blockpin signalname="curr_w_addrr(7:0)" name="pb_data_in(7:0)" />
             <blockpin signalname="pb_rd_strobe" name="pb_rd" />
             <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
@@ -742,7 +741,7 @@
             <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
             <blockpin signalname="pb_data_out(7:0)" name="picoblaze(7:0)" />
             <blockpin signalname="ready(3:0)" name="ready(3:0)" />
-            <blockpin signalname="CLK80" name="clk" />
+            <blockpin signalname="clk80" name="clk" />
             <blockpin signalname="pb_wr_strobe" name="pb_wr_strobe" />
             <blockpin signalname="window_flag" name="window_flag" />
             <blockpin signalname="reset(3:0)" name="reset(3:0)" />
@@ -771,13 +770,13 @@
             <blockpin signalname="reset(3)" name="O" />
         </block>
         <block symbolname="buf" name="XLXI_249">
-            <blockpin signalname="CLK80" name="I" />
+            <blockpin signalname="clk80" name="I" />
             <blockpin signalname="CLK80_INT" name="O" />
         </block>
         <block symbolname="SPI_Wraper" name="XLXI_325">
             <blockpin signalname="PORT_ID(7:0)" name="PORT_ID(7:0)" />
             <blockpin signalname="pb_data_out(7:0)" name="Data_From_Pb(7:0)" />
-            <blockpin signalname="CLK80" name="clk80" />
+            <blockpin signalname="clk80" name="clk80" />
             <blockpin signalname="MISO_i" name="MISO" />
             <blockpin signalname="MOSI_i" name="MOSI" />
             <blockpin signalname="SPI_CLK_i" name="SPI_CLK" />
@@ -940,7 +939,7 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="336" y="3344" type="branch" />
             <wire x2="432" y1="3344" y2="3344" x1="336" />
         </branch>
-        <branch name="reset_main(1)">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3408" type="branch" />
             <wire x2="432" y1="3408" y2="3408" x1="352" />
         </branch>
@@ -1016,7 +1015,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2288" y="304" type="branch" />
             <wire x2="2400" y1="304" y2="304" x1="2288" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2288" y="240" type="branch" />
             <wire x2="2400" y1="240" y2="240" x1="2288" />
         </branch>
@@ -1152,11 +1151,11 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="1648" type="branch" />
             <wire x2="2080" y1="1648" y2="1648" x1="2048" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3088" y="1648" type="branch" />
             <wire x2="3136" y1="1648" y2="1648" x1="3088" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3120" y="2096" type="branch" />
             <wire x2="3136" y1="2096" y2="2096" x1="3120" />
         </branch>
@@ -1239,7 +1238,7 @@
         </instance>
         <instance x="800" y="1904" name="XLXI_85" orien="R0">
         </instance>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="752" y="1792" type="branch" />
             <wire x2="800" y1="1792" y2="1792" x1="752" />
         </branch>
@@ -1287,7 +1286,7 @@
         <iomarker fontsize="28" x="2512" y="1840" name="saw3" orien="R0" />
         <instance x="4400" y="1456" name="XLXI_272" orien="R0">
         </instance>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4336" y="1104" type="branch" />
             <wire x2="4400" y1="1104" y2="1104" x1="4336" />
         </branch>
@@ -1484,7 +1483,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3392" y="160" type="branch" />
             <wire x2="3440" y1="160" y2="160" x1="3392" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="3392" y="192" type="branch" />
             <wire x2="3440" y1="192" y2="192" x1="3392" />
         </branch>
@@ -1628,7 +1627,7 @@
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="1248" y="1856" type="branch" />
             <wire x2="1248" y1="1856" y2="1856" x1="1184" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="608" y="1824" type="branch" />
             <wire x2="800" y1="1824" y2="1824" x1="608" />
         </branch>
@@ -1664,7 +1663,7 @@
         <text x="368" y="3068">reasonContinue brdb1</text>
         <text x="376" y="3200">enable</text>
         <text x="312" y="3384">reset_bram_manager</text>
-        <branch name="pb_rd_strobe">
+        <branch name="evt_2_tmp">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2240" type="branch" />
             <wire x2="432" y1="2240" y2="2240" x1="320" />
         </branch>
@@ -1676,7 +1675,7 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2368" type="branch" />
             <wire x2="432" y1="2368" y2="2368" x1="320" />
         </branch>
-        <branch name="CLK80">
+        <branch name="clk80">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4144" y="2480" type="branch" />
             <wire x2="4224" y1="2480" y2="2480" x1="4144" />
         </branch>
@@ -1844,10 +1843,10 @@
         <instance x="656" y="1536" name="XLXI_327" orien="R0" />
         <iomarker fontsize="28" x="624" y="1376" name="txe" orien="R180" />
         <iomarker fontsize="28" x="624" y="1440" name="rxf" orien="R180" />
-        <branch name="CLK80">
+        <branch name="clk80">
             <wire x2="640" y1="1568" y2="1568" x1="624" />
             <wire x2="656" y1="1568" y2="1568" x1="640" />
         </branch>
-        <iomarker fontsize="28" x="624" y="1568" name="CLK80" orien="R180" />
+        <iomarker fontsize="28" x="624" y="1568" name="clk80" orien="R180" />
     </sheet>
 </drawing>

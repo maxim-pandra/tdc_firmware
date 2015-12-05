@@ -179,7 +179,8 @@ begin
 		--		if (flag1='0') then
 				enable<='1';
 				addra_reg_u<=addra_reg_u + 1;
-				data_pack <="000"& main_bus1;
+				--data_pack <="000" & main_bus1(60 downto 60) & "010001001100" & main_bus1(47 downto 0);
+				data_pack <="000" & main_bus1(60 downto 0);
 				reset_bus(0)<='1';
 		--		end if;
 			end if;	
@@ -191,7 +192,8 @@ begin
 			enable<='1';
 			--flag<='0';
 			addra_reg_u<=addra_reg_u + 1;
-			data_pack <="001"& main_bus2;
+			--data_pack <="001"&  main_bus2(60 downto 60) & "010010110000" & main_bus2(47 downto 0);
+			data_pack <="001"&  main_bus2(60 downto 0);
 			reset_bus(1)<='1';
 			end if;
 		elsif (state_reg<=WRITE3)then
