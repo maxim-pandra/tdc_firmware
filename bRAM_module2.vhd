@@ -162,6 +162,8 @@ begin
 				state_reg<= WRITE2;
 			elsif(ready_bus(2) ='1') then
 				state_reg<= WRITE3;
+			elsif(ready_bus(3) = '1') then
+				state_reg<= WRITE4;
 			elsif (ready_bus(0) ='1') then
 				state_reg<= WRITE1;
 			else
@@ -203,8 +205,18 @@ begin
 			state_reg<=WAIT1;
 			enable<='1';
 			addra_reg_u<=addra_reg_u + 1;
-			data_pack <="010"& main_bus3;
+			data_pack <="010"& main_bus3(60 downto 0);
 			reset_bus(2)<='1';
+			end if;
+		elsif (state_reg<=WRITE4)then
+			if (reasonStop='1') then
+			state_reg<=SLEEP;
+			else
+			state_reg<=WAIT1;
+			enable<='1';
+			addra_reg_u<=addra_reg_u + 1;
+			data_pack <="011"& main_bus4(60 downto 0);
+			reset_bus(3)<='1';
 			end if;
 		elsif (state_reg=SLEEP) then
 			if (reasonContinue='1') then
