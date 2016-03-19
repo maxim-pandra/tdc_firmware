@@ -128,3 +128,5 @@ memory64.vho
 *.prm
 *.ufp
 planAhead_run_3/
+*.wpc
+*.hex
