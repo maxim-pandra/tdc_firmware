@@ -52,7 +52,7 @@ END COMPONENT;
 	type state_type is (READ1,WRITE1,WRITE2,WRITE3,WRITE4,SLEEP,WAIT1,WAIT2,WAIT3);
 	
 	signal state_reg, state_next			: state_type;
-	signal doutb1,doutb2,doutb3,doutb4, dinb_buff, dinb_ctrl_shifted  : std_logic_vector(7 downto 0);
+	signal doutb0,doutb1,doutb2,doutb3, doutb4, doutb5, doutb6, doutb7, doutb8, doutb9, doutb10, doutb11,doutb12,doutb13,doutb14,doutb15, dinb_buff, dinb_ctrl_shifted  : std_logic_vector(7 downto 0);
 	signal bram_selected						: std_logic_vector(1 downto 0);
 	signal addrb1,addrb2,addrb3,addrb4	: std_logic_vector(8 downto 0);
 	signal addra								: std_logic_vector(8 downto 0);
@@ -60,7 +60,7 @@ END COMPONENT;
 	signal  addra_next						: unsigned(15 downto 0);
 	signal internal_rd_index_prev			: unsigned(13 downto 0);
 	signal addra_reg                    : std_logic_vector(15 downto 0);
-	signal wea,web								: std_logic_vector(3 downto 0);
+	signal wea,web								: std_logic_vector(15 downto 0); --depends on brams amount
 	signal data_pack                    : std_logic_vector(63 downto 0);
 	signal internal_rd_index				: std_logic_vector(13 downto 0);
 	signal reset_memory_pointers_port_id, reset_bram_manager			: std_logic;
@@ -68,7 +68,7 @@ END COMPONENT;
 
 begin
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	first_bram : memory64
+	bram0 : memory64
 	  PORT MAP (
 		clka => clka,
 	   ena => ena,	
@@ -81,13 +81,13 @@ begin
 		web => web(0 downto 0),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb1
+		doutb => doutb0
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	second_bram : memory64
+	bram1 : memory64
 	  PORT MAP (
 		clka => clka,
 	   ena => ena,	
@@ -100,13 +100,13 @@ begin
 		web => web(1 downto 1),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb2
+		doutb => doutb1
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	third_bram : memory64
+	bram2 : memory64
 	  PORT MAP (
 		clka => clka,
 		ena => ena,
@@ -119,13 +119,13 @@ begin
 		web => web(2 downto 2),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb3
+		doutb => doutb2
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	option_bram : memory64
+	bram3 : memory64
 	   PORT MAP (
 		 clka => clka,
 		 ena => ena,
@@ -138,9 +138,233 @@ begin
 		 web => web(3 downto 3),
 		 addrb => addrb_ctrl(11 downto 0),
 		 dinb => dinb_ctrl_shifted,
-		 doutb => doutb4
+		 doutb => doutb3
 	   );
 	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram4 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(4 downto 4),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(4 downto 4),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb4
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram5 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(5 downto 5),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(5 downto 5),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb5
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram6 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(6 downto 6),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(6 downto 6),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb6
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram7 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(7 downto 7),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(7 downto 7),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutb7
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram8 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(8 downto 8),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(8 downto 8),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb8
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram9 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(9 downto 9),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(9 downto 9),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb9
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram10 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(10 downto 10),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(10 downto 10),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb10
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram11 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(11 downto 11),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(11 downto 11),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutb11
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram12 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(12 downto 12),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(12 downto 12),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb12
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram13 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(13 downto 13),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(13 downto 13),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb13
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram14 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(14 downto 14),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(14 downto 14),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb14
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram15 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(15 downto 15),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(15 downto 15),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutb15
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+	 
+	 
 	ena<='1';
 	enb<='1';
 	flag1<=flag;
@@ -241,13 +465,13 @@ begin
 		end if;
 		-- provides reading through the port B 
 		if bram_selected="00"    then
-        doutb_ctrl<=doutb1;
+        doutb_ctrl<=doutb0;
       elsif bram_selected="01" then
-        doutb_ctrl<=doutb2;
+        doutb_ctrl<=doutb1;
       elsif bram_selected="10" then
-        doutb_ctrl<=doutb3;
+        doutb_ctrl<=doutb2;
       elsif bram_selected="11" then
-		  doutb_ctrl<=doutb4;
+		  doutb_ctrl<=doutb3;
 		else
 		  doutb_ctrl<="10011001";
       end if;	
