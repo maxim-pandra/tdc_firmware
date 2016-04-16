@@ -27,7 +27,6 @@
         <signal name="pb_rd" />
         <signal name="addr_start(7:0)" />
         <signal name="curr_rd_addr(7:0)" />
-        <signal name="curr_rd_addr_raw(7:0)" />
         <signal name="XLXN_155" />
         <signal name="XLXN_170" />
         <signal name="XLXN_171" />
@@ -37,8 +36,6 @@
         <signal name="bram_wr_en" />
         <signal name="b_wr_en" />
         <signal name="curr_rd_addr_raw(0)" />
-        <signal name="curr_rd_addr(15)" />
-        <signal name="curr_rd_addr(14)" />
         <signal name="curr_rd_addr(8)" />
         <signal name="curr_rd_addr(9)" />
         <signal name="curr_rd_addr(10)" />
@@ -61,6 +58,11 @@
         <signal name="pointers_reset" />
         <signal name="pointers_reset_sync" />
         <signal name="debug" />
+        <signal name="curr_rd_addr_raw(7:0)" />
+        <signal name="curr_rd_addr(15)" />
+        <signal name="curr_rd_addr(14)" />
+        <signal name="curr_rd_addr_raw(7)" />
+        <signal name="curr_rd_addr_raw(6)" />
         <port polarity="Input" name="CLK80" />
         <port polarity="Input" name="pb_wr" />
         <port polarity="Output" name="curr_rd_addr(15:0)" />
@@ -139,15 +141,6 @@
             <arc ex="144" ey="-208" sx="144" sy="-112" r="48" cx="144" cy="-160" />
             <line x2="144" y1="-208" y2="-208" x1="64" />
         </blockdef>
-        <blockdef name="gnd">
-            <timestamp>2000-1-1T10:10:10</timestamp>
-            <line x2="64" y1="-64" y2="-96" x1="64" />
-            <line x2="52" y1="-48" y2="-48" x1="76" />
-            <line x2="60" y1="-32" y2="-32" x1="68" />
-            <line x2="40" y1="-64" y2="-64" x1="88" />
-            <line x2="64" y1="-64" y2="-80" x1="64" />
-            <line x2="64" y1="-128" y2="-96" x1="64" />
-        </blockdef>
         <blockdef name="or2">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <line x2="64" y1="-64" y2="-64" x1="0" />
@@ -166,12 +159,6 @@
             <line x2="128" y1="0" y2="-32" x1="64" />
             <line x2="64" y1="-32" y2="-64" x1="128" />
             <line x2="64" y1="-64" y2="0" x1="64" />
-        </blockdef>
-        <blockdef name="vcc">
-            <timestamp>2000-1-1T10:10:10</timestamp>
-            <line x2="64" y1="-32" y2="-64" x1="64" />
-            <line x2="64" y1="0" y2="-32" x1="64" />
-            <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
         <blockdef name="fd">
             <timestamp>2000-1-1T10:10:10</timestamp>
@@ -268,9 +255,6 @@
             <blockpin signalname="bram_wr_en" name="I" />
             <blockpin signalname="b_wr_en" name="O" />
         </block>
-        <block symbolname="gnd" name="XLXI_45">
-            <blockpin signalname="curr_rd_addr(15)" name="G" />
-        </block>
         <block symbolname="buf" name="XLXI_47">
             <blockpin signalname="curr_rd_addr_raw(0)" name="I" />
             <blockpin signalname="curr_rd_addr(8)" name="O" />
@@ -309,9 +293,6 @@
         <block symbolname="buf" name="XLXI_55">
             <blockpin signalname="curr_rd_addr_raw(5)" name="I" />
             <blockpin signalname="curr_rd_addr(13)" name="O" />
-        </block>
-        <block symbolname="vcc" name="XLXI_56">
-            <blockpin signalname="curr_rd_addr(14)" name="P" />
         </block>
         <block symbolname="and4" name="XLXI_57">
             <blockpin signalname="PORT_ID(7)" name="I0" />
@@ -360,6 +341,14 @@
         <block symbolname="buf" name="XLXI_64">
             <blockpin signalname="pointers_reset_sync" name="I" />
             <blockpin signalname="debug" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_66">
+            <blockpin signalname="curr_rd_addr_raw(6)" name="I" />
+            <blockpin signalname="curr_rd_addr(14)" name="O" />
+        </block>
+        <block symbolname="buf" name="XLXI_65">
+            <blockpin signalname="curr_rd_addr_raw(7)" name="I" />
+            <blockpin signalname="curr_rd_addr(15)" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3520" height="2720">
@@ -522,10 +511,6 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2208" y="640" type="branch" />
             <wire x2="2208" y1="640" y2="640" x1="2016" />
         </branch>
-        <branch name="curr_rd_addr_raw(7:0)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2208" y="1408" type="branch" />
-            <wire x2="2208" y1="1408" y2="1408" x1="2000" />
-        </branch>
         <branch name="XLXN_155">
             <wire x2="2096" y1="1200" y2="1200" x1="1552" />
             <wire x2="1552" y1="1200" y2="1600" x1="1552" />
@@ -614,18 +599,6 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2448" y="1280" type="branch" />
             <wire x2="2528" y1="1280" y2="1280" x1="2448" />
         </branch>
-        <branch name="curr_rd_addr(15)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2912" y="1344" type="branch" />
-            <wire x2="2480" y1="1344" y2="1408" x1="2480" />
-            <wire x2="2912" y1="1344" y2="1344" x1="2480" />
-        </branch>
-        <branch name="curr_rd_addr(14)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2912" y="1392" type="branch" />
-            <wire x2="2608" y1="1456" y2="1472" x1="2608" />
-            <wire x2="2672" y1="1472" y2="1472" x1="2608" />
-            <wire x2="2912" y1="1392" y2="1392" x1="2672" />
-            <wire x2="2672" y1="1392" y2="1472" x1="2672" />
-        </branch>
         <branch name="curr_rd_addr(8)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2896" y="1280" type="branch" />
             <wire x2="2896" y1="1280" y2="1280" x1="2752" />
@@ -713,8 +686,6 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2448" y="960" type="branch" />
             <wire x2="2528" y1="960" y2="960" x1="2448" />
         </branch>
-        <instance x="2416" y="1536" name="XLXI_45" orien="R0" />
-        <instance x="2544" y="1456" name="XLXI_56" orien="R0" />
         <instance x="304" y="1616" name="XLXI_57" orien="R0" />
         <branch name="XLXN_199">
             <wire x2="576" y1="1216" y2="1216" x1="560" />
@@ -817,5 +788,31 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2768" y="384" type="branch" />
             <wire x2="2912" y1="384" y2="384" x1="2768" />
         </branch>
+        <branch name="curr_rd_addr_raw(7:0)">
+            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="2128" y="1408" type="branch" />
+            <wire x2="2064" y1="1408" y2="1408" x1="2000" />
+            <wire x2="2128" y1="1408" y2="1408" x1="2064" />
+            <wire x2="2160" y1="1408" y2="1408" x1="2128" />
+        </branch>
+        <branch name="curr_rd_addr(15)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2912" y="832" type="branch" />
+            <wire x2="2896" y1="832" y2="832" x1="2752" />
+            <wire x2="2912" y1="832" y2="832" x1="2896" />
+        </branch>
+        <branch name="curr_rd_addr(14)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2912" y="896" type="branch" />
+            <wire x2="2912" y1="896" y2="896" x1="2752" />
+        </branch>
+        <instance x="2528" y="928" name="XLXI_66" orien="R0" />
+        <branch name="curr_rd_addr_raw(7)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2448" y="832" type="branch" />
+            <wire x2="2464" y1="832" y2="832" x1="2448" />
+            <wire x2="2528" y1="832" y2="832" x1="2464" />
+        </branch>
+        <branch name="curr_rd_addr_raw(6)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="2448" y="896" type="branch" />
+            <wire x2="2528" y1="896" y2="896" x1="2448" />
+        </branch>
+        <instance x="2528" y="864" name="XLXI_65" orien="R0" />
     </sheet>
 </drawing>
