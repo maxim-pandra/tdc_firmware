@@ -35,14 +35,15 @@ end eventsMux;
 architecture BEHAVIORAL of eventsMux is
 	signal selector : std_logic;
 begin
-selector <= '1';
+selector <= '0';
 
 event1_o <= event1_i;
 event2_o <= event2_i WHEN selector ='1' ELSE 
-            event1_i;
+            event1_i WHEN selector ='0';
 event3_o <= event3_i WHEN selector ='1' ELSE 
-            event1_i; 
-event4_o <= '0';
+            event1_i WHEN selector ='0'; 
+event4_o <= event4_i WHEN selector ='1' ELSE 
+            event1_i WHEN selector ='0';
  
 end BEHAVIORAL;
 

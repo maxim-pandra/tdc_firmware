@@ -155,6 +155,7 @@ begin
 		reset_bus(0)<='0';
 		reset_bus(1)<='0';
 		reset_bus(2)<='0';
+		reset_bus(3)<='0';
 		if (state_reg=READ1) then
 			if (reasonStop='1') then-- refactoring Memory Manager to Provide nonconditional writing
 				state_reg<=SLEEP;
@@ -233,6 +234,7 @@ begin
 			reset_bus(0)<='0';
 			reset_bus(1)<='0';
 			reset_bus(2)<='0';
+			reset_bus(3)<='0';
 
 		elsif (state_reg=WAIT2) then
 			state_reg<= READ1;

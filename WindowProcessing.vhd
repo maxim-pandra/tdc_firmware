@@ -112,11 +112,15 @@ begin
 			if ready_ctrl(2)='1' then
 				reset_out_of_bound(2)<='1';
 			end if;
+			if ready_ctrl(3)='1' then
+				reset_out_of_bound(3)<='1';
+			end if;
 			if count >= count_window_stop then
 				window<='0';
 				count_next<=count;
 				ready(1)<='0';
 				ready(2)<='0';
+				ready(3)<='0';
 				if ready_enable(0) = '1' then
 					if ready_enable(1)='1' and ready_enable(2) = '1' then
 						ready(1)<=ready_ctrl(1);
@@ -124,15 +128,11 @@ begin
 						reset_out_of_bound(1)<='0';
 						reset_out_of_bound(2)<='0';
 						elsif ready_enable(1)='1' then
---						if ready_ctrl(1)='1' then
 						ready(1)<=ready_ctrl(1);
 						reset_out_of_bound(1)<='0';
---						end if;
 					elsif ready_enable(2)='1' then
---						if ready_ctrl(2)='1' then
 						ready(2)<=ready_ctrl(2);
 						reset_out_of_bound(2)<='0';
---						end if;
 					else
 						ready(0)<=ready_ctrl(0);
 					end if;
@@ -144,13 +144,18 @@ begin
 				ready(0)<='0';
 				ready(1)<='0';
 				ready(2)<='0';
+				ready(3)<='0';
 				reset_out_of_bound(1)<='0';
 				reset_out_of_bound(2)<='0';
+				reset_out_of_bound(3)<='0';
 				if ready_ctrl(1) = '1' then
 					ready(1)<= '1';
 				end if;
 				if ready_ctrl(2) = '1' then
 					ready(2)<= '1';
+				end if;
+				if ready_ctrl(3) = '1' then
+					ready(3)<= '1';
 				end if;
 				count_next<=count+1;
 			end if;	
@@ -187,16 +192,16 @@ begin
 		ready_enable(2)<='1';
 		end if;
 		
-		if (reset(0) = '1') then
-		ready_enable(0)<='0';
-		elsif (ready_enable(1)='1' or ready_enable(2)='1') then
-		ready_enable(0)<='1';
-		end if;
-		
 		if (reset(3) = '1') then
 		ready_enable(3)<='0';
 		elsif (event_detector(3))='1' then
 		ready_enable(3)<='1';
+		end if;
+		
+		if (reset(0) = '1') then
+		ready_enable(0)<='0';
+		elsif (ready_enable(1)='1' or ready_enable(2)='1' or ready_enable(3)='1') then
+		ready_enable(0)<='1';
 		end if;
 	end if;
 end process;
