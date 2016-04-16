@@ -52,23 +52,23 @@ END COMPONENT;
 	type state_type is (READ1,WRITE1,WRITE2,WRITE3,WRITE4,SLEEP,WAIT1,WAIT2,WAIT3);
 	
 	signal state_reg, state_next			: state_type;
-	signal doutb1,doutb2,doutb3,doutb4, dinb_buff, dinb_ctrl_shifted  : std_logic_vector(7 downto 0);
-	signal bram_selected						: std_logic_vector(1 downto 0);
+	signal doutb0,doutb1,doutb2,doutb3, doutb4, doutb5, doutb6, doutb7, doutb8, doutb9, doutbA, doutbB,doutbC,doutbD,doutbE,doutbF, dinb_buff, dinb_ctrl_shifted  : std_logic_vector(7 downto 0);
+	signal bram_selected						: std_logic_vector(3 downto 0);
 	signal addrb1,addrb2,addrb3,addrb4	: std_logic_vector(8 downto 0);
 	signal addra								: std_logic_vector(8 downto 0);
-	signal addra_reg_u						: unsigned(15 downto 0) := "0000000000000000";
+	signal addra_reg_u						: unsigned(15 downto 0) := X"0000";
 	signal  addra_next						: unsigned(15 downto 0);
-	signal internal_rd_index_prev			: unsigned(13 downto 0);
+	signal internal_rd_index_prev			: unsigned(15 downto 0);
 	signal addra_reg                    : std_logic_vector(15 downto 0);
-	signal wea,web								: std_logic_vector(3 downto 0);
+	signal wea,web								: std_logic_vector(15 downto 0); --depends on brams amount
 	signal data_pack                    : std_logic_vector(63 downto 0);
-	signal internal_rd_index				: std_logic_vector(13 downto 0);
+	signal internal_rd_index				: std_logic_vector(15 downto 0);
 	signal reset_memory_pointers_port_id, reset_bram_manager			: std_logic;
 	signal enable, ena, enb, web0dbug_buff, flag,memOverflowFlag, flag1, reasonStop, reasonContinue :std_logic;
 
 begin
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	first_bram : memory64
+	bram0 : memory64
 	  PORT MAP (
 		clka => clka,
 	   ena => ena,	
@@ -81,13 +81,13 @@ begin
 		web => web(0 downto 0),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb1
+		doutb => doutb0
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	second_bram : memory64
+	bram1 : memory64
 	  PORT MAP (
 		clka => clka,
 	   ena => ena,	
@@ -100,13 +100,13 @@ begin
 		web => web(1 downto 1),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb2
+		doutb => doutb1
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	third_bram : memory64
+	bram2 : memory64
 	  PORT MAP (
 		clka => clka,
 		ena => ena,
@@ -119,13 +119,13 @@ begin
 		web => web(2 downto 2),
 		addrb => addrb_ctrl(11 downto 0),
 		dinb => dinb_ctrl_shifted,
-		doutb => doutb3
+		doutb => doutb2
 	  );
 	-- INST_TAG_END ------ End INSTANTIATION Template ------------
 	
 	
 		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
-	option_bram : memory64
+	bram3 : memory64
 	   PORT MAP (
 		 clka => clka,
 		 ena => ena,
@@ -138,9 +138,233 @@ begin
 		 web => web(3 downto 3),
 		 addrb => addrb_ctrl(11 downto 0),
 		 dinb => dinb_ctrl_shifted,
-		 doutb => doutb4
+		 doutb => doutb3
 	   );
 	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram4 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(4 downto 4),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(4 downto 4),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb4
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram5 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(5 downto 5),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(5 downto 5),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb5
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram6 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(6 downto 6),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(6 downto 6),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb6
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram7 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(7 downto 7),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(7 downto 7),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutb7
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram8 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(8 downto 8),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(8 downto 8),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb8
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram9 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(9 downto 9),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(9 downto 9),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutb9
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram10 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(10 downto 10),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(10 downto 10),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutbA
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram11 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(11 downto 11),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(11 downto 11),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutbB
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram12 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(12 downto 12),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(12 downto 12),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutbC
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram13 : memory64
+	  PORT MAP (
+		clka => clka,
+	   ena => ena,	
+		wea => wea(13 downto 13),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(13 downto 13),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutbD
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram14 : memory64
+	  PORT MAP (
+		clka => clka,
+		ena => ena,
+		wea => wea(14 downto 14),
+		addra => addra,
+		dina => data_pack,
+		douta => open, --douta,
+		clkb => clkb_ctrl,
+		enb => enb,
+		web => web(14 downto 14),
+		addrb => addrb_ctrl(11 downto 0),
+		dinb => dinb_ctrl_shifted,
+		doutb => doutbE
+	  );
+	-- INST_TAG_END ------ End INSTANTIATION Template ------------
+	
+	
+		------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
+	bram15 : memory64
+	   PORT MAP (
+		 clka => clka,
+		 ena => ena,
+		 wea => wea(15 downto 15),
+		 addra => addra,
+		 dina => data_pack,
+		 douta => open, --douta,
+		 clkb => clkb_ctrl,
+		 enb => enb,
+		 web => web(15 downto 15),
+		 addrb => addrb_ctrl(11 downto 0),
+		 dinb => dinb_ctrl_shifted,
+		 doutb => doutbF
+	   );
+	 --INST_TAG_END ------ End INSTANTIATION Template ------------
+	 
+	 
 	ena<='1';
 	enb<='1';
 	flag1<=flag;
@@ -150,7 +374,7 @@ begin
 	if (clka'event and clka='1') then
 	if reset_bram_manager='1' then
 		state_reg<=READ1;
-		addra_reg_u<="0000000000000000";
+		addra_reg_u<=X"0000";
 	else
 		reset_bus(0)<='0';
 		reset_bus(1)<='0';
@@ -242,14 +466,42 @@ begin
 			state_reg<= READ1;
 		end if;
 		-- provides reading through the port B 
-		if bram_selected="00"    then
+		if bram_selected="0000"    then
+        doutb_ctrl<=doutb0;
+      elsif bram_selected="0001" then
         doutb_ctrl<=doutb1;
-      elsif bram_selected="01" then
+      elsif bram_selected="0010" then
         doutb_ctrl<=doutb2;
-      elsif bram_selected="10" then
-        doutb_ctrl<=doutb3;
-      elsif bram_selected="11" then
-		  doutb_ctrl<=doutb4;
+      elsif bram_selected="0011" then
+		  doutb_ctrl<=doutb3;
+		
+		elsif bram_selected="0100"    then
+        doutb_ctrl<=doutb4;
+      elsif bram_selected="0101" then
+        doutb_ctrl<=doutb5;
+      elsif bram_selected="0110" then
+        doutb_ctrl<=doutb6;
+      elsif bram_selected="0111" then
+		  doutb_ctrl<=doutb7;
+		
+		elsif bram_selected="1000"    then
+        doutb_ctrl<=doutb8;
+      elsif bram_selected="1001" then
+        doutb_ctrl<=doutb9;
+      elsif bram_selected="1010" then
+        doutb_ctrl<=doutbA;
+      elsif bram_selected="1011" then
+		  doutb_ctrl<=doutbB;
+
+		elsif bram_selected="1100"    then
+        doutb_ctrl<=doutbC;
+      elsif bram_selected="1101" then
+        doutb_ctrl<=doutbD;
+      elsif bram_selected="1110" then
+        doutb_ctrl<=doutbE;
+      elsif bram_selected="1111" then
+		  doutb_ctrl<=doutbF;
+		  
 		else
 		  doutb_ctrl<="10011001";
       end if;	
@@ -260,24 +512,42 @@ begin
 	 addra_reg<=std_logic_vector(addra_reg_u);	
 	 addra<=addra_reg(8 downto 0);
 	 
-	 bram_selected<=addrb_ctrl(13 downto 12);
+	 bram_selected<=addrb_ctrl(15 downto 12);
 	 
 	 addra_curr0<= addrb_ctrl(7 downto 0); --addra_reg(7  downto 0);
 	 addra_curr1<= addrb_ctrl(15 downto 8); --addra_reg(15 downto 8);
-	 curr_wr_msb(6 downto 3)<="0000";
-	 curr_wr_msb(2 downto 0)<= addra_reg(10 downto 8);
+	 curr_wr_msb(6 downto 5)<="00";
+	 curr_wr_msb(4 downto 0)<= addra_reg(12 downto 8);
 	 curr_wr_lsb<= addra_reg(7 downto 0);
 	process(clka)
 	begin
 	if (clka'event and clka='1') then
-		if	  (addrb_ctrl(14 downto 12)="100" and web_ctrl='1') then web<="0001";		--data_b_in_reg<=dinb_ctrl;
-		elsif(addrb_ctrl(14 downto 12)="101" and web_ctrl='1') then web<="0010";
-		elsif(addrb_ctrl(14 downto 12)="110" and web_ctrl='1') then web<="0100";
-		elsif(addrb_ctrl(14 downto 12)="111" and web_ctrl='1') then web<="1000";
-		else web<="0000";
+		if	  (addrb_ctrl(15 downto 12)=X"0" and web_ctrl='1') then web<=X"0001";		--data_b_in_reg<=dinb_ctrl;
+		elsif(addrb_ctrl(15 downto 12)=X"1" and web_ctrl='1') then web<=X"0002";
+		elsif(addrb_ctrl(15 downto 12)=X"2" and web_ctrl='1') then web<=X"0004";
+		elsif(addrb_ctrl(15 downto 12)=X"3" and web_ctrl='1') then web<=X"0008";
+		
+		elsif(addrb_ctrl(15 downto 12)=X"4" and web_ctrl='1') then web<=X"0010";		--data_b_in_reg<=dinb_ctrl;
+		elsif(addrb_ctrl(15 downto 12)=X"5" and web_ctrl='1') then web<=X"0020";
+		elsif(addrb_ctrl(15 downto 12)=X"6" and web_ctrl='1') then web<=X"0040";
+		elsif(addrb_ctrl(15 downto 12)=X"7" and web_ctrl='1') then web<=X"0080";
+		
+		elsif(addrb_ctrl(15 downto 12)=X"8" and web_ctrl='1') then web<=X"0100";		--data_b_in_reg<=dinb_ctrl;
+		elsif(addrb_ctrl(15 downto 12)=X"9" and web_ctrl='1') then web<=X"0200";
+		elsif(addrb_ctrl(15 downto 12)=X"A" and web_ctrl='1') then web<=X"0400";
+		elsif(addrb_ctrl(15 downto 12)=X"B" and web_ctrl='1') then web<=X"0800";
+		
+		elsif(addrb_ctrl(15 downto 12)=X"C" and web_ctrl='1') then web<=X"1000";		--data_b_in_reg<=dinb_ctrl;
+		elsif(addrb_ctrl(15 downto 12)=X"D" and web_ctrl='1') then web<=X"2000";
+		elsif(addrb_ctrl(15 downto 12)=X"E" and web_ctrl='1') then web<=X"4000";
+		elsif(addrb_ctrl(15 downto 12)=X"F" and web_ctrl='1') then web<=X"8000";
+		
+		else web<=X"0000";
 		end if;
 		
 --		if IntRegSel = '1' then
+			internal_rd_index(15)<=addrb_ctrl(15);
+			internal_rd_index(14)<=addrb_ctrl(14);
 			internal_rd_index(13)<=addrb_ctrl(13);
 			internal_rd_index(12)<=addrb_ctrl(12);
 			internal_rd_index(11)<=addrb_ctrl(11);
@@ -292,7 +562,7 @@ begin
 			internal_rd_index(2)	<=addrb_ctrl(2);
 			internal_rd_index(1)	<=addrb_ctrl(1);
 			internal_rd_index(0)	<=addrb_ctrl(0);
-			internal_rd_index_prev(13 downto 0) <= unsigned(internal_rd_index(13 downto 0)) - 8;
+			internal_rd_index_prev(15 downto 0) <= unsigned(internal_rd_index(15 downto 0)) - 8;
 --		end if;
 	end if;
 	end process;
@@ -309,7 +579,9 @@ begin
 --						(addra_reg(1) xor not internal_rd_index(4)) and
 --						(addra_reg(0) xor not internal_rd_index(3));
 --	
-	reasonStop	 <=(addra_reg(10) xor not internal_rd_index_prev(13)) and
+	reasonStop	 <=(addra_reg(12) xor not internal_rd_index_prev(15)) and
+						(addra_reg(11) xor not internal_rd_index_prev(14)) and
+						(addra_reg(10) xor not internal_rd_index_prev(13)) and
 						(addra_reg(9) xor not internal_rd_index_prev(12)) and
 						(addra_reg(8) xor not internal_rd_index_prev(11)) and
 						(addra_reg(7) xor not internal_rd_index_prev(10)) and
@@ -322,7 +594,7 @@ begin
 						(addra_reg(0) xor not internal_rd_index_prev(3));
 
 	--reasonContinue<=(addra_reg(4) xor internal_rd_index(7));
-	reasonContinue<='1' when (addra_reg(10 downto 0)=(std_logic_vector((unsigned(internal_rd_index(13 downto 3)) - 2)))) else
+	reasonContinue<='1' when (addra_reg(12 downto 0)=(std_logic_vector((unsigned(internal_rd_index(15 downto 3)) - 2)))) else
 		  '0'; 
 
 
@@ -344,11 +616,27 @@ begin
 	curr_wr_msb(7)<=memOverflowFlag;
 	present0 <= reasonStop;
 	
-	wea<="0001" when (addra_reg(10 downto 9)= "00" and enable='1') else   --and addra_reg(8:0) <> addrb_reg(8:0)
-		  "0010" when (addra_reg(10 downto 9)= "01" and enable='1') else
-		  "0100" when (addra_reg(10 downto 9)= "10" and enable='1') else
-		  "1000" when (addra_reg(10 downto 9)= "11" and enable='1') else
-		  "0000"; 
+	wea<= X"0001" when (addra_reg(12 downto 9)= X"0" and enable='1') else 
+		   X"0002" when (addra_reg(12 downto 9)= X"1" and enable='1') else
+		   X"0004" when (addra_reg(12 downto 9)= X"2" and enable='1') else
+		   X"0008" when (addra_reg(12 downto 9)= X"3" and enable='1') else
+		   
+			X"0010" when (addra_reg(12 downto 9)= X"4" and enable='1') else 
+		   X"0020" when (addra_reg(12 downto 9)= X"5" and enable='1') else
+		   X"0040" when (addra_reg(12 downto 9)= X"6" and enable='1') else
+		   X"0080" when (addra_reg(12 downto 9)= X"7" and enable='1') else
+		   
+			X"0100" when (addra_reg(12 downto 9)= X"8" and enable='1') else 
+		   X"0200" when (addra_reg(12 downto 9)= X"9" and enable='1') else
+		   X"0400" when (addra_reg(12 downto 9)= X"A" and enable='1') else
+		   X"0800" when (addra_reg(12 downto 9)= X"B" and enable='1') else
+		   
+			X"1000" when (addra_reg(12 downto 9)= X"C" and enable='1') else 
+		   X"2000" when (addra_reg(12 downto 9)= X"D" and enable='1') else
+		   X"4000" when (addra_reg(12 downto 9)= X"E" and enable='1') else
+		   X"8000" when (addra_reg(12 downto 9)= X"F" and enable='1') else
+		   
+			X"0000"; 
 		  
 --	web0dbug<=wea(0);
 	
