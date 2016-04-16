@@ -199,7 +199,7 @@ NET "evt_4" LOC = P123;
 NET "evt_std" IOSTANDARD = LVCMOS33;
 
 
-NET "evt_std" LOC = P67;
+NET "evt_std" LOC = P50;
 
 
 NET "evt_1" PULLDOWN;

@@ -25,15 +25,23 @@ entity eventsMux is
    port ( event1_i : in    std_logic; 
           event2_i : in    std_logic; 
           event3_i : in    std_logic; 
-          event4_i : in    std_logic; 
+          event4_i : in    std_logic;
+			 generator_i : in std_logic;
+			 generator_rst : in std_logic;
           event1_o : out   std_logic; 
           event2_o : out   std_logic; 
           event3_o : out   std_logic; 
-          event4_o : out   std_logic);
+          event4_o : out   std_logic;
+			 generator_o :out std_logic);
 end eventsMux;
 
 architecture BEHAVIORAL of eventsMux is
 	signal selector : std_logic;
+	signal tmp: unsigned(10 downto 0);
+	signal tmp_out : std_logic_vector(0 downto 0);
+	signal prescaler : unsigned(23 downto 0);
+	signal generator : std_logic;
+
 begin
 selector <= '1';
 
@@ -43,6 +51,26 @@ event2_o <= event2_i WHEN selector ='1' ELSE
 event3_o <= event3_i WHEN selector ='1' ELSE 
             event1_i; 
 event4_o <= '0';
+
+-- generator signal divider
+
+  gen_clk : process (generator_i, generator_rst)
+  begin  -- process gen_clk
+    if generator_rst = '1' then
+      generator   <= '0';
+      prescaler   <= (others => '0');
+    elsif rising_edge(generator_i) then   -- rising clock edge
+      if prescaler = X"400" then     -- 1024 in hex (we dividng on 1000)
+        prescaler   <= (others => '0');
+        generator   <= not generator;
+      else
+        prescaler <= prescaler + "1";
+      end if;
+    end if;
+  end process gen_clk;
+
+generator_o <= generator; 
+ 
  
 end BEHAVIORAL;
 

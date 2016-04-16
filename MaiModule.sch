@@ -42,11 +42,9 @@
         <signal name="b_ev" />
         <signal name="curr_rw_addr(15:0)" />
         <signal name="pb_data_out(15:0)" />
-        <signal name="evt_1" />
         <signal name="adc1" />
         <signal name="adc2" />
         <signal name="adc3" />
-        <signal name="evt_4" />
         <signal name="adc4" />
         <signal name="cs1" />
         <signal name="cs2" />
@@ -71,7 +69,6 @@
         <signal name="reset(1)" />
         <signal name="toIMuxData(7:0)" />
         <signal name="q(47:0)" />
-        <signal name="evt_std" />
         <signal name="XLXN_274" />
         <signal name="XLXN_431" />
         <signal name="c_out(12:0)" />
@@ -86,8 +83,6 @@
         <signal name="presentToPBData" />
         <signal name="curr_w_addrr(7:0)" />
         <signal name="br_rd_p" />
-        <signal name="XLXN_478(7:0)" />
-        <signal name="XLXN_480" />
         <signal name="resetPointerRD" />
         <signal name="flash_rd_p" />
         <signal name="PB_IN1" />
@@ -133,7 +128,6 @@
         <signal name="Byte_From_Flash(7:0)" />
         <signal name="main_bus1(60:0)" />
         <signal name="evt_2_tmp" />
-        <signal name="evt_3" />
         <signal name="resetPointerWR" />
         <signal name="bramDebug(7:0)" />
         <signal name="data_from_ftdi(6)" />
@@ -150,7 +144,6 @@
         <signal name="SPI_Debugg0" />
         <signal name="SPI_Debugg1" />
         <signal name="pid(7:0)" />
-        <signal name="evt_2" />
         <signal name="evt_int1" />
         <signal name="evt_int2" />
         <signal name="evt_int3" />
@@ -163,12 +156,20 @@
         <signal name="RD_FTDI_DEBUG" />
         <signal name="data_from_ftdi(5)" />
         <signal name="pb_data_out(5)" />
-        <signal name="pb_data_out(6)" />
         <signal name="data_from_ftdi(0)" />
         <signal name="data_from_ftdi(1)" />
         <signal name="data_from_ftdi(2)" />
         <signal name="data_from_ftdi(3)" />
         <signal name="data_from_ftdi(4)" />
+        <signal name="evt_generator" />
+        <signal name="XLXN_478(7:0)" />
+        <signal name="XLXN_480" />
+        <signal name="evt_1" />
+        <signal name="evt_2" />
+        <signal name="evt_3" />
+        <signal name="evt_4" />
+        <signal name="evt_std" />
+        <signal name="XLXN_531" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -188,11 +189,9 @@
         <port polarity="Output" name="WR_FTDI" />
         <port polarity="Input" name="clk80" />
         <port polarity="BiDirectional" name="FTDIbus(7:0)" />
-        <port polarity="Input" name="evt_1" />
         <port polarity="Input" name="adc1" />
         <port polarity="Input" name="adc2" />
         <port polarity="Input" name="adc3" />
-        <port polarity="Input" name="evt_4" />
         <port polarity="Input" name="adc4" />
         <port polarity="Output" name="cs1" />
         <port polarity="Output" name="cs2" />
@@ -202,7 +201,6 @@
         <port polarity="Output" name="saw3" />
         <port polarity="Output" name="saw2" />
         <port polarity="Output" name="saw1" />
-        <port polarity="Input" name="evt_std" />
         <port polarity="Output" name="adc_reset_3" />
         <port polarity="Output" name="adc_reset_2" />
         <port polarity="Output" name="CLK_ADC_0" />
@@ -213,13 +211,16 @@
         <port polarity="Output" name="adc_reset_0" />
         <port polarity="Output" name="SPI_CLK" />
         <port polarity="Output" name="SPI_CS" />
-        <port polarity="Input" name="evt_3" />
         <port polarity="Input" name="MISO" />
         <port polarity="Output" name="MOSI" />
         <port polarity="Output" name="RD_FTDI" />
-        <port polarity="Input" name="evt_2" />
         <port polarity="Input" name="rxf" />
         <port polarity="Input" name="txe" />
+        <port polarity="Input" name="evt_1" />
+        <port polarity="Input" name="evt_2" />
+        <port polarity="Input" name="evt_3" />
+        <port polarity="Input" name="evt_4" />
+        <port polarity="Input" name="evt_std" />
         <blockdef name="obuf4">
             <timestamp>2001-4-12T12:11:56</timestamp>
             <line x2="64" y1="0" y2="-64" x1="64" />
@@ -491,22 +492,25 @@
             <rect width="64" x="320" y="-124" height="24" />
         </blockdef>
         <blockdef name="eventsMux">
-            <timestamp>2015-11-6T8:21:15</timestamp>
-            <rect width="256" x="64" y="-256" height="256" />
-            <line x2="0" y1="-224" y2="-224" x1="64" />
-            <line x2="0" y1="-160" y2="-160" x1="64" />
-            <line x2="0" y1="-96" y2="-96" x1="64" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <line x2="384" y1="-224" y2="-224" x1="320" />
-            <line x2="384" y1="-160" y2="-160" x1="320" />
-            <line x2="384" y1="-96" y2="-96" x1="320" />
-            <line x2="384" y1="-32" y2="-32" x1="320" />
+            <timestamp>2016-4-16T9:43:17</timestamp>
+            <rect width="256" x="64" y="-352" height="356" />
+            <line x2="0" y1="-304" y2="-304" x1="64" />
+            <line x2="0" y1="-240" y2="-240" x1="64" />
+            <line x2="0" y1="-176" y2="-176" x1="64" />
+            <line x2="0" y1="-112" y2="-112" x1="64" />
+            <line x2="384" y1="-304" y2="-304" x1="320" />
+            <line x2="384" y1="-240" y2="-240" x1="320" />
+            <line x2="384" y1="-176" y2="-176" x1="320" />
+            <line x2="384" y1="-112" y2="-112" x1="320" />
+            <line x2="0" y1="-64" y2="-64" x1="64" />
+            <line x2="320" y1="-64" y2="-64" x1="384" />
+            <line x2="64" y1="-16" y2="-16" x1="0" />
         </blockdef>
         <block symbolname="obuf4" name="XLXI_14">
             <blockpin signalname="pb_wr_strobe" name="I0" />
             <blockpin signalname="pb_rd_strobe" name="I1" />
             <blockpin signalname="pb_data_out(5)" name="I2" />
-            <blockpin signalname="pb_data_out(6)" name="I3" />
+            <blockpin signalname="evt_generator" name="I3" />
             <blockpin signalname="TestB4" name="O0" />
             <blockpin signalname="TestB5" name="O1" />
             <blockpin signalname="TestB6" name="O2" />
@@ -541,18 +545,6 @@
             <blockpin signalname="TestA1" name="O1" />
             <blockpin signalname="TestA2" name="O2" />
             <blockpin signalname="TestA3" name="O3" />
-        </block>
-        <block symbolname="IMux4x1x8" name="XLXI_96">
-            <blockpin signalname="curr_w_addrr(7:0)" name="InData0(7:0)" />
-            <blockpin signalname="toIMuxData(7:0)" name="InData1(7:0)" />
-            <blockpin signalname="Byte_From_Flash(7:0)" name="InData2(7:0)" />
-            <blockpin signalname="XLXN_478(7:0)" name="InData3(7:0)" />
-            <blockpin signalname="XLXN_480" name="Present3" />
-            <blockpin signalname="pb_flash_in" name="Present2" />
-            <blockpin signalname="br_rd_p" name="Present1" />
-            <blockpin signalname="p_curr_w_addrr" name="Present0" />
-            <blockpin signalname="toPBData(7:0)" name="OutData(7:0)" />
-            <blockpin signalname="presentToPBData" name="Present" />
         </block>
         <block symbolname="PicoblazeInterface" name="XLXI_103">
             <blockpin signalname="CLK80_INT" name="MCU_CLK" />
@@ -598,7 +590,7 @@
             <blockpin signalname="evt_int1" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(0)" name="reset" />
-            <blockpin signalname="evt_std" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_503" name="adc_reset" />
             <blockpin signalname="CLK_ADC_0" name="CLK_ADC" />
             <blockpin signalname="att_sig(0)" name="attached_signal" />
@@ -616,7 +608,7 @@
             <blockpin signalname="evt_int4" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(3)" name="reset" />
-            <blockpin signalname="evt_std" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_500" name="adc_reset" />
             <blockpin signalname="clk_adc_3" name="CLK_ADC" />
             <blockpin signalname="att_sig(3)" name="attached_signal" />
@@ -634,7 +626,7 @@
             <blockpin signalname="evt_int3" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(2)" name="reset" />
-            <blockpin signalname="evt_std" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_501" name="adc_reset" />
             <blockpin signalname="CLK_ADC_2" name="CLK_ADC" />
             <blockpin signalname="att_sig(2)" name="attached_signal" />
@@ -680,7 +672,7 @@
             <blockpin signalname="evt_int2" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(1)" name="reset" />
-            <blockpin signalname="evt_std" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_502" name="adc_reset" />
             <blockpin signalname="CLK_ADC_1" name="CLK_ADC" />
             <blockpin signalname="att_sig(1)" name="attached_signal" />
@@ -710,15 +702,6 @@
             <blockpin signalname="curr_wr_lsb(7:0)" name="curr_wr_lsb(7:0)" />
             <blockpin signalname="p_curr_w_addrr" name="present_curr_addr" />
             <blockpin signalname="mem_overflow_reset" name="mem_overflow_reset" />
-        </block>
-        <block symbolname="ZeroByte" name="XLXI_274">
-            <blockpin signalname="XLXN_478(7:0)" name="ZeroData(7:0)" />
-        </block>
-        <block symbolname="gnd" name="XLXI_275">
-            <blockpin signalname="XLXN_480" name="G" />
-        </block>
-        <block symbolname="gnd" name="XLXI_296">
-            <blockpin signalname="main_bus1b(29)" name="G" />
         </block>
         <block symbolname="gnd" name="XLXI_297">
             <blockpin signalname="main_bus1b(30)" name="G" />
@@ -820,16 +803,6 @@
             <blockpin name="in_bus(15:0)" />
             <blockpin name="out_bus(12:0)" />
         </block>
-        <block symbolname="eventsMux" name="XLXI_335">
-            <blockpin signalname="evt_1" name="event1_i" />
-            <blockpin signalname="evt_2" name="event2_i" />
-            <blockpin signalname="evt_3" name="event3_i" />
-            <blockpin signalname="evt_4" name="event4_i" />
-            <blockpin signalname="evt_int1" name="event1_o" />
-            <blockpin signalname="evt_int2" name="event2_o" />
-            <blockpin signalname="evt_int3" name="event3_o" />
-            <blockpin signalname="evt_int4" name="event4_o" />
-        </block>
         <block symbolname="buf" name="XLXI_243">
             <blockpin signalname="txe" name="I" />
             <blockpin signalname="controlBus(0)" name="O" />
@@ -845,6 +818,43 @@
         <block symbolname="buf" name="XLXI_336">
             <blockpin signalname="RD_FTDI_DEBUG" name="I" />
             <blockpin signalname="RD_FTDI" name="O" />
+        </block>
+        <block symbolname="IMux4x1x8" name="XLXI_96">
+            <blockpin signalname="curr_w_addrr(7:0)" name="InData0(7:0)" />
+            <blockpin signalname="toIMuxData(7:0)" name="InData1(7:0)" />
+            <blockpin signalname="Byte_From_Flash(7:0)" name="InData2(7:0)" />
+            <blockpin signalname="XLXN_478(7:0)" name="InData3(7:0)" />
+            <blockpin signalname="XLXN_480" name="Present3" />
+            <blockpin signalname="pb_flash_in" name="Present2" />
+            <blockpin signalname="br_rd_p" name="Present1" />
+            <blockpin signalname="p_curr_w_addrr" name="Present0" />
+            <blockpin signalname="toPBData(7:0)" name="OutData(7:0)" />
+            <blockpin signalname="presentToPBData" name="Present" />
+        </block>
+        <block symbolname="gnd" name="XLXI_296">
+            <blockpin signalname="main_bus1b(29)" name="G" />
+        </block>
+        <block symbolname="ZeroByte" name="XLXI_274">
+            <blockpin signalname="XLXN_478(7:0)" name="ZeroData(7:0)" />
+        </block>
+        <block symbolname="gnd" name="XLXI_275">
+            <blockpin signalname="XLXN_480" name="G" />
+        </block>
+        <block symbolname="eventsMux" name="XLXI_335">
+            <blockpin signalname="evt_1" name="event1_i" />
+            <blockpin signalname="evt_2" name="event2_i" />
+            <blockpin signalname="evt_3" name="event3_i" />
+            <blockpin signalname="evt_4" name="event4_i" />
+            <blockpin signalname="evt_int1" name="event1_o" />
+            <blockpin signalname="evt_int2" name="event2_o" />
+            <blockpin signalname="evt_int3" name="event3_o" />
+            <blockpin signalname="evt_int4" name="event4_o" />
+            <blockpin signalname="evt_std" name="generator_i" />
+            <blockpin signalname="evt_generator" name="generator_o" />
+            <blockpin signalname="XLXN_531" name="generator_rst" />
+        </block>
+        <block symbolname="gnd" name="XLXI_344">
+            <blockpin signalname="XLXN_531" name="G" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -950,25 +960,11 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="336" y="3344" type="branch" />
             <wire x2="432" y1="3344" y2="3344" x1="336" />
         </branch>
-        <branch name="pb_data_out(6)">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3408" type="branch" />
             <wire x2="432" y1="3408" y2="3408" x1="352" />
         </branch>
         <instance x="432" y="3440" name="XLXI_14" orien="R0" />
-        <instance x="464" y="864" name="XLXI_96" orien="R0">
-        </instance>
-        <branch name="p_curr_w_addrr">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="400" y="448" type="branch" />
-            <wire x2="464" y1="448" y2="448" x1="400" />
-        </branch>
-        <branch name="curr_w_addrr(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="400" y="384" type="branch" />
-            <wire x2="464" y1="384" y2="384" x1="400" />
-        </branch>
-        <branch name="toPBData(7:0)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="928" y="384" type="branch" />
-            <wire x2="928" y1="384" y2="384" x1="848" />
-        </branch>
         <instance x="432" y="3120" name="XLXI_15" orien="R0" />
         <branch name="FTDIbus(7:0)">
             <wire x2="5136" y1="720" y2="720" x1="4848" />
@@ -1196,19 +1192,19 @@
             <wire x2="1936" y1="1552" y2="1808" x1="1936" />
             <wire x2="2080" y1="1552" y2="1552" x1="1936" />
         </branch>
-        <branch name="evt_std">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="2000" type="branch" />
             <wire x2="2096" y1="2000" y2="2000" x1="2048" />
         </branch>
-        <branch name="evt_std">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2064" y="1584" type="branch" />
             <wire x2="2080" y1="1584" y2="1584" x1="2064" />
         </branch>
-        <branch name="evt_std">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="1152" type="branch" />
             <wire x2="2096" y1="1152" y2="1152" x1="2048" />
         </branch>
-        <branch name="evt_std">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="2448" type="branch" />
             <wire x2="2096" y1="2448" y2="2448" x1="2048" />
         </branch>
@@ -1322,32 +1318,6 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4880" y="1104" type="branch" />
             <wire x2="4880" y1="1104" y2="1104" x1="4832" />
         </branch>
-        <branch name="presentToPBData">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="928" y="448" type="branch" />
-            <wire x2="928" y1="448" y2="448" x1="848" />
-        </branch>
-        <branch name="toIMuxData(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="400" y="512" type="branch" />
-            <wire x2="464" y1="512" y2="512" x1="400" />
-        </branch>
-        <branch name="br_rd_p">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="400" y="576" type="branch" />
-            <wire x2="464" y1="576" y2="576" x1="400" />
-        </branch>
-        <branch name="Byte_From_Flash(7:0)">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="320" y="640" type="branch" />
-            <wire x2="464" y1="640" y2="640" x1="320" />
-        </branch>
-        <branch name="XLXN_478(7:0)">
-            <wire x2="464" y1="768" y2="768" x1="320" />
-        </branch>
-        <instance x="0" y="800" name="XLXI_274" orien="R0">
-        </instance>
-        <instance x="368" y="1056" name="XLXI_275" orien="R0" />
-        <branch name="XLXN_480">
-            <wire x2="464" y1="832" y2="832" x1="432" />
-            <wire x2="432" y1="832" y2="928" x1="432" />
-        </branch>
         <iomarker fontsize="28" x="2688" y="1872" name="CLK_ADC_2" orien="R0" />
         <instance x="3136" y="2320" name="XLXI_94" orien="R0">
         </instance>
@@ -1406,9 +1376,10 @@
         </branch>
         <branch name="main_bus1b(29)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1360" y="704" type="branch" />
-            <wire x2="1360" y1="704" y2="704" x1="1184" />
+            <wire x2="1344" y1="704" y2="704" x1="1184" />
+            <wire x2="1360" y1="704" y2="704" x1="1344" />
+            <wire x2="1184" y1="704" y2="736" x1="1184" />
         </branch>
-        <instance x="1120" y="832" name="XLXI_296" orien="R0" />
         <instance x="1168" y="880" name="XLXI_297" orien="R0" />
         <instance x="1216" y="928" name="XLXI_298" orien="R0" />
         <branch name="main_bus1b(30)">
@@ -1751,10 +1722,6 @@
             <wire x2="5056" y1="784" y2="800" x1="5056" />
         </branch>
         <branch name="pb_flash_in">
-            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="384" y="704" type="branch" />
-            <wire x2="464" y1="704" y2="704" x1="384" />
-        </branch>
-        <branch name="pb_flash_in">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4752" y="2304" type="branch" />
             <wire x2="4752" y1="2304" y2="2304" x1="4688" />
         </branch>
@@ -1776,44 +1743,6 @@
         </branch>
         <instance x="960" y="208" name="XLXI_334" orien="R0">
         </instance>
-        <branch name="evt_1">
-            <wire x2="240" y1="48" y2="48" x1="144" />
-        </branch>
-        <iomarker fontsize="28" x="144" y="48" name="evt_1" orien="R180" />
-        <instance x="240" y="272" name="XLXI_335" orien="R0">
-        </instance>
-        <iomarker fontsize="28" x="160" y="320" name="evt_std" orien="R180" />
-        <iomarker fontsize="28" x="144" y="176" name="evt_3" orien="R180" />
-        <iomarker fontsize="28" x="144" y="112" name="evt_2" orien="R180" />
-        <branch name="evt_2">
-            <wire x2="240" y1="112" y2="112" x1="144" />
-        </branch>
-        <branch name="evt_3">
-            <wire x2="240" y1="176" y2="176" x1="144" />
-        </branch>
-        <branch name="evt_std">
-            <wire x2="224" y1="320" y2="320" x1="160" />
-        </branch>
-        <branch name="evt_4">
-            <wire x2="240" y1="240" y2="240" x1="144" />
-        </branch>
-        <iomarker fontsize="28" x="144" y="240" name="evt_4" orien="R180" />
-        <branch name="evt_int1">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="48" type="branch" />
-            <wire x2="688" y1="48" y2="48" x1="624" />
-        </branch>
-        <branch name="evt_int2">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="112" type="branch" />
-            <wire x2="688" y1="112" y2="112" x1="624" />
-        </branch>
-        <branch name="evt_int3">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="176" type="branch" />
-            <wire x2="688" y1="176" y2="176" x1="624" />
-        </branch>
-        <branch name="evt_int4">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="240" type="branch" />
-            <wire x2="688" y1="240" y2="240" x1="624" />
-        </branch>
         <branch name="evt_int2">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1712" y="1616" type="branch" />
             <wire x2="2080" y1="1616" y2="1616" x1="1712" />
@@ -1863,5 +1792,97 @@
         </branch>
         <instance x="4416" y="1024" name="XLXI_103" orien="R0">
         </instance>
+        <instance x="480" y="976" name="XLXI_96" orien="R0">
+        </instance>
+        <instance x="1120" y="864" name="XLXI_296" orien="R0" />
+        <branch name="p_curr_w_addrr">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="416" y="560" type="branch" />
+            <wire x2="480" y1="560" y2="560" x1="416" />
+        </branch>
+        <branch name="curr_w_addrr(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="416" y="496" type="branch" />
+            <wire x2="480" y1="496" y2="496" x1="416" />
+        </branch>
+        <branch name="toPBData(7:0)">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="944" y="496" type="branch" />
+            <wire x2="944" y1="496" y2="496" x1="864" />
+        </branch>
+        <branch name="presentToPBData">
+            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="944" y="560" type="branch" />
+            <wire x2="944" y1="560" y2="560" x1="864" />
+        </branch>
+        <branch name="toIMuxData(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="416" y="624" type="branch" />
+            <wire x2="480" y1="624" y2="624" x1="416" />
+        </branch>
+        <branch name="br_rd_p">
+            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="416" y="688" type="branch" />
+            <wire x2="480" y1="688" y2="688" x1="416" />
+        </branch>
+        <branch name="Byte_From_Flash(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="336" y="752" type="branch" />
+            <wire x2="480" y1="752" y2="752" x1="336" />
+        </branch>
+        <branch name="XLXN_478(7:0)">
+            <wire x2="480" y1="880" y2="880" x1="336" />
+        </branch>
+        <instance x="16" y="912" name="XLXI_274" orien="R0">
+        </instance>
+        <instance x="384" y="1168" name="XLXI_275" orien="R0" />
+        <branch name="XLXN_480">
+            <wire x2="480" y1="944" y2="944" x1="448" />
+            <wire x2="448" y1="944" y2="1040" x1="448" />
+        </branch>
+        <branch name="pb_flash_in">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="400" y="816" type="branch" />
+            <wire x2="480" y1="816" y2="816" x1="400" />
+        </branch>
+        <branch name="evt_1">
+            <wire x2="224" y1="80" y2="80" x1="144" />
+        </branch>
+        <branch name="evt_2">
+            <wire x2="224" y1="144" y2="144" x1="144" />
+        </branch>
+        <branch name="evt_3">
+            <wire x2="224" y1="208" y2="208" x1="144" />
+        </branch>
+        <branch name="evt_4">
+            <wire x2="224" y1="272" y2="272" x1="144" />
+        </branch>
+        <branch name="evt_int1">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="80" type="branch" />
+            <wire x2="688" y1="80" y2="80" x1="608" />
+        </branch>
+        <branch name="evt_int2">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="144" type="branch" />
+            <wire x2="688" y1="144" y2="144" x1="608" />
+        </branch>
+        <branch name="evt_int3">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="208" type="branch" />
+            <wire x2="688" y1="208" y2="208" x1="608" />
+        </branch>
+        <branch name="evt_int4">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="272" type="branch" />
+            <wire x2="688" y1="272" y2="272" x1="608" />
+        </branch>
+        <branch name="evt_std">
+            <wire x2="224" y1="320" y2="320" x1="160" />
+        </branch>
+        <branch name="evt_generator">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="688" y="320" type="branch" />
+            <wire x2="688" y1="320" y2="320" x1="608" />
+        </branch>
+        <branch name="XLXN_531">
+            <wire x2="128" y1="368" y2="384" x1="128" />
+            <wire x2="224" y1="368" y2="368" x1="128" />
+        </branch>
+        <instance x="224" y="384" name="XLXI_335" orien="R0">
+        </instance>
+        <instance x="64" y="512" name="XLXI_344" orien="R0" />
+        <iomarker fontsize="28" x="144" y="80" name="evt_1" orien="R180" />
+        <iomarker fontsize="28" x="144" y="208" name="evt_3" orien="R180" />
+        <iomarker fontsize="28" x="144" y="144" name="evt_2" orien="R180" />
+        <iomarker fontsize="28" x="144" y="272" name="evt_4" orien="R180" />
+        <iomarker fontsize="28" x="160" y="320" name="evt_std" orien="R180" />
     </sheet>
 </drawing>
