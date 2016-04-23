@@ -36,7 +36,7 @@ entity eventsMux is
 end eventsMux;
 
 architecture BEHAVIORAL of eventsMux is
-	signal selector : std_logic;
+	signal selector, generator_enable : std_logic;
 	signal tmp: unsigned(10 downto 0);
 	signal tmp_out : std_logic_vector(0 downto 0);
 	signal prescaler : unsigned(23 downto 0);
@@ -44,6 +44,7 @@ architecture BEHAVIORAL of eventsMux is
 
 begin
 selector <= '1';
+generator_enable <='0';
 
 event1_o <= event1_i;
 event2_o <= event2_i WHEN selector ='1' ELSE 
@@ -69,7 +70,9 @@ event4_o <= '0';
     end if;
   end process gen_clk;
 
-generator_o <= generator; 
+generator_o <= generator when generator_enable = '1' else
+	'0'; 
+
  
  
 end BEHAVIORAL;
