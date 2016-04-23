@@ -170,6 +170,7 @@
         <signal name="evt_4" />
         <signal name="evt_std" />
         <signal name="XLXN_531" />
+        <signal name="XLXN_532" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -505,6 +506,12 @@
             <line x2="0" y1="-64" y2="-64" x1="64" />
             <line x2="320" y1="-64" y2="-64" x1="384" />
             <line x2="64" y1="-16" y2="-16" x1="0" />
+        </blockdef>
+        <blockdef name="vcc">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="64" y1="-32" y2="-64" x1="64" />
+            <line x2="64" y1="0" y2="-32" x1="64" />
+            <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
         <block symbolname="obuf4" name="XLXI_14">
             <blockpin signalname="pb_wr_strobe" name="I0" />
@@ -853,8 +860,8 @@
             <blockpin signalname="evt_generator" name="generator_o" />
             <blockpin signalname="XLXN_531" name="generator_rst" />
         </block>
-        <block symbolname="gnd" name="XLXI_344">
-            <blockpin signalname="XLXN_531" name="G" />
+        <block symbolname="vcc" name="XLXI_345">
+            <blockpin signalname="XLXN_531" name="P" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -1873,16 +1880,19 @@
             <wire x2="688" y1="320" y2="320" x1="608" />
         </branch>
         <branch name="XLXN_531">
+            <wire x2="64" y1="432" y2="448" x1="64" />
+            <wire x2="128" y1="448" y2="448" x1="64" />
             <wire x2="128" y1="368" y2="384" x1="128" />
+            <wire x2="128" y1="384" y2="448" x1="128" />
             <wire x2="224" y1="368" y2="368" x1="128" />
         </branch>
         <instance x="224" y="384" name="XLXI_335" orien="R0">
         </instance>
-        <instance x="64" y="512" name="XLXI_344" orien="R0" />
         <iomarker fontsize="28" x="144" y="80" name="evt_1" orien="R180" />
         <iomarker fontsize="28" x="144" y="208" name="evt_3" orien="R180" />
         <iomarker fontsize="28" x="144" y="144" name="evt_2" orien="R180" />
         <iomarker fontsize="28" x="144" y="272" name="evt_4" orien="R180" />
         <iomarker fontsize="28" x="160" y="320" name="evt_std" orien="R180" />
+        <instance x="0" y="432" name="XLXI_345" orien="R0" />
     </sheet>
 </drawing>

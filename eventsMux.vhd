@@ -44,7 +44,6 @@ architecture BEHAVIORAL of eventsMux is
 
 begin
 selector <= '1';
-generator_enable <='0';
 
 event1_o <= event1_i;
 event2_o <= event2_i WHEN selector ='1' ELSE 
@@ -69,11 +68,6 @@ event4_o <= '0';
       end if;
     end if;
   end process gen_clk;
-
-generator_o <= generator when generator_enable = '1' else
-	'0'; 
-
- 
  
 end BEHAVIORAL;
 

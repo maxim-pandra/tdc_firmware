@@ -351,12 +351,12 @@ begin
 	 addra_curr0<= addrb_ctrl(7 downto 0); --addra_reg(7  downto 0);
 	 addra_curr1(6 downto 0) <= addrb_ctrl(14 downto 8); --addra_reg(15 downto 8);
 	 addra_curr1(7) <= '0';
-	
 
 	 curr_wr_msb(7)<=memOverflowFlag;	
-	 curr_wr_msb(6 downto 4)<="000";
-	 curr_wr_msb(3 downto 0)<= addra_reg(11 downto 8);
-	 curr_wr_lsb<= addra_reg(7 downto 0);
+	 curr_wr_msb(6 downto 0)<= addra_reg(11 downto 5);
+	 curr_wr_lsb(7 downto 3)<= addra_reg(4 downto 0);
+	 curr_wr_lsb(2 downto 0)<= "000";
+	 
 	process(clka)
 	begin
 	if (clka'event and clka='1') then
