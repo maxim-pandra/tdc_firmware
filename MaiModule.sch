@@ -170,7 +170,6 @@
         <signal name="evt_4" />
         <signal name="evt_std" />
         <signal name="XLXN_531" />
-        <signal name="XLXN_532" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -484,14 +483,6 @@
             <line x2="400" y1="-432" y2="-432" x1="464" />
             <line x2="400" y1="-384" y2="-384" x1="464" />
         </blockdef>
-        <blockdef name="buf16">
-            <timestamp>2014-3-25T13:20:47</timestamp>
-            <rect width="256" x="64" y="-164" height="164" />
-            <line x2="0" y1="-32" y2="-32" x1="64" />
-            <rect width="64" x="0" y="-44" height="24" />
-            <line x2="384" y1="-112" y2="-112" x1="320" />
-            <rect width="64" x="320" y="-124" height="24" />
-        </blockdef>
         <blockdef name="eventsMux">
             <timestamp>2016-4-16T9:43:17</timestamp>
             <rect width="256" x="64" y="-352" height="356" />
@@ -506,12 +497,6 @@
             <line x2="0" y1="-64" y2="-64" x1="64" />
             <line x2="320" y1="-64" y2="-64" x1="384" />
             <line x2="64" y1="-16" y2="-16" x1="0" />
-        </blockdef>
-        <blockdef name="vcc">
-            <timestamp>2000-1-1T10:10:10</timestamp>
-            <line x2="64" y1="-32" y2="-64" x1="64" />
-            <line x2="64" y1="0" y2="-32" x1="64" />
-            <line x2="32" y1="-64" y2="-64" x1="96" />
         </blockdef>
         <block symbolname="obuf4" name="XLXI_14">
             <blockpin signalname="pb_wr_strobe" name="I0" />
@@ -806,10 +791,6 @@
             <blockpin signalname="WR_FTDI_DEBUG" name="I" />
             <blockpin signalname="WR_FTDI" name="O" />
         </block>
-        <block symbolname="buf16" name="XLXI_334">
-            <blockpin name="in_bus(15:0)" />
-            <blockpin name="out_bus(12:0)" />
-        </block>
         <block symbolname="buf" name="XLXI_243">
             <blockpin signalname="txe" name="I" />
             <blockpin signalname="controlBus(0)" name="O" />
@@ -860,8 +841,8 @@
             <blockpin signalname="evt_generator" name="generator_o" />
             <blockpin signalname="XLXN_531" name="generator_rst" />
         </block>
-        <block symbolname="vcc" name="XLXI_345">
-            <blockpin signalname="XLXN_531" name="P" />
+        <block symbolname="gnd" name="XLXI_346">
+            <blockpin signalname="XLXN_531" name="G" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -1383,9 +1364,8 @@
         </branch>
         <branch name="main_bus1b(29)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="1360" y="704" type="branch" />
-            <wire x2="1344" y1="704" y2="704" x1="1184" />
-            <wire x2="1360" y1="704" y2="704" x1="1344" />
             <wire x2="1184" y1="704" y2="736" x1="1184" />
+            <wire x2="1360" y1="704" y2="704" x1="1184" />
         </branch>
         <instance x="1168" y="880" name="XLXI_297" orien="R0" />
         <instance x="1216" y="928" name="XLXI_298" orien="R0" />
@@ -1748,8 +1728,6 @@
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4928" y="880" type="branch" />
             <wire x2="4928" y1="880" y2="880" x1="4848" />
         </branch>
-        <instance x="960" y="208" name="XLXI_334" orien="R0">
-        </instance>
         <branch name="evt_int2">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="1712" y="1616" type="branch" />
             <wire x2="2080" y1="1616" y2="1616" x1="1712" />
@@ -1880,11 +1858,8 @@
             <wire x2="688" y1="320" y2="320" x1="608" />
         </branch>
         <branch name="XLXN_531">
-            <wire x2="64" y1="432" y2="448" x1="64" />
-            <wire x2="128" y1="448" y2="448" x1="64" />
-            <wire x2="128" y1="368" y2="384" x1="128" />
-            <wire x2="128" y1="384" y2="448" x1="128" />
-            <wire x2="224" y1="368" y2="368" x1="128" />
+            <wire x2="48" y1="368" y2="400" x1="48" />
+            <wire x2="224" y1="368" y2="368" x1="48" />
         </branch>
         <instance x="224" y="384" name="XLXI_335" orien="R0">
         </instance>
@@ -1893,6 +1868,6 @@
         <iomarker fontsize="28" x="144" y="144" name="evt_2" orien="R180" />
         <iomarker fontsize="28" x="144" y="272" name="evt_4" orien="R180" />
         <iomarker fontsize="28" x="160" y="320" name="evt_std" orien="R180" />
-        <instance x="0" y="432" name="XLXI_345" orien="R0" />
+        <instance x="-16" y="528" name="XLXI_346" orien="R0" />
     </sheet>
 </drawing>

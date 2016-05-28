@@ -130,3 +130,7 @@ memory64.vho
 planAhead_run_3/
 *.wpc
 *.hex
+ipcore_dir/tmp/
+ipcore_dir/little_bram/
+ipcore_dir/blk_mem_gen_v7_3/simulation/functional/wave_ncsim.sv
+ipcore_dir/blk_mem_gen_v7_3/
