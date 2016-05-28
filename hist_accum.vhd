@@ -30,15 +30,15 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity hist_accum is
-    Port ( port_id : in  STD_LOGIC_VECTOR (7 downto 0);
-           pb_wr : in  STD_LOGIC;
-           pb_rd : in  STD_LOGIC;
-           pb_data_in : in  STD_LOGIC_VECTOR (7 downto 0);
-           ready : in  STD_LOGIC;
-           adc : in  STD_LOGIC_VECTOR (11 downto 0);
-           clk : in  STD_LOGIC;
-           pb_data_out : out  STD_LOGIC_VECTOR (7 downto 0);
-           present : out  STD_LOGIC);
+    Port ( port_id 		: in  STD_LOGIC_VECTOR (7 downto 0);
+           pb_wr 			: in  STD_LOGIC;
+           pb_rd 			: in  STD_LOGIC;
+           pb_data_in 	: in  STD_LOGIC_VECTOR (7 downto 0);
+           ready 			: in  STD_LOGIC;
+           adc 			: in  STD_LOGIC_VECTOR (11 downto 0);
+           clk 			: in  STD_LOGIC;
+           pb_data_out 	: out  STD_LOGIC_VECTOR (7 downto 0);
+           present 		: out  STD_LOGIC);
 end hist_accum;
 
 architecture accumulator_architecture of hist_accum is
@@ -56,11 +56,14 @@ END COMPONENT;
 
 	type state_type is (ACCUMULATE, ERRASE, TRANSMIT);
 	
-	constant pb_port_clear	: std_logic_vector(7 downto 0) := X"E3";
-	constant pb_port_state	: std_logic_vector(7 downto 0) := X"E4";
-	constant pb_port_iread	: std_logic_vector(7 downto 0) := X"E5";
-	constant pb_port_counter_lsb	: std_logic_vector(7 downto 0) := X"E7";
-	constant pb_port_counter_msb	: std_logic_vector(7 downto 0) := X"E8";
+	constant pb_port_clear	: std_logic_vector(7 downto 0)	:= X"E3";
+	constant pb_port_state	: std_logic_vector(7 downto 0)	:= X"E4";
+	constant pb_port_iread	: std_logic_vector(7 downto 0)	:= X"E5";
+	constant pb_port_counter_lsb	: std_logic_vector(7 downto 0)	:= X"E7";
+	constant pb_port_counter_msb	: std_logic_vector(7 downto 0)	:= X"E8";
+	constant state_errase	: std_logic_vector(1 downto 0)	:= "00";
+	constant state_transmit	: std_logic_vector(1 downto 0)	:= "00";
+	constant state_accumulate	: std_logic_vector(1 downto 0)	:= "00";
 
 	signal state, state_next				: state_type;
 	signal transmit_counter 				: std_logic_vector(11 downto 0);
@@ -99,10 +102,11 @@ begin
 		 douta => douta
 	  );
 
+	--Commands DECODER
 	if (clk'event and clk = '1') then
-		if (write_strobe = '1') then
-			if (port_id(2 downto 0) = "101") then
-				led <= out_port;
+		if (pb_wr = '1') then
+			if (port_id(7 downto 0) = pb_port_state) then
+				--DO something when pb port state requested. (generate a present signal for one clk and provide data on output bus
 			end if;
 		end if;
 	end if;
