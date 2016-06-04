@@ -46,6 +46,7 @@ architecture accumulator_architecture of hist_accum is
 COMPONENT little_singleport_bram
   PORT (
     clka : IN STD_LOGIC;
+	 reset: IN STD_LOGIC;
     ena : IN STD_LOGIC;
     wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
     addra : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
@@ -56,19 +57,29 @@ END COMPONENT;
 
 	type state_type is (ACCUMULATE, ERRASE, TRANSMIT);
 	
-	constant pb_port_clear	: std_logic_vector(7 downto 0)	:= X"E3";
-	constant pb_port_state	: std_logic_vector(7 downto 0)	:= X"E4";
-	constant pb_port_iread	: std_logic_vector(7 downto 0)	:= X"E5";
-	constant pb_port_counter_lsb	: std_logic_vector(7 downto 0)	:= X"E7";
-	constant pb_port_counter_msb	: std_logic_vector(7 downto 0)	:= X"E8";
-	constant state_errase	: std_logic_vector(1 downto 0)	:= "00";
-	constant state_transmit	: std_logic_vector(1 downto 0)	:= "00";
-	constant state_accumulate	: std_logic_vector(1 downto 0)	:= "00";
+	constant PB_PORT_CLEAR_IN	: std_logic_vector(7 downto 0)	:= X"E3";
+	constant PB_PORT_STATE_OUT	: std_logic_vector(7 downto 0)	:= X"E4";
+	constant PB_PORT_IREAD_OUT	: std_logic_vector(7 downto 0)	:= X"E5";
+	constant PB_PORT_DATA_IN	: std_logic_vector(7 downto 0) 	:= X"E6";
+	constant PB_PORT_COUNTER_LSB_OUT	: std_logic_vector(7 downto 0)	:= X"E7";
+	constant PB_PORT_COUNTER_MSB_OUT	: std_logic_vector(7 downto 0)	:= X"E8";
+	constant PB_PORT_COUNTER_IN : std_logic_vector(7 downto 0)	:= X"E9";
+	
+	constant STATE_ERRASE	: std_logic_vector(1 downto 0)	:= "00";
+	constant STATE_TRANSMIT	: std_logic_vector(1 downto 0)	:= "01";
+	constant STATE_ACCUMULATE	: std_logic_vector(1 downto 0)	:= "10";
+	constant STATE_SPARE		: std_logic_vector(1 downto 0)	:= "11";
 
 	signal state, state_next				: state_type;
 	signal transmit_counter 				: std_logic_vector(11 downto 0);
 	signal transmit_bram_selected			: std_logic_vector(1 downto 0);
 	signal transmit_counter_reset			: std_logic;
+	signal accum_bram_selected				: std_logic_vector(1 downto 0);
+	signal write_enable						: std_logic;
+	signal bram_enable						: std_logic;
+	
+	signal wea	: std_logic_vector(1 downto 0); --depends on brams amount
+	
 
 begin
 
@@ -76,7 +87,7 @@ begin
 	  PORT MAP (
 		 clka => clk,
 		 ena => ena,
-		 wea => wea,
+		 wea => wea(0 downto 0),
 		 addra => addra,
 		 dina => dina,
 		 douta => douta
@@ -86,7 +97,7 @@ begin
 	  PORT MAP (
 		 clka => clk,
 		 ena => ena,
-		 wea => wea,
+		 wea => wea(1 downto 1),
 		 addra => addra,
 		 dina => dina,
 		 douta => douta
@@ -96,20 +107,11 @@ begin
 	  PORT MAP (
 		 clka => clk,
 		 ena => ena,
-		 wea => wea,
+		 wea => wea(2 downto 2),
 		 addra => addra,
 		 dina => dina,
 		 douta => douta
 	  );
-
-	--Commands DECODER
-	if (clk'event and clk = '1') then
-		if (pb_wr = '1') then
-			if (port_id(7 downto 0) = pb_port_state) then
-				--DO something when pb port state requested. (generate a present signal for one clk and provide data on output bus
-			end if;
-		end if;
-	end if;
 
 	SYNC_PROC: process (clk)
 	begin
@@ -131,12 +133,20 @@ begin
 		--insert statements to decode internal output signals
 		--below is simple example
 		if state = ERRASE then
-			<output>_i <= '1';
+			errase_en <= '1';
+			accumulate_en <= '0';
+			transmit_en <= '0';			
 			-- do something on errase state, form command to clear bram
 		else if state = ACCUMULATE then
+			accumulate_en <= '1';
+			transmit_en <= '0';
+			errase_en <= '0';
 			--some outputs when accumulate
 		else if state = TRANSMIT then
 			--do somehting on transmit (assign outputs)
+			transmit_en <= '1';
+			errase_en <= '0';
+			accumulate_en <= '0';
 		else
 			<output>_i <= '0';
 		end if;
@@ -156,6 +166,7 @@ begin
 			when TRANSMIT =>
 				if go_errase = '1' then
 					next_state <= ERRASE;
+					go_errase <= '0'
 				else if go_accumulate = '1' then
 					next_state <= ACCUMULATE;
 				end if;
@@ -187,6 +198,114 @@ begin
 	end process; 
 
 	transmit_bram_selected <= transmit_counter(11 downto 10);
+	accum_bram_selected <= adc(11 downto 10);
+	
+	--ADC++ADC++ADC++ADC++ADC++ADC--
+	wea <= "001" when (accum_bram_selected = "00" and write_enable = '1') else
+			 "010" when (accum_bram_selected = "01" and write_enable = '1') else
+			 "100" when	(accum_bram_selected = "10" and write_enable = '1') else
+			 "000";
+	--ADC--ADC--ADC--ADC--ADC--ADC--
 
+
+
+	BASIC_INCREMENT: process(clk) 
+	begin
+		if (clk = '1' and clk'event) then
+			if(reset = '1') then
+				--here reset everything
+			else if(ready = '1');
+				--do something if ready detected
+			end if;
+		end if;
+	end process;
+
+
+	--Picoblaze commands decoder:
+	--Clear!
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_CLEAR_IN then --not sure if we need  (7 downto 0) here
+					--ToDo: do something if accum CLEAR has been captured
+				end if;				
+			end if;
+		end if;
+	end;
+	
+	--GetState!
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_STATE_OUT then --not sure if we need  (7 downto 0) here
+					--ToDo: do something if accum GET STATE has been captured
+				end if;
+			end if;
+		end if;
+	end;
+
+	--GetData!
+	--select specific channel, or all channels mode
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_DATA_IN then 
+					--ToDo: do something if accum GET DATA mode SELECTION has been captured
+				end if;
+			end if;
+		end if;
+	end;
+	
+	--incremental reading(selected channel, or all 4 channels one after another)
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_IREAD_OUT	 then
+					--ToDo: do something if accum GET DATA INCREMENTAL reading has been captured
+				end if;
+			end if;
+		end if;
+	end;
+
+	--GetCounter!
+	--select specific channel, or all channels mode
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_COUNTER_IN	 then
+					--ToDo: do something if accum GET COUNTER mode selection has been captured
+				end if;
+			end if;
+		end if;
+	end;
+	--get LSB COUNTER
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_COUNTER_LSB_OUT then
+					--ToDo: do something if accum GET COUNTER LSB has been captured
+				end if;
+			end if;
+		end if;
+	end;
+	--get MSB COUNTER
+	process(clk)
+	begin
+		if clk'event and clk = '1' then
+			if pb_wr = '1' then
+				if port_id = PB_PORT_COUNTER_MSB_OUT then
+					--ToDo: do something if accum GET COUNTER MSB has been captured
+				end if;
+			end if;
+		end if;
+	end;
+	
+	
 end accumulator_architecture;
 
