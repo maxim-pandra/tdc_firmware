@@ -57,18 +57,13 @@ END COMPONENT;
 
 	type state_type is (ACCUMULATE, ERRASE, TRANSMIT);
 	
-	constant PB_PORT_CLEAR_IN	: std_logic_vector(7 downto 0)	:= X"E3";
-	constant PB_PORT_STATE_OUT	: std_logic_vector(7 downto 0)	:= X"E4";
 	constant PB_PORT_IREAD_OUT	: std_logic_vector(7 downto 0)	:= X"E5";
 	constant PB_PORT_DATA_IN	: std_logic_vector(7 downto 0) 	:= X"E6";
-	constant PB_PORT_COUNTER_LSB_OUT	: std_logic_vector(7 downto 0)	:= X"E7";
-	constant PB_PORT_COUNTER_MSB_OUT	: std_logic_vector(7 downto 0)	:= X"E8";
-	constant PB_PORT_COUNTER_IN : std_logic_vector(7 downto 0)	:= X"E9";
 	
 	constant STATE_ERRASE	: std_logic_vector(1 downto 0)	:= "00";
 	constant STATE_TRANSMIT	: std_logic_vector(1 downto 0)	:= "01";
-	constant STATE_ACCUMULATE	: std_logic_vector(1 downto 0)	:= "10";
-	constant STATE_SPARE		: std_logic_vector(1 downto 0)	:= "11";
+	constant STATE_ACCUMULATE	: std_logic_vector(1 downto 0)	:= "10"; --
+	constant STATE_SPARE		: std_logic_vector(1 downto 0)	:= "11"; --this state we can use for something in future
 
 	signal state, state_next				: state_type;
 	signal transmit_counter 				: std_logic_vector(11 downto 0);
@@ -221,31 +216,7 @@ begin
 	end process;
 
 
-	--Picoblaze commands decoder:
-	--Clear!
-	process(clk)
-	begin
-		if clk'event and clk = '1' then
-			if pb_wr = '1' then
-				if port_id = PB_PORT_CLEAR_IN then --not sure if we need  (7 downto 0) here
-					--ToDo: do something if accum CLEAR has been captured
-				end if;				
-			end if;
-		end if;
-	end;
-	
-	--GetState!
-	process(clk)
-	begin
-		if clk'event and clk = '1' then
-			if pb_wr = '1' then
-				if port_id = PB_PORT_STATE_OUT then --not sure if we need  (7 downto 0) here
-					--ToDo: do something if accum GET STATE has been captured
-				end if;
-			end if;
-		end if;
-	end;
-
+	--Picoblaze commands decoder:	
 	--GetData!
 	--select specific channel, or all channels mode
 	process(clk)
@@ -266,41 +237,6 @@ begin
 			if pb_wr = '1' then
 				if port_id = PB_PORT_IREAD_OUT	 then
 					--ToDo: do something if accum GET DATA INCREMENTAL reading has been captured
-				end if;
-			end if;
-		end if;
-	end;
-
-	--GetCounter!
-	--select specific channel, or all channels mode
-	process(clk)
-	begin
-		if clk'event and clk = '1' then
-			if pb_wr = '1' then
-				if port_id = PB_PORT_COUNTER_IN	 then
-					--ToDo: do something if accum GET COUNTER mode selection has been captured
-				end if;
-			end if;
-		end if;
-	end;
-	--get LSB COUNTER
-	process(clk)
-	begin
-		if clk'event and clk = '1' then
-			if pb_wr = '1' then
-				if port_id = PB_PORT_COUNTER_LSB_OUT then
-					--ToDo: do something if accum GET COUNTER LSB has been captured
-				end if;
-			end if;
-		end if;
-	end;
-	--get MSB COUNTER
-	process(clk)
-	begin
-		if clk'event and clk = '1' then
-			if pb_wr = '1' then
-				if port_id = PB_PORT_COUNTER_MSB_OUT then
-					--ToDo: do something if accum GET COUNTER MSB has been captured
 				end if;
 			end if;
 		end if;
