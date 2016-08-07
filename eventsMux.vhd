@@ -69,6 +69,7 @@ event4_o <= '0';
     end if;
   end process gen_clk;
  
+ generator_o <= generator;
 end BEHAVIORAL;
 
 
