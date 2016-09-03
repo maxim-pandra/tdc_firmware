@@ -130,8 +130,6 @@
         <signal name="evt_2_tmp" />
         <signal name="resetPointerWR" />
         <signal name="bramDebug(7:0)" />
-        <signal name="data_from_ftdi(6)" />
-        <signal name="data_from_ftdi(7)" />
         <signal name="MISO" />
         <signal name="MOSI" />
         <signal name="MOSI_i" />
@@ -153,11 +151,7 @@
         <signal name="controlBus(2)" />
         <signal name="txe" />
         <signal name="RD_FTDI_DEBUG" />
-        <signal name="data_from_ftdi(5)" />
         <signal name="pb_data_out(5)" />
-        <signal name="data_from_ftdi(2)" />
-        <signal name="data_from_ftdi(3)" />
-        <signal name="data_from_ftdi(4)" />
         <signal name="evt_generator" />
         <signal name="XLXN_478(7:0)" />
         <signal name="XLXN_480" />
@@ -516,10 +510,10 @@
             <blockpin signalname="TestB7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_15">
-            <blockpin signalname="data_from_ftdi(4)" name="I0" />
-            <blockpin signalname="data_from_ftdi(5)" name="I1" />
-            <blockpin signalname="data_from_ftdi(6)" name="I2" />
-            <blockpin signalname="data_from_ftdi(7)" name="I3" />
+            <blockpin signalname="SPI_CLK" name="I0" />
+            <blockpin signalname="SPI_CS" name="I1" />
+            <blockpin signalname="MOSI" name="I2" />
+            <blockpin signalname="MISO" name="I3" />
             <blockpin signalname="TestB0" name="O0" />
             <blockpin signalname="TestB1" name="O1" />
             <blockpin signalname="TestB2" name="O2" />
@@ -528,8 +522,8 @@
         <block symbolname="obuf4" name="XLXI_16">
             <blockpin signalname="att_sig(0)" name="I0" />
             <blockpin signalname="saw1" name="I1" />
-            <blockpin signalname="data_from_ftdi(2)" name="I2" />
-            <blockpin signalname="data_from_ftdi(3)" name="I3" />
+            <blockpin signalname="att_sig(1)" name="I2" />
+            <blockpin signalname="saw2" name="I3" />
             <blockpin signalname="TestA4" name="O0" />
             <blockpin signalname="TestA5" name="O1" />
             <blockpin signalname="TestA6" name="O2" />
@@ -589,7 +583,7 @@
             <blockpin signalname="evt_int1" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(0)" name="reset" />
-            <blockpin signalname="ground" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_503" name="adc_reset" />
             <blockpin signalname="CLK_ADC_0" name="CLK_ADC" />
             <blockpin signalname="att_sig(0)" name="attached_signal" />
@@ -607,7 +601,7 @@
             <blockpin signalname="evt_int4" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(3)" name="reset" />
-            <blockpin signalname="evt_generator" name="evt_std" />
+            <blockpin signalname="ground" name="evt_std" />
             <blockpin signalname="XLXN_500" name="adc_reset" />
             <blockpin signalname="clk_adc_3" name="CLK_ADC" />
             <blockpin signalname="att_sig(3)" name="attached_signal" />
@@ -671,7 +665,7 @@
             <blockpin signalname="evt_int2" name="evt" />
             <blockpin signalname="CLK80_INT" name="CLK_High" />
             <blockpin signalname="reset(1)" name="reset" />
-            <blockpin signalname="ground" name="evt_std" />
+            <blockpin signalname="evt_generator" name="evt_std" />
             <blockpin signalname="XLXN_502" name="adc_reset" />
             <blockpin signalname="CLK_ADC_1" name="CLK_ADC" />
             <blockpin signalname="att_sig(1)" name="attached_signal" />
@@ -934,19 +928,19 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2624" type="branch" />
             <wire x2="432" y1="2624" y2="2624" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(4)">
+        <branch name="SPI_CLK">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2896" type="branch" />
             <wire x2="432" y1="2896" y2="2896" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(5)">
+        <branch name="SPI_CS">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2960" type="branch" />
             <wire x2="432" y1="2960" y2="2960" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(6)">
+        <branch name="MOSI">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3024" type="branch" />
             <wire x2="432" y1="3024" y2="3024" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(7)">
+        <branch name="MISO">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3088" type="branch" />
             <wire x2="432" y1="3088" y2="3088" x1="352" />
         </branch>
@@ -1199,15 +1193,15 @@
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="2000" type="branch" />
             <wire x2="2096" y1="2000" y2="2000" x1="2048" />
         </branch>
-        <branch name="ground">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2064" y="1584" type="branch" />
             <wire x2="2080" y1="1584" y2="1584" x1="2064" />
         </branch>
-        <branch name="ground">
+        <branch name="evt_generator">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="1152" type="branch" />
             <wire x2="2096" y1="1152" y2="1152" x1="2048" />
         </branch>
-        <branch name="evt_generator">
+        <branch name="ground">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="2048" y="2448" type="branch" />
             <wire x2="2096" y1="2448" y2="2448" x1="2048" />
         </branch>
@@ -1356,11 +1350,11 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2688" y="1152" type="branch" />
             <wire x2="2688" y1="1152" y2="1152" x1="2480" />
         </branch>
-        <branch name="data_from_ftdi(2)">
+        <branch name="att_sig(1)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2688" type="branch" />
             <wire x2="432" y1="2688" y2="2688" x1="384" />
         </branch>
-        <branch name="data_from_ftdi(3)">
+        <branch name="saw2">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2752" type="branch" />
             <wire x2="432" y1="2752" y2="2752" x1="384" />
         </branch>

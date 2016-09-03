@@ -60,7 +60,7 @@ event4_o <= '0';
       generator   <= '0';
       prescaler   <= (others => '0');
     elsif rising_edge(generator_i) then   -- rising clock edge
-      if prescaler = X"400" then     -- 1024 in hex (we dividng on 1000)
+      if prescaler = X"10000" then     -- 1024 in hex (we dividng on 1000)
         prescaler   <= (others => '0');
         generator   <= not generator;
       else
