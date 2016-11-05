@@ -2,7 +2,7 @@
 
 NET "clk80" LOC = P51;
 
-NET "RD_FTDI" LOC = P33;
+NET "RD_FTDI" LOC = P134;
 NET "TestA0" LOC = P6;
 NET "TestA1" LOC = P5;
 NET "TestA2" LOC = P7;
@@ -19,7 +19,7 @@ NET "TestB4" LOC = P23;
 NET "TestB5" LOC = P26;
 NET "TestB6" LOC = P27;
 NET "TestB7" LOC = P29;
-NET "WR_FTDI" LOC = P32;
+NET "WR_FTDI" LOC = P137;
 NET "adc1" LOC = P114;
 NET "adc2" LOC = P102;
 NET "adc3" LOC = P97;
@@ -28,12 +28,12 @@ NET "cs1" LOC = P112;
 NET "cs2" LOC = P101;
 NET "cs3" LOC = P95;
 NET "cs4" LOC = P87;
-NET "rxf" LOC = P34;
+NET "rxf" LOC = P132;
 NET "saw1" LOC = P116;
 NET "saw2" LOC = P105;
 NET "saw3" LOC = P99;
 NET "saw4" LOC = P93;
-NET "txe" LOC = P35;
+NET "txe" LOC = P133;
 
 NET "CLK_ADC_0" LOC = P115;
 NET "CLK_ADC_1" LOC = P104;
@@ -151,14 +151,14 @@ TIMESPEC TS_CLK80 = PERIOD "CLK80" 12.5 ns HIGH 50 %;
 #pin2ucf - Sat Nov 29 19:31:26 2014
 #The following constraints were newly added
 NET "clk_adc_3" LOC = P92;
-NET "FTDIbus[0]" LOC = P48;
-NET "FTDIbus[1]" LOC = P45;
-NET "FTDIbus[2]" LOC = P46;
-NET "FTDIbus[3]" LOC = P40;
-NET "FTDIbus[4]" LOC = P47;
-NET "FTDIbus[5]" LOC = P43;
-NET "FTDIbus[6]" LOC = P41;
-NET "FTDIbus[7]" LOC = P44;
+NET "FTDIbus[0]" LOC = P118;
+NET "FTDIbus[1]" LOC = P119;
+NET "FTDIbus[2]" LOC = P120;
+NET "FTDIbus[3]" LOC = P123;
+NET "FTDIbus[4]" LOC = P124;
+NET "FTDIbus[5]" LOC = P126;
+NET "FTDIbus[6]" LOC = P127;
+NET "FTDIbus[7]" LOC = P131;
 
 
 NET "MISO" LOC = P65;
@@ -187,11 +187,11 @@ NET "SPI_CS" DRIVE = 2;
 NET "SPI_CLK" SLEW = FAST;
 
 
-NET "evt_3" LOC = P134;
+NET "evt_3" LOC = P67;
 
 
 
-NET "evt_4" LOC = P123;
+NET "evt_4" LOC = P2;
 
 
 
