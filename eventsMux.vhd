@@ -50,7 +50,8 @@ event2_o <= event2_i WHEN selector ='1' ELSE
             event1_i;
 event3_o <= event3_i WHEN selector ='1' ELSE 
             event1_i; 
-event4_o <= '0';
+event4_o <= event4_i WHEN selector ='1' ELSE 
+            event1_i;
 
 -- generator signal divider
 

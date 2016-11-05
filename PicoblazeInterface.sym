@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="PicoblazeInterface">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2015-9-30T9:54:51</timestamp>
+    <timestamp>2016-10-22T15:56:12</timestamp>
     <pin polarity="Input" x="0" y="-800" name="MCU_CLK" />
     <pin polarity="Input" x="0" y="-736" name="ToMCUData1(7:0)" />
     <pin polarity="Input" x="0" y="-672" name="Present1" />
@@ -12,7 +12,7 @@
     <pin polarity="Input" x="0" y="-384" name="controlFTDI(7:0)" />
     <pin polarity="Output" x="432" y="-496" name="ProgAddr(11:0)" />
     <pin polarity="Output" x="432" y="-368" name="IRQAck" />
-    <pin polarity="Output" x="432" y="-304" name="data_out_ftd_ioi(7:0)" />
+    <pin polarity="Output" x="432" y="-304" name="CLIENT_DATA_OUT(7:0)" />
     <pin polarity="Output" x="432" y="-272" name="RD_FTDI" />
     <pin polarity="Output" x="432" y="-240" name="WR_FTDI" />
     <pin polarity="Output" x="432" y="-432" name="data_from_FTDI(7:0)" />
@@ -20,6 +20,7 @@
     <pin polarity="Output" x="432" y="-208" name="PB_INt0" />
     <pin polarity="Output" x="432" y="-176" name="PB_INt1" />
     <pin polarity="Output" x="432" y="-144" name="pb_input_debug(7:0)" />
+    <pin polarity="Input" x="0" y="-624" name="CLIENT_DATA_IN(7:0)" />
     <graph>
         <rect width="304" x="64" y="-832" height="732" />
         <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-840" type="symbol" />
@@ -47,7 +48,7 @@
         <rect width="60" x="368" y="-504" height="16" />
         <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="348" y="-368" type="pin IRQAck" />
         <line x2="364" y1="-368" y2="-368" x1="432" />
-        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-304" type="pin data_out_ftd_ioi(7:0)" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-304" type="pin CLIENT_DATA_OUT(7:0)" />
         <line x2="364" y1="-304" y2="-304" x1="432" />
         <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-272" type="pin RD_FTDI" />
         <line x2="364" y1="-272" y2="-272" x1="432" />
@@ -67,5 +68,7 @@
         <attrtext style="alignment:RIGHT" attrname="PinName" x="344" y="-144" type="pin pb_input_debug(7:0)" />
         <line x2="368" y1="-144" y2="-144" x1="432" />
         <rect width="64" x="368" y="-152" height="16" />
+        <attrtext attrname="PinName" x="88" y="-624" type="pin CLIENT_DATA_IN(7:0)" />
+        <line x2="64" y1="-624" y2="-624" x1="0" />
     </graph>
 </symbol>

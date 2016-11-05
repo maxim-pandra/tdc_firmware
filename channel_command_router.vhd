@@ -308,10 +308,10 @@ begin
 	process (pb_present_bus, pb_state_out_bus,<input2>,<input3>,<input4>)
 	begin
 		case pb_present_bus is
-			when "0001" => --clear
+			when "0001" => --incremantal reading
 				present <= '1';
 				pb_data_out <= pb_state_out_bus;
-			when "0010" | "0011" => 
+			when "0010" | "0011" => --channels states
 				present <= '1';
 				pb_data_out <= pb_state_out_bus;
 			when "0100" | "0101" |"0110" | "0111" => --lsb

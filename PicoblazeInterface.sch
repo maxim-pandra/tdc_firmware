@@ -13,14 +13,6 @@
         <signal name="PORT_ID(1)" />
         <signal name="RD" />
         <signal name="WR_FTDI_INV" />
-        <signal name="dataInFTDI(0)" />
-        <signal name="dataInFTDI(1)" />
-        <signal name="dataInFTDI(2)" />
-        <signal name="dataInFTDI(3)" />
-        <signal name="dataInFTDI(4)" />
-        <signal name="dataInFTDI(5)" />
-        <signal name="dataInFTDI(6)" />
-        <signal name="dataInFTDI(7)" />
         <signal name="XLXN_1(17:0)" />
         <signal name="ProgAddr(11:0)" />
         <signal name="PORT_ID(2)" />
@@ -43,7 +35,7 @@
         <signal name="XLXN_526" />
         <signal name="XLXN_533" />
         <signal name="XLXN_535" />
-        <signal name="data_out_ftdi(7:0)" />
+        <signal name="data_to_ftdi(7:0)" />
         <signal name="presentInFTDI1" />
         <signal name="DATA_OUT(15:8)" />
         <signal name="XLXN_214" />
@@ -57,17 +49,9 @@
         <signal name="PORT_ID(7:0)" />
         <signal name="XLXN_1090" />
         <signal name="XLXN_1091" />
-        <signal name="dataInFTDI(7:0)" />
         <signal name="just_some_net" />
-        <signal name="data_from_FTDI(7)" />
-        <signal name="data_from_FTDI(6)" />
-        <signal name="data_from_FTDI(5)" />
-        <signal name="data_from_FTDI(4)" />
-        <signal name="data_from_FTDI(3)" />
-        <signal name="data_from_FTDI(2)" />
-        <signal name="data_from_FTDI(1)" />
-        <signal name="data_from_FTDI(0)" />
-        <signal name="data_from_FTDI(7:0)" />
+        <signal name="data_from_ftdi(7:0)">
+        </signal>
         <signal name="XLXN_1112" />
         <signal name="XLXN_1113" />
         <signal name="XLXN_1114" />
@@ -82,30 +66,14 @@
         <signal name="presentFTDIibus" />
         <signal name="PB_INt0" />
         <signal name="XLXN_1164" />
-        <signal name="XLXN_1190(15:0)" />
         <signal name="PB_INPUT(7:0)" />
-        <signal name="data_out_ftd_ioi(7:0)" />
-        <signal name="data_out_ftdi(0)" />
-        <signal name="data_out_ftdi(1)" />
-        <signal name="data_out_ftd_ioi(0)" />
-        <signal name="data_out_ftd_ioi(1)" />
-        <signal name="data_out_ftdi(2)" />
-        <signal name="data_out_ftdi(3)" />
-        <signal name="data_out_ftd_ioi(2)" />
-        <signal name="data_out_ftd_ioi(3)" />
-        <signal name="data_out_ftdi(4)" />
-        <signal name="data_out_ftdi(5)" />
-        <signal name="data_out_ftd_ioi(4)" />
-        <signal name="data_out_ftd_ioi(5)" />
-        <signal name="data_out_ftd_ioi(6)" />
-        <signal name="data_out_ftd_ioi(7)" />
-        <signal name="data_out_ftdi(6)" />
-        <signal name="data_out_ftdi(7)" />
         <signal name="pb_input_debug(7:0)" />
         <signal name="DATA_OUT(15:0)" />
         <signal name="PB_INt1" />
         <signal name="XLXN_1237(7:0)" />
         <signal name="XLXN_1238" />
+        <signal name="CLIENT_DATA_IN(7:0)" />
+        <signal name="CLIENT_DATA_OUT(7:0)" />
         <port polarity="Input" name="MCU_CLK" />
         <port polarity="Output" name="WR" />
         <port polarity="Output" name="RD" />
@@ -113,17 +81,18 @@
         <port polarity="Output" name="presentFTDIControl" />
         <port polarity="Output" name="RD_FTDI" />
         <port polarity="Output" name="WR_FTDI" />
+        <port polarity="Output" name="data_to_ftdi(7:0)" />
         <port polarity="Input" name="Present1" />
         <port polarity="Input" name="ToMCUData1(7:0)" />
         <port polarity="Input" name="controlFTDI(7:0)" />
         <port polarity="Output" name="IRQAck" />
         <port polarity="Output" name="PORT_ID(7:0)" />
-        <port polarity="Output" name="data_from_FTDI(7:0)" />
         <port polarity="Output" name="PB_INt0" />
-        <port polarity="BiDirectional" name="data_out_ftd_ioi(7:0)" />
         <port polarity="Output" name="pb_input_debug(7:0)" />
         <port polarity="Output" name="DATA_OUT(15:0)" />
         <port polarity="Output" name="PB_INt1" />
+        <port polarity="Input" name="CLIENT_DATA_IN(7:0)" />
+        <port polarity="Output" name="CLIENT_DATA_OUT(7:0)" />
         <blockdef name="fd8ce">
             <timestamp>2001-2-2T12:37:14</timestamp>
             <line x2="64" y1="-128" y2="-128" x1="0" />
@@ -247,22 +216,6 @@
             <line x2="192" y1="-64" y2="-32" x1="192" />
             <line x2="64" y1="-32" y2="-32" x1="192" />
             <rect width="256" x="64" y="-320" height="256" />
-        </blockdef>
-        <blockdef name="iobuf">
-            <timestamp>2009-3-20T10:10:10</timestamp>
-            <line x2="128" y1="-128" y2="-128" x1="224" />
-            <line x2="128" y1="-64" y2="-64" x1="160" />
-            <line x2="160" y1="-128" y2="-64" x1="160" />
-            <line x2="64" y1="-64" y2="-64" x1="0" />
-            <line x2="96" y1="-140" y2="-192" x1="96" />
-            <line x2="96" y1="-192" y2="-192" x1="0" />
-            <line x2="64" y1="-96" y2="-160" x1="64" />
-            <line x2="64" y1="-128" y2="-96" x1="128" />
-            <line x2="128" y1="-160" y2="-128" x1="64" />
-            <line x2="128" y1="-96" y2="-32" x1="128" />
-            <line x2="128" y1="-64" y2="-96" x1="64" />
-            <line x2="64" y1="-32" y2="-64" x1="128" />
-            <line x2="64" y1="-128" y2="-128" x1="0" />
         </blockdef>
         <blockdef name="inv">
             <timestamp>2000-1-1T10:10:10</timestamp>
@@ -410,7 +363,7 @@
             <blockpin signalname="presentInFTDI1" name="CE" />
             <blockpin signalname="DATA_OUT(7:0)" name="D(7:0)" />
             <blockpin signalname="XLXN_526" name="R" />
-            <blockpin signalname="data_out_ftdi(7:0)" name="Q(7:0)" />
+            <blockpin signalname="data_to_ftdi(7:0)" name="Q(7:0)" />
         </block>
         <block symbolname="gnd" name="XLXI_211">
             <blockpin signalname="XLXN_526" name="G" />
@@ -441,7 +394,7 @@
             <blockpin signalname="DATA_OUT(15:8)" name="Q(7:0)" />
         </block>
         <block symbolname="IMux4x1x8" name="XLXI_142">
-            <blockpin signalname="dataInFTDI(7:0)" name="InData0(7:0)" />
+            <blockpin signalname="data_from_ftdi(7:0)" name="InData0(7:0)" />
             <blockpin signalname="controlFTDI(7:0)" name="InData1(7:0)" />
             <blockpin signalname="ToMCUData1(7:0)" name="InData2(7:0)" />
             <blockpin signalname="XLXN_1237(7:0)" name="InData3(7:0)" />
@@ -481,38 +434,6 @@
             <blockpin signalname="MCU_CLK" name="clk" />
             <blockpin signalname="XLXN_1(17:0)" name="instruction(17:0)" />
             <blockpin signalname="XLXN_1091" name="rdl" />
-        </block>
-        <block symbolname="buf" name="XLXI_427">
-            <blockpin signalname="dataInFTDI(1)" name="I" />
-            <blockpin signalname="data_from_FTDI(1)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_428">
-            <blockpin signalname="dataInFTDI(2)" name="I" />
-            <blockpin signalname="data_from_FTDI(2)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_429">
-            <blockpin signalname="dataInFTDI(3)" name="I" />
-            <blockpin signalname="data_from_FTDI(3)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_430">
-            <blockpin signalname="dataInFTDI(4)" name="I" />
-            <blockpin signalname="data_from_FTDI(4)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_431">
-            <blockpin signalname="dataInFTDI(5)" name="I" />
-            <blockpin signalname="data_from_FTDI(5)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_432">
-            <blockpin signalname="dataInFTDI(6)" name="I" />
-            <blockpin signalname="data_from_FTDI(6)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_433">
-            <blockpin signalname="dataInFTDI(7)" name="I" />
-            <blockpin signalname="data_from_FTDI(7)" name="O" />
-        </block>
-        <block symbolname="buf" name="XLXI_426">
-            <blockpin signalname="dataInFTDI(0)" name="I" />
-            <blockpin signalname="data_from_FTDI(0)" name="O" />
         </block>
         <block symbolname="and2" name="XLXI_439">
             <blockpin signalname="XLXN_633" name="I0" />
@@ -592,56 +513,8 @@
             <blockpin signalname="presentFTDIControl" name="I" />
             <blockpin signalname="PB_INt0" name="O" />
         </block>
-        <block symbolname="iobuf" name="XLXI_224">
-            <blockpin signalname="data_out_ftdi(1)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(1)" name="IO" />
-            <blockpin signalname="dataInFTDI(1)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_225">
-            <blockpin signalname="data_out_ftdi(2)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(2)" name="IO" />
-            <blockpin signalname="dataInFTDI(2)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_226">
-            <blockpin signalname="data_out_ftdi(3)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(3)" name="IO" />
-            <blockpin signalname="dataInFTDI(3)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_227">
-            <blockpin signalname="data_out_ftdi(4)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(4)" name="IO" />
-            <blockpin signalname="dataInFTDI(4)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_228">
-            <blockpin signalname="data_out_ftdi(5)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(5)" name="IO" />
-            <blockpin signalname="dataInFTDI(5)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_229">
-            <blockpin signalname="data_out_ftdi(6)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(6)" name="IO" />
-            <blockpin signalname="dataInFTDI(6)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_230">
-            <blockpin signalname="data_out_ftdi(7)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(7)" name="IO" />
-            <blockpin signalname="dataInFTDI(7)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
-        <block symbolname="iobuf" name="XLXI_223">
-            <blockpin signalname="data_out_ftdi(0)" name="I" />
-            <blockpin signalname="data_out_ftd_ioi(0)" name="IO" />
-            <blockpin signalname="dataInFTDI(0)" name="O" />
-            <blockpin signalname="WR_FTDI_INV" name="T" />
-        </block>
         <block symbolname="buf8" name="XLXI_485">
-            <blockpin signalname="PB_INPUT(7:0)" name="d_in(7:0)" />
+            <blockpin signalname="data_from_ftdi(7:0)" name="d_in(7:0)" />
             <blockpin signalname="pb_input_debug(7:0)" name="d_out(7:0)" />
         </block>
         <block symbolname="buf" name="XLXI_495">
@@ -653,6 +526,14 @@
         </block>
         <block symbolname="gnd" name="XLXI_498">
             <blockpin signalname="XLXN_1238" name="G" />
+        </block>
+        <block symbolname="buf8" name="XLXI_499">
+            <blockpin signalname="data_to_ftdi(7:0)" name="d_in(7:0)" />
+            <blockpin signalname="CLIENT_DATA_OUT(7:0)" name="d_out(7:0)" />
+        </block>
+        <block symbolname="buf8" name="XLXI_500">
+            <blockpin signalname="CLIENT_DATA_IN(7:0)" name="d_in(7:0)" />
+            <blockpin signalname="data_from_ftdi(7:0)" name="d_out(7:0)" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
@@ -797,7 +678,7 @@
             <wire x2="4464" y1="2720" y2="2720" x1="4416" />
         </branch>
         <instance x="4192" y="2752" name="XLXI_247" orien="R0" />
-        <branch name="data_out_ftdi(7:0)">
+        <branch name="data_to_ftdi(7:0)">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4144" y="2144" type="branch" />
             <wire x2="4144" y1="2144" y2="2144" x1="4000" />
         </branch>
@@ -925,7 +806,7 @@
         </branch>
         <iomarker fontsize="28" x="608" y="1904" name="Present1" orien="R180" />
         <iomarker fontsize="28" x="608" y="1712" name="controlFTDI(7:0)" orien="R180" />
-        <branch name="dataInFTDI(7:0)">
+        <branch name="data_from_ftdi(7:0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="608" y="1584" type="branch" />
             <wire x2="992" y1="1584" y2="1584" x1="608" />
         </branch>
@@ -934,98 +815,6 @@
         </branch>
         <instance x="992" y="2064" name="XLXI_142" orien="R0">
         </instance>
-        <instance x="4944" y="2496" name="XLXI_427" orien="R0" />
-        <instance x="4944" y="2576" name="XLXI_428" orien="R0" />
-        <instance x="4944" y="2656" name="XLXI_429" orien="R0" />
-        <instance x="4944" y="2736" name="XLXI_430" orien="R0" />
-        <instance x="4944" y="2816" name="XLXI_431" orien="R0" />
-        <instance x="4944" y="2896" name="XLXI_432" orien="R0" />
-        <instance x="4944" y="2976" name="XLXI_433" orien="R0" />
-        <instance x="4944" y="2416" name="XLXI_426" orien="R0" />
-        <branch name="dataInFTDI(0)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4864" y="2384" type="branch" />
-            <wire x2="4864" y1="2384" y2="2384" x1="4832" />
-            <wire x2="4944" y1="2384" y2="2384" x1="4864" />
-        </branch>
-        <branch name="dataInFTDI(1)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4848" y="2464" type="branch" />
-            <wire x2="4848" y1="2464" y2="2464" x1="4832" />
-            <wire x2="4944" y1="2464" y2="2464" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(2)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4848" y="2544" type="branch" />
-            <wire x2="4848" y1="2544" y2="2544" x1="4832" />
-            <wire x2="4944" y1="2544" y2="2544" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(3)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4848" y="2624" type="branch" />
-            <wire x2="4848" y1="2624" y2="2624" x1="4832" />
-            <wire x2="4944" y1="2624" y2="2624" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(4)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4864" y="2704" type="branch" />
-            <wire x2="4864" y1="2704" y2="2704" x1="4832" />
-            <wire x2="4944" y1="2704" y2="2704" x1="4864" />
-        </branch>
-        <branch name="dataInFTDI(5)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4864" y="2784" type="branch" />
-            <wire x2="4864" y1="2784" y2="2784" x1="4832" />
-            <wire x2="4944" y1="2784" y2="2784" x1="4864" />
-        </branch>
-        <branch name="dataInFTDI(6)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4864" y="2864" type="branch" />
-            <wire x2="4864" y1="2864" y2="2864" x1="4832" />
-            <wire x2="4944" y1="2864" y2="2864" x1="4864" />
-        </branch>
-        <branch name="dataInFTDI(7)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="4864" y="2944" type="branch" />
-            <wire x2="4864" y1="2944" y2="2944" x1="4832" />
-            <wire x2="4944" y1="2944" y2="2944" x1="4864" />
-        </branch>
-        <branch name="data_from_FTDI(7)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5200" y="2944" type="branch" />
-            <wire x2="5200" y1="2944" y2="2944" x1="5168" />
-            <wire x2="5312" y1="2944" y2="2944" x1="5200" />
-        </branch>
-        <branch name="data_from_FTDI(6)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5216" y="2864" type="branch" />
-            <wire x2="5216" y1="2864" y2="2864" x1="5168" />
-            <wire x2="5312" y1="2864" y2="2864" x1="5216" />
-        </branch>
-        <branch name="data_from_FTDI(5)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5216" y="2784" type="branch" />
-            <wire x2="5216" y1="2784" y2="2784" x1="5168" />
-            <wire x2="5312" y1="2784" y2="2784" x1="5216" />
-        </branch>
-        <branch name="data_from_FTDI(4)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5216" y="2704" type="branch" />
-            <wire x2="5216" y1="2704" y2="2704" x1="5168" />
-            <wire x2="5312" y1="2704" y2="2704" x1="5216" />
-        </branch>
-        <branch name="data_from_FTDI(3)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5200" y="2624" type="branch" />
-            <wire x2="5200" y1="2624" y2="2624" x1="5168" />
-            <wire x2="5312" y1="2624" y2="2624" x1="5200" />
-        </branch>
-        <branch name="data_from_FTDI(2)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5184" y="2544" type="branch" />
-            <wire x2="5184" y1="2544" y2="2544" x1="5168" />
-            <wire x2="5312" y1="2544" y2="2544" x1="5184" />
-        </branch>
-        <branch name="data_from_FTDI(1)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5184" y="2464" type="branch" />
-            <wire x2="5184" y1="2464" y2="2464" x1="5168" />
-            <wire x2="5296" y1="2464" y2="2464" x1="5184" />
-        </branch>
-        <branch name="data_from_FTDI(0)">
-            <attrtext style="alignment:SOFT-BCENTER" attrname="Name" x="5184" y="2384" type="branch" />
-            <wire x2="5184" y1="2384" y2="2384" x1="5168" />
-            <wire x2="5296" y1="2384" y2="2384" x1="5184" />
-        </branch>
-        <branch name="data_from_FTDI(7:0)">
-            <wire x2="5120" y1="3184" y2="3184" x1="4736" />
-        </branch>
-        <iomarker fontsize="28" x="5120" y="3184" name="data_from_FTDI(7:0)" orien="R0" />
         <branch name="XLXN_543">
             <wire x2="1008" y1="2688" y2="2736" x1="1008" />
             <wire x2="1216" y1="2688" y2="2688" x1="1008" />
@@ -1195,148 +984,8 @@
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4512" y="80" type="branch" />
             <wire x2="4624" y1="80" y2="80" x1="4512" />
         </branch>
-        <branch name="data_out_ftd_ioi(7:0)">
-            <wire x2="5008" y1="2272" y2="2272" x1="4832" />
-        </branch>
-        <iomarker fontsize="28" x="5008" y="2272" name="data_out_ftd_ioi(7:0)" orien="R0" />
-        <instance x="4912" y="1008" name="XLXI_224" orien="R0" />
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="608" type="branch" />
-            <wire x2="4912" y1="608" y2="608" x1="4848" />
-        </branch>
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="816" type="branch" />
-            <wire x2="4912" y1="816" y2="816" x1="4848" />
-        </branch>
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="1024" type="branch" />
-            <wire x2="4912" y1="1024" y2="1024" x1="4848" />
-        </branch>
-        <branch name="data_out_ftdi(0)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="672" type="branch" />
-            <wire x2="4912" y1="672" y2="672" x1="4864" />
-        </branch>
-        <branch name="data_out_ftdi(1)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="880" type="branch" />
-            <wire x2="4912" y1="880" y2="880" x1="4864" />
-        </branch>
-        <branch name="data_out_ftd_ioi(0)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="672" type="branch" />
-            <wire x2="5184" y1="672" y2="672" x1="5136" />
-        </branch>
-        <branch name="data_out_ftd_ioi(1)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="880" type="branch" />
-            <wire x2="5184" y1="880" y2="880" x1="5136" />
-        </branch>
-        <instance x="4912" y="1216" name="XLXI_225" orien="R0" />
-        <instance x="4912" y="1408" name="XLXI_226" orien="R0" />
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="1216" type="branch" />
-            <wire x2="4912" y1="1216" y2="1216" x1="4832" />
-        </branch>
-        <branch name="data_out_ftdi(2)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="1088" type="branch" />
-            <wire x2="4912" y1="1088" y2="1088" x1="4864" />
-        </branch>
-        <branch name="data_out_ftdi(3)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="1280" type="branch" />
-            <wire x2="4912" y1="1280" y2="1280" x1="4864" />
-        </branch>
-        <branch name="data_out_ftd_ioi(2)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="1088" type="branch" />
-            <wire x2="5184" y1="1088" y2="1088" x1="5136" />
-        </branch>
-        <branch name="data_out_ftd_ioi(3)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="1280" type="branch" />
-            <wire x2="5184" y1="1280" y2="1280" x1="5136" />
-        </branch>
-        <instance x="4912" y="1616" name="XLXI_227" orien="R0" />
-        <instance x="4912" y="1808" name="XLXI_228" orien="R0" />
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="1424" type="branch" />
-            <wire x2="4912" y1="1424" y2="1424" x1="4832" />
-        </branch>
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="1616" type="branch" />
-            <wire x2="4912" y1="1616" y2="1616" x1="4832" />
-        </branch>
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="1824" type="branch" />
-            <wire x2="4912" y1="1824" y2="1824" x1="4832" />
-        </branch>
-        <branch name="data_out_ftdi(4)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="1488" type="branch" />
-            <wire x2="4912" y1="1488" y2="1488" x1="4864" />
-        </branch>
-        <branch name="data_out_ftdi(5)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="1680" type="branch" />
-            <wire x2="4912" y1="1680" y2="1680" x1="4864" />
-        </branch>
-        <branch name="data_out_ftd_ioi(4)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="1488" type="branch" />
-            <wire x2="5184" y1="1488" y2="1488" x1="5136" />
-        </branch>
-        <branch name="data_out_ftd_ioi(5)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="1680" type="branch" />
-            <wire x2="5184" y1="1680" y2="1680" x1="5136" />
-        </branch>
-        <branch name="data_out_ftd_ioi(6)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="1888" type="branch" />
-            <wire x2="5184" y1="1888" y2="1888" x1="5136" />
-        </branch>
-        <branch name="data_out_ftd_ioi(7)">
-            <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="5184" y="2096" type="branch" />
-            <wire x2="5184" y1="2096" y2="2096" x1="5136" />
-        </branch>
-        <instance x="4912" y="2016" name="XLXI_229" orien="R0" />
-        <instance x="4912" y="2224" name="XLXI_230" orien="R0" />
-        <branch name="WR_FTDI_INV">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="2032" type="branch" />
-            <wire x2="4912" y1="2032" y2="2032" x1="4848" />
-        </branch>
-        <branch name="data_out_ftdi(6)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="1888" type="branch" />
-            <wire x2="4912" y1="1888" y2="1888" x1="4864" />
-        </branch>
-        <branch name="data_out_ftdi(7)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4864" y="2096" type="branch" />
-            <wire x2="4912" y1="2096" y2="2096" x1="4864" />
-        </branch>
-        <branch name="dataInFTDI(0)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="736" type="branch" />
-            <wire x2="4912" y1="736" y2="736" x1="4832" />
-        </branch>
-        <branch name="dataInFTDI(1)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="944" type="branch" />
-            <wire x2="4912" y1="944" y2="944" x1="4832" />
-        </branch>
-        <branch name="dataInFTDI(2)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="1152" type="branch" />
-            <wire x2="4912" y1="1152" y2="1152" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(3)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="1344" type="branch" />
-            <wire x2="4912" y1="1344" y2="1344" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(4)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="1552" type="branch" />
-            <wire x2="4912" y1="1552" y2="1552" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(5)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4832" y="1744" type="branch" />
-            <wire x2="4912" y1="1744" y2="1744" x1="4832" />
-        </branch>
-        <branch name="dataInFTDI(6)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="1952" type="branch" />
-            <wire x2="4912" y1="1952" y2="1952" x1="4848" />
-        </branch>
-        <branch name="dataInFTDI(7)">
-            <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="4848" y="2160" type="branch" />
-            <wire x2="4912" y1="2160" y2="2160" x1="4848" />
-        </branch>
-        <instance x="4912" y="800" name="XLXI_223" orien="R0" />
         <iomarker fontsize="28" x="4928" y="80" name="PB_INt0" orien="R0" />
-        <branch name="PB_INPUT(7:0)">
+        <branch name="data_from_ftdi(7:0)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4432" y="320" type="branch" />
             <wire x2="4496" y1="320" y2="320" x1="4432" />
         </branch>
@@ -1371,5 +1020,25 @@
             <wire x2="992" y1="2032" y2="2032" x1="528" />
         </branch>
         <instance x="464" y="2176" name="XLXI_498" orien="R0" />
+        <instance x="176" y="144" name="XLXI_500" orien="R0">
+        </instance>
+        <instance x="4496" y="528" name="XLXI_499" orien="R0">
+        </instance>
+        <branch name="CLIENT_DATA_OUT(7:0)">
+            <wire x2="4944" y1="496" y2="496" x1="4880" />
+        </branch>
+        <branch name="data_to_ftdi(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4432" y="496" type="branch" />
+            <wire x2="4496" y1="496" y2="496" x1="4432" />
+        </branch>
+        <iomarker fontsize="28" x="4944" y="496" name="CLIENT_DATA_OUT(7:0)" orien="R0" />
+        <branch name="CLIENT_DATA_IN(7:0)">
+            <wire x2="176" y1="112" y2="112" x1="144" />
+        </branch>
+        <branch name="data_from_ftdi(7:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="608" y="112" type="branch" />
+            <wire x2="608" y1="112" y2="112" x1="560" />
+        </branch>
+        <iomarker fontsize="28" x="144" y="112" name="CLIENT_DATA_IN(7:0)" orien="R180" />
     </sheet>
 </drawing>

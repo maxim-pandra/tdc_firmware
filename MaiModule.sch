@@ -32,7 +32,6 @@
         <signal name="CLK80_INT" />
         <signal name="pb_rd_strobe" />
         <signal name="pb_wr_strobe" />
-        <signal name="FTDIbus(7:0)" />
         <signal name="ARQAck" />
         <signal name="ProgAddr(11:0)" />
         <signal name="data_from_ftdi(7:0)" />
@@ -155,11 +154,7 @@
         <signal name="txe" />
         <signal name="RD_FTDI_DEBUG" />
         <signal name="data_from_ftdi(5)" />
-        <signal name="pb_data_out(5)" />
-        <signal name="data_from_ftdi(0)" />
-        <signal name="data_from_ftdi(1)" />
-        <signal name="data_from_ftdi(2)" />
-        <signal name="data_from_ftdi(3)" />
+        <signal name="pid(6)" />
         <signal name="data_from_ftdi(4)" />
         <signal name="evt_generator" />
         <signal name="XLXN_478(7:0)" />
@@ -170,6 +165,20 @@
         <signal name="evt_4" />
         <signal name="evt_std" />
         <signal name="XLXN_531" />
+        <signal name="data_from_ftdi(3)" />
+        <signal name="data_from_ftdi(2)" />
+        <signal name="vcc_s" />
+        <signal name="pid(5)" />
+        <signal name="pid(2)" />
+        <signal name="pid(3)" />
+        <signal name="pid(4)" />
+        <signal name="pid(7)" />
+        <signal name="CLIENT_DATA_OUT(7:0)" />
+        <signal name="CLIENT_DATA_IN(7:0)" />
+        <signal name="XLXN_532" />
+        <signal name="XLXN_533" />
+        <signal name="DATA_IO_USB(7:0)" />
+        <signal name="DATA_IO_GPIO(7:0)" />
         <port polarity="Output" name="TestA0" />
         <port polarity="Output" name="TestA1" />
         <port polarity="Output" name="TestA2" />
@@ -188,7 +197,6 @@
         <port polarity="Output" name="TestB5" />
         <port polarity="Output" name="WR_FTDI" />
         <port polarity="Input" name="clk80" />
-        <port polarity="BiDirectional" name="FTDIbus(7:0)" />
         <port polarity="Input" name="adc1" />
         <port polarity="Input" name="adc2" />
         <port polarity="Input" name="adc3" />
@@ -221,6 +229,8 @@
         <port polarity="Input" name="evt_3" />
         <port polarity="Input" name="evt_4" />
         <port polarity="Input" name="evt_std" />
+        <port polarity="BiDirectional" name="DATA_IO_USB(7:0)" />
+        <port polarity="BiDirectional" name="DATA_IO_GPIO(7:0)" />
         <blockdef name="obuf4">
             <timestamp>2001-4-12T12:11:56</timestamp>
             <line x2="64" y1="0" y2="-64" x1="64" />
@@ -350,7 +360,7 @@
             <line x2="384" y1="-416" y2="-416" x1="320" />
         </blockdef>
         <blockdef name="PicoblazeInterface">
-            <timestamp>2015-9-30T9:54:51</timestamp>
+            <timestamp>2016-10-22T15:56:12</timestamp>
             <rect width="304" x="64" y="-832" height="732" />
             <line x2="0" y1="-800" y2="-800" x1="64" />
             <line x2="0" y1="-736" y2="-736" x1="64" />
@@ -378,6 +388,7 @@
             <line x2="368" y1="-176" y2="-176" x1="432" />
             <line x2="368" y1="-144" y2="-144" x1="432" />
             <rect width="64" x="368" y="-152" height="16" />
+            <line x2="64" y1="-624" y2="-624" x1="0" />
         </blockdef>
         <blockdef name="autoinc_bramAddr">
             <timestamp>2015-4-18T12:25:59</timestamp>
@@ -498,41 +509,64 @@
             <line x2="320" y1="-64" y2="-64" x1="384" />
             <line x2="64" y1="-16" y2="-16" x1="0" />
         </blockdef>
+        <blockdef name="vcc">
+            <timestamp>2000-1-1T10:10:10</timestamp>
+            <line x2="64" y1="-32" y2="-64" x1="64" />
+            <line x2="64" y1="0" y2="-32" x1="64" />
+            <line x2="32" y1="-64" y2="-64" x1="96" />
+        </blockdef>
+        <blockdef name="SwitchableIoBuffer">
+            <timestamp>2016-11-5T8:31:15</timestamp>
+            <rect width="256" x="64" y="-260" height="260" />
+            <line x2="384" y1="-160" y2="-160" x1="320" />
+            <rect width="64" x="320" y="-172" height="24" />
+            <line x2="0" y1="-160" y2="-160" x1="64" />
+            <line x2="64" y1="-96" y2="-96" x1="0" />
+            <rect width="64" x="0" y="-108" height="24" />
+            <line x2="384" y1="-128" y2="-128" x1="320" />
+            <rect width="64" x="320" y="-140" height="24" />
+            <line x2="320" y1="-32" y2="-32" x1="384" />
+            <rect width="64" x="320" y="-44" height="24" />
+            <line x2="0" y1="-128" y2="-128" x1="64" />
+            <line x2="64" y1="-64" y2="-64" x1="0" />
+            <line x2="64" y1="-224" y2="-224" x1="0" />
+            <line x2="64" y1="-192" y2="-192" x1="0" />
+        </blockdef>
         <block symbolname="obuf4" name="XLXI_14">
-            <blockpin signalname="pb_wr_strobe" name="I0" />
-            <blockpin signalname="pb_rd_strobe" name="I1" />
-            <blockpin signalname="pb_data_out(5)" name="I2" />
-            <blockpin signalname="evt_generator" name="I3" />
+            <blockpin signalname="data_from_ftdi(4)" name="I0" />
+            <blockpin signalname="data_from_ftdi(5)" name="I1" />
+            <blockpin signalname="data_from_ftdi(6)" name="I2" />
+            <blockpin signalname="data_from_ftdi(7)" name="I3" />
             <blockpin signalname="TestB4" name="O0" />
             <blockpin signalname="TestB5" name="O1" />
             <blockpin signalname="TestB6" name="O2" />
             <blockpin signalname="TestB7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_15">
-            <blockpin signalname="data_from_ftdi(4)" name="I0" />
-            <blockpin signalname="data_from_ftdi(5)" name="I1" />
-            <blockpin signalname="data_from_ftdi(6)" name="I2" />
-            <blockpin signalname="data_from_ftdi(7)" name="I3" />
+            <blockpin signalname="controlBus(0)" name="I0" />
+            <blockpin signalname="WR_FTDI_DEBUG" name="I1" />
+            <blockpin signalname="data_from_ftdi(2)" name="I2" />
+            <blockpin signalname="data_from_ftdi(3)" name="I3" />
             <blockpin signalname="TestB0" name="O0" />
             <blockpin signalname="TestB1" name="O1" />
             <blockpin signalname="TestB2" name="O2" />
             <blockpin signalname="TestB3" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_16">
-            <blockpin signalname="data_from_ftdi(0)" name="I0" />
-            <blockpin signalname="data_from_ftdi(1)" name="I1" />
-            <blockpin signalname="data_from_ftdi(2)" name="I2" />
-            <blockpin signalname="data_from_ftdi(3)" name="I3" />
+            <blockpin signalname="pid(4)" name="I0" />
+            <blockpin signalname="pid(5)" name="I1" />
+            <blockpin signalname="pid(6)" name="I2" />
+            <blockpin signalname="pid(7)" name="I3" />
             <blockpin signalname="TestA4" name="O0" />
             <blockpin signalname="TestA5" name="O1" />
             <blockpin signalname="TestA6" name="O2" />
             <blockpin signalname="TestA7" name="O3" />
         </block>
         <block symbolname="obuf4" name="XLXI_17">
-            <blockpin signalname="RD_FTDI_DEBUG" name="I0" />
-            <blockpin signalname="WR_FTDI_DEBUG" name="I1" />
-            <blockpin signalname="controlBus(0)" name="I2" />
-            <blockpin signalname="controlBus(1)" name="I3" />
+            <blockpin signalname="controlBus(1)" name="I0" />
+            <blockpin signalname="RD_FTDI_DEBUG" name="I1" />
+            <blockpin signalname="pid(2)" name="I2" />
+            <blockpin signalname="pid(3)" name="I3" />
             <blockpin signalname="TestA0" name="O0" />
             <blockpin signalname="TestA1" name="O1" />
             <blockpin signalname="TestA2" name="O2" />
@@ -549,7 +583,7 @@
             <blockpin signalname="controlBus(7:0)" name="controlFTDI(7:0)" />
             <blockpin signalname="ProgAddr(11:0)" name="ProgAddr(11:0)" />
             <blockpin signalname="ARQAck" name="IRQAck" />
-            <blockpin signalname="FTDIbus(7:0)" name="data_out_ftd_ioi(7:0)" />
+            <blockpin signalname="CLIENT_DATA_OUT(7:0)" name="CLIENT_DATA_OUT(7:0)" />
             <blockpin signalname="RD_FTDI_DEBUG" name="RD_FTDI" />
             <blockpin signalname="WR_FTDI_DEBUG" name="WR_FTDI" />
             <blockpin signalname="data_from_ftdi(7:0)" name="data_from_FTDI(7:0)" />
@@ -557,6 +591,7 @@
             <blockpin signalname="flash_rd_p" name="PB_INt0" />
             <blockpin signalname="PB_IN1" name="PB_INt1" />
             <blockpin signalname="pid(7:0)" name="pb_input_debug(7:0)" />
+            <blockpin signalname="CLIENT_DATA_IN(7:0)" name="CLIENT_DATA_IN(7:0)" />
         </block>
         <block symbolname="autoinc_bramAddr" name="XLXI_260">
             <blockpin signalname="clk80" name="CLK80" />
@@ -844,6 +879,20 @@
         <block symbolname="gnd" name="XLXI_346">
             <blockpin signalname="XLXN_531" name="G" />
         </block>
+        <block symbolname="vcc" name="XLXI_347">
+            <blockpin signalname="vcc_s" name="P" />
+        </block>
+        <block symbolname="SwitchableIoBuffer" name="XLXI_348">
+            <blockpin signalname="DATA_IO_GPIO(7:0)" name="FTDI_BUS_GPIO(7:0)" />
+            <blockpin signalname="XLXN_532" name="RXF_GPIO" />
+            <blockpin signalname="CLIENT_DATA_OUT(7:0)" name="DATA_FOR_CLIENT(7:0)" />
+            <blockpin signalname="DATA_IO_USB(7:0)" name="FTDI_BUS_USB(7:0)" />
+            <blockpin signalname="CLIENT_DATA_IN(7:0)" name="DATA_FROM_CLIENT(7:0)" />
+            <blockpin signalname="XLXN_533" name="RXF_USB" />
+            <blockpin signalname="WR_FTDI_DEBUG" name="WR_CTRL" />
+            <blockpin name="TXE_USB" />
+            <blockpin name="TXE_GPI" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="5440" height="3520">
         <instance x="432" y="2784" name="XLXI_16" orien="R0" />
@@ -912,51 +961,48 @@
             <wire x2="688" y1="3408" y2="3408" x1="656" />
         </branch>
         <iomarker fontsize="28" x="688" y="3408" name="TestB7" orien="R0" />
-        <branch name="data_from_ftdi(0)">
+        <branch name="pid(4)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2560" type="branch" />
             <wire x2="432" y1="2560" y2="2560" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(1)">
+        <branch name="pid(5)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2624" type="branch" />
             <wire x2="432" y1="2624" y2="2624" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(4)">
+        <branch name="controlBus(0)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2896" type="branch" />
             <wire x2="432" y1="2896" y2="2896" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(5)">
+        <branch name="WR_FTDI_DEBUG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="2960" type="branch" />
             <wire x2="432" y1="2960" y2="2960" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(6)">
+        <branch name="data_from_ftdi(2)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3024" type="branch" />
             <wire x2="432" y1="3024" y2="3024" x1="352" />
         </branch>
-        <branch name="data_from_ftdi(7)">
+        <branch name="data_from_ftdi(3)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3088" type="branch" />
             <wire x2="432" y1="3088" y2="3088" x1="352" />
         </branch>
-        <branch name="pb_wr_strobe">
+        <branch name="data_from_ftdi(4)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3216" type="branch" />
             <wire x2="432" y1="3216" y2="3216" x1="352" />
         </branch>
-        <branch name="pb_rd_strobe">
+        <branch name="data_from_ftdi(5)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3280" type="branch" />
             <wire x2="432" y1="3280" y2="3280" x1="352" />
         </branch>
-        <branch name="pb_data_out(5)">
+        <branch name="data_from_ftdi(6)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="336" y="3344" type="branch" />
             <wire x2="432" y1="3344" y2="3344" x1="336" />
         </branch>
-        <branch name="evt_generator">
+        <branch name="data_from_ftdi(7)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="352" y="3408" type="branch" />
             <wire x2="432" y1="3408" y2="3408" x1="352" />
         </branch>
         <instance x="432" y="3440" name="XLXI_14" orien="R0" />
         <instance x="432" y="3120" name="XLXI_15" orien="R0" />
-        <branch name="FTDIbus(7:0)">
-            <wire x2="5136" y1="720" y2="720" x1="4848" />
-        </branch>
         <branch name="ARQAck">
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="4928" y="656" type="branch" />
             <wire x2="4928" y1="656" y2="656" x1="4848" />
@@ -1341,11 +1387,11 @@
             <attrtext style="alignment:SOFT-LEFT" attrname="Name" x="2688" y="1152" type="branch" />
             <wire x2="2688" y1="1152" y2="1152" x1="2480" />
         </branch>
-        <branch name="data_from_ftdi(2)">
+        <branch name="pid(6)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2688" type="branch" />
             <wire x2="432" y1="2688" y2="2688" x1="384" />
         </branch>
-        <branch name="data_from_ftdi(3)">
+        <branch name="pid(7)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="384" y="2752" type="branch" />
             <wire x2="432" y1="2752" y2="2752" x1="384" />
         </branch>
@@ -1585,7 +1631,7 @@
             <wire x2="1008" y1="1568" y2="1568" x1="880" />
         </branch>
         <instance x="656" y="1600" name="XLXI_249" orien="R0" />
-        <branch name="controlBus(1)">
+        <branch name="pid(3)">
             <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="288" y="2432" type="branch" />
             <wire x2="432" y1="2432" y2="2432" x1="288" />
         </branch>
@@ -1629,15 +1675,15 @@
         <text x="368" y="3068">reasonContinue brdb1</text>
         <text x="376" y="3200">enable</text>
         <text x="312" y="3384">reset_bram_manager</text>
-        <branch name="RD_FTDI_DEBUG">
+        <branch name="controlBus(1)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2240" type="branch" />
             <wire x2="432" y1="2240" y2="2240" x1="320" />
         </branch>
-        <branch name="WR_FTDI_DEBUG">
+        <branch name="RD_FTDI_DEBUG">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2304" type="branch" />
             <wire x2="432" y1="2304" y2="2304" x1="320" />
         </branch>
-        <branch name="controlBus(0)">
+        <branch name="pid(2)">
             <attrtext style="alignment:SOFT-RIGHT" attrname="Name" x="320" y="2368" type="branch" />
             <wire x2="432" y1="2368" y2="2368" x1="320" />
         </branch>
@@ -1768,7 +1814,6 @@
             <wire x2="5232" y1="1008" y2="1008" x1="5184" />
         </branch>
         <iomarker fontsize="28" x="5232" y="1008" name="RD_FTDI" orien="R0" />
-        <iomarker fontsize="28" x="5136" y="720" name="FTDIbus(7:0)" orien="R0" />
         <instance x="5152" y="752" name="XLXI_336" orien="R90" />
         <branch name="RD_FTDI_DEBUG">
             <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4976" y="752" type="branch" />
@@ -1869,5 +1914,49 @@
         <iomarker fontsize="28" x="144" y="272" name="evt_4" orien="R180" />
         <iomarker fontsize="28" x="160" y="320" name="evt_std" orien="R180" />
         <instance x="-16" y="528" name="XLXI_346" orien="R0" />
+        <instance x="48" y="2032" name="XLXI_347" orien="R0" />
+        <branch name="vcc_s">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="224" y="2064" type="branch" />
+            <wire x2="112" y1="2032" y2="2064" x1="112" />
+            <wire x2="224" y1="2064" y2="2064" x1="112" />
+        </branch>
+        <branch name="CLIENT_DATA_OUT(7:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4976" y="720" type="branch" />
+            <wire x2="4976" y1="720" y2="720" x1="4848" />
+        </branch>
+        <branch name="CLIENT_DATA_IN(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4288" y="400" type="branch" />
+            <wire x2="4416" y1="400" y2="400" x1="4288" />
+        </branch>
+        <branch name="XLXN_532">
+            <wire x2="4416" y1="1808" y2="1808" x1="4352" />
+        </branch>
+        <branch name="XLXN_533">
+            <wire x2="4416" y1="1840" y2="1840" x1="4352" />
+        </branch>
+        <branch name="CLIENT_DATA_OUT(7:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4352" y="1872" type="branch" />
+            <wire x2="4416" y1="1872" y2="1872" x1="4352" />
+        </branch>
+        <branch name="WR_FTDI_DEBUG">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="4352" y="1904" type="branch" />
+            <wire x2="4416" y1="1904" y2="1904" x1="4352" />
+        </branch>
+        <branch name="DATA_IO_USB(7:0)">
+            <wire x2="4816" y1="1840" y2="1840" x1="4800" />
+            <wire x2="4848" y1="1840" y2="1840" x1="4816" />
+        </branch>
+        <branch name="DATA_IO_GPIO(7:0)">
+            <wire x2="4816" y1="1808" y2="1808" x1="4800" />
+            <wire x2="4848" y1="1808" y2="1808" x1="4816" />
+        </branch>
+        <branch name="CLIENT_DATA_IN(7:0)">
+            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4864" y="1936" type="branch" />
+            <wire x2="4864" y1="1936" y2="1936" x1="4800" />
+        </branch>
+        <instance x="4416" y="1968" name="XLXI_348" orien="R0">
+        </instance>
+        <iomarker fontsize="28" x="4848" y="1808" name="DATA_IO_GPIO(7:0)" orien="R0" />
+        <iomarker fontsize="28" x="4848" y="1840" name="DATA_IO_USB(7:0)" orien="R0" />
     </sheet>
 </drawing>
