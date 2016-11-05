@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <symbol version="7" name="SwitchableIoBuffer">
     <symboltype>BLOCK</symboltype>
-    <timestamp>2016-11-5T8:31:15</timestamp>
+    <timestamp>2016-11-5T11:39:46</timestamp>
     <pin polarity="BiDirectional" x="384" y="-160" name="FTDI_BUS_GPIO(7:0)" />
     <pin polarity="Input" x="0" y="-160" name="RXF_GPIO" />
     <pin polarity="Input" x="0" y="-96" name="DATA_FOR_CLIENT(7:0)" />
@@ -11,6 +11,11 @@
     <pin polarity="Input" x="0" y="-64" name="WR_CTRL" />
     <pin polarity="Input" x="0" y="-192" name="TXE_USB" />
     <pin polarity="Input" x="0" y="-224" name="TXE_GPI" />
+    <pin polarity="Output" x="384" y="-192" name="WR_USB" />
+    <pin polarity="Output" x="384" y="-208" name="WR_GPIO" />
+    <pin polarity="Output" x="384" y="-224" name="RD_USB" />
+    <pin polarity="Output" x="384" y="-240" name="RD_GPIO" />
+    <pin polarity="Input" x="0" y="-16" name="RD_CTRL" />
     <graph>
         <rect width="256" x="64" y="-260" height="260" />
         <line x2="384" y1="-160" y2="-160" x1="320" />
@@ -36,5 +41,15 @@
         <line x2="64" y1="-192" y2="-192" x1="0" />
         <attrtext attrname="PinName" x="72" y="-192" type="pin TXE_USB" />
         <attrtext attrname="PinName" x="72" y="-224" type="pin TXE_GPI" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="-192" type="pin WR_USB" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="-208" type="pin WR_GPIO" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="296" y="-224" type="pin RD_USB" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="300" y="-240" type="pin RD_GPIO" />
+        <line x2="320" y1="-240" y2="-240" x1="384" />
+        <line x2="320" y1="-224" y2="-224" x1="384" />
+        <line x2="320" y1="-208" y2="-208" x1="384" />
+        <line x2="320" y1="-192" y2="-192" x1="384" />
+        <attrtext attrname="PinName" x="88" y="-16" type="pin RD_CTRL" />
+        <line x2="64" y1="-16" y2="-16" x1="0" />
     </graph>
 </symbol>
